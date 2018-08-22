@@ -1,0 +1,11 @@
+# [kdeglobals][KDE]
+# LookAndFeelPackage=org.kde.plasma.phone
+
+[Desktop]
+Containment=org.kde.mycroft.homescreen
+ToolBox=
+
+[Desktop][ContainmentActions]
+
+# [plasmarc][Theme]
+# name=breeze-dark
