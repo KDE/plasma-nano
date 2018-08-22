@@ -50,7 +50,7 @@ Item {
         applet.visible = true;
         container.visible = true;
 
-        if (applet.pluginName == "org.kde.plasma.mycroft") {
+        if (applet.pluginName == "org.kde.plasma.mycroftplasmoid") {
             container.parent = mycroftParent;
             container.anchors.fill = mycroftParent;
             return;
