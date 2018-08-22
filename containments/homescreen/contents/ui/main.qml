@@ -50,6 +50,7 @@ Item {
         applet.visible = true;
         container.visible = true;
 
+        //TODO: the mycroft stuff directly in the containment
         if (applet.pluginName == "org.kde.plasma.mycroftplasmoid") {
             container.parent = mycroftParent;
             container.anchors.fill = mycroftParent;
@@ -179,7 +180,7 @@ Item {
                 z: -1
                 anchors.fill: parent
                 imagePath: "widgets/background"
-                visible: applet.backgroundHints == PlasmaCore.Types.StandardBackground
+                visible: applet.pluginName != "org.kde.plasma.mycroftplasmoid" && applet.backgroundHints == PlasmaCore.Types.StandardBackground
             }
 
             width: parent.width
@@ -258,10 +259,10 @@ Item {
             root.stopScroll();
         }
 
-        PlasmaCore.ColorScope {
+        Item {
             anchors.fill: parent
             //TODO: decide what color we want applets
-            colorGroup: PlasmaCore.Theme.ComplementaryColorGroup
+           // colorGroup: PlasmaCore.Theme.ComplementaryColorGroup
 
             PlasmaCore.Svg {
                 id: arrowsSvg
