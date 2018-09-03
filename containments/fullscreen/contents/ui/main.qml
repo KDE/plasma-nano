@@ -127,8 +127,8 @@ Item {
                 verticalOffset: 2
             }
 
-            implicitWidth: root.smallScreenMode ? root.width :  Math.max(applet.switchWidth + 1, Math.max( applet.Layout.minimumWidth, root.width/4))
-            implicitHeight: appletsSpace.height
+            implicitWidth: root.smallScreenMode ? appletsView.width :  Math.max(applet.switchWidth + 1, Math.max( applet.Layout.minimumWidth, appletsView.width/4))
+            implicitHeight: appletsView.height
 
             PlasmaComponents.BusyIndicator {
                 z: 1000
@@ -141,7 +141,7 @@ Item {
         }
     }
 
-/*for the first version any direct manipulation is disabled, reenable in the future
+/*NOTE: for the first version any direct manipulation is disabled, reenable in the future
     EditOverlay {
         id: editOverlay
         z: 999
@@ -159,7 +159,7 @@ Item {
                 left: parent.left
                 right: parent.right
                 top: parent.top
-                margins: units.largeSpacing
+                margins: root.smallScreenMode ? 0 : units.largeSpacing
             }
             flickableDirection: Flickable.HorizontalFlick
             boundsBehavior: Flickable.StopAtBounds
