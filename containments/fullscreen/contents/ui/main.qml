@@ -25,6 +25,7 @@ import org.kde.plasma.plasmoid 2.0
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 3.0 as PlasmaComponents
 import org.kde.kquickcontrolsaddons 2.0
+import org.kde.kirigami 2.5 as Kirigami
 
 import "LayoutManager.js" as LayoutManager
 
@@ -36,7 +37,7 @@ Item {
 //BEGIN properties
     property Item toolBox
     property var layoutManager: LayoutManager
-    readonly property bool smallScreenMode: height < units.gridUnit * 20
+    readonly property bool smallScreenMode: height < Kirigami.Units.gridUnit * 20
 //END properties
 
 //BEGIN functions
@@ -120,14 +121,15 @@ Item {
                 onPressed: mouse.accepted = true
             }
 
-            layer.enabled: applet && applet.backgroundHints == PlasmaCore.Types.StandardBackground
-            layer.effect: DropShadow {
-                transparentBorder: true
+            DropShadow {
+                visible: applet && applet.backgroundHints == PlasmaCore.Types.StandardBackground
+                anchors.fill: parent
                 horizontalOffset: 0
                 verticalOffset: 2
+                source: applet
             }
 
-            implicitWidth: root.smallScreenMode ? appletsView.width :  Math.max(applet.switchWidth + 1, Math.max( applet.Layout.minimumWidth, appletsView.width/4))
+            implicitWidth: root.smallScreenMode || appletsSpace.layout.children.length < 2 ? appletsView.width :  Math.max(applet.switchWidth + 1, Math.max( applet.Layout.minimumWidth, appletsView.width/4))
             implicitHeight: appletsView.height
 
             PlasmaComponents.BusyIndicator {
@@ -149,7 +151,6 @@ Item {
 */
     PlasmaCore.ColorScope {
         id: initialScreen
-        anchors.fill: parent
 
         colorGroup: PlasmaCore.Theme.ComplementaryColorGroup
 
@@ -159,7 +160,7 @@ Item {
                 left: parent.left
                 right: parent.right
                 top: parent.top
-                margins: root.smallScreenMode ? 0 : units.largeSpacing
+                margins: root.smallScreenMode ? 0 : Kirigami.Units.largeSpacing
             }
             flickableDirection: Flickable.HorizontalFlick
             boundsBehavior: Flickable.StopAtBounds
@@ -172,24 +173,58 @@ Item {
             }
         }
 
-        Item {
+        ListView {
+            id: dashbardView
             anchors {
                 left: parent.left
                 right: parent.right
                 bottom: parent.bottom
             }
+            model: 3
+            highlightFollowsCurrentItem: true
+            highlightRangeMode: ListView.StrictlyEnforceRange
+            snapMode: ListView.SnapOneItem
+            orientation: ListView.Horizontal
             visible: !root.smallScreenMode
             height: (parent.height / 3) * 2
-            PlasmaComponents.Label {
-                anchors.centerIn: parent
-                text: "Some mycroft dashbard stuff, useful only for 3rd gen"
+            delegate: PlasmaComponents.Label {
+                width: dashbardView.width
+                height: dashbardView.height
+                horizontalAlignment: Text.AlignHCenter
+                font.pointSize: 20
+                text: "Some mycroft dashbard stuff, item "+ (modelData+1)
             }
+            layer.enabled: true
+            layer.effect: DropShadow {
+                transparentBorder: true
+                horizontalOffset: 0
+                verticalOffset: 2
+            }
+        }
+        Timer {
+            interval: 10000
+            running: true
+            repeat: true
+            onTriggered: dashbardView.currentIndex = (dashbardView.currentIndex + 1) % 3
+        }
+        Controls.PageIndicator {
+            visible: dashbardView.visible
+            anchors {
+                horizontalCenter: parent.horizontalCenter
+                bottom: parent.bottom
+                bottomMargin: Kirigami.Units.gridUnit * 4
+            }
+            count: 3
+            currentIndex: dashbardView.currentIndex
         }
     }
     //FIXME: placeholder
     PlasmaComponents.Button {
         z:999
-        anchors.bottom: parent.bottom
+        anchors {
+            bottom: parent.bottom
+            horizontalCenter: parent.horizontalCenter
+        }
         text: "Hey Mycroft"
         onClicked: {
             if (mainStack.depth > 1) {
@@ -199,14 +234,91 @@ Item {
             }
         }
     }
+    //STUBSTUBSTUB
     Item {
         id: mycroftView
+        visible: false
+        Kirigami.AbstractCard {
+            id: resultCard
+            anchors {
+                fill: parent
+                margins: root.smallScreenMode ? 0 : Kirigami.Units.gridUnit * 2
+            }
+            onClicked: mainStack.pop();
+            contentItem: ColumnLayout {
+                Layout.preferredHeight: resultCard.height
+                Item {
+                    Layout.fillHeight: true
+                }
+                Controls.Label {
+                    Layout.fillWidth: true
+                    //horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    font.pointSize: 18
+                    wrapMode: Text.WordWrap
+                    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                }
+                Item {
+                    Layout.fillHeight: true
+                }
+            }
+        }
     }
     Controls.StackView {
         id: mainStack
         anchors.fill: parent
 
         initialItem: initialScreen
+        popEnter: Transition {
+            OpacityAnimator {
+                from: 0
+                to: 1
+                duration: Kirigami.Units.longDuration
+                easing.type: Easing.InOutCubic
+            }
+        }
+        popExit: Transition {
+            ParallelAnimation {
+                OpacityAnimator {
+                    from: 1
+                    to: 0
+                    duration: Kirigami.Units.longDuration
+                    easing.type: Easing.InOutCubic
+                }
+                YAnimator {
+                    from: 0
+                    to: height/2
+                    duration: Kirigami.Units.longDuration
+                    easing.type: Easing.OutCubic
+                }
+            }
+        }
+
+        pushEnter: Transition {
+            ParallelAnimation {
+                OpacityAnimator {
+                    from: 0
+                    to: 1
+                    duration: Kirigami.Units.longDuration
+                    easing.type: Easing.InOutCubic
+                }
+                YAnimator {
+                    from: height/2
+                    to: 0
+                    duration: Kirigami.Units.longDuration
+                    easing.type: Easing.OutCubic 
+                }
+            }
+        }
+
+        pushExit: Transition {
+            OpacityAnimator {
+                from: 1
+                to: 0
+                duration: Kirigami.Units.longDuration
+                easing.type: Easing.OutCubic 
+            }
+        }
     }
 
 }
