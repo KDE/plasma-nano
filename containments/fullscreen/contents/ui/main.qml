@@ -112,6 +112,14 @@ Item {
                 }
             }
 
+            //this will kill any mouse events to the applet
+            //first version is not interactive
+            MouseArea {
+                anchors.fill: parent
+                z: 9999
+                onPressed: mouse.accepted = true
+            }
+
             layer.enabled: applet && applet.backgroundHints == PlasmaCore.Types.StandardBackground
             layer.effect: DropShadow {
                 transparentBorder: true
@@ -133,11 +141,12 @@ Item {
         }
     }
 
+/*for the first version any direct manipulation is disabled, reenable in the future
     EditOverlay {
         id: editOverlay
         z: 999
     }
-
+*/
     PlasmaCore.ColorScope {
         id: initialScreen
         anchors.fill: parent
@@ -145,13 +154,15 @@ Item {
         colorGroup: PlasmaCore.Theme.ComplementaryColorGroup
 
         Flickable {
-            id: appletsArea
+            id: appletsView
             anchors {
                 left: parent.left
                 right: parent.right
                 top: parent.top
                 margins: units.largeSpacing
             }
+            flickableDirection: Flickable.HorizontalFlick
+            boundsBehavior: Flickable.StopAtBounds
             height: root.smallScreenMode ? parent.height : parent.height / 3
             contentHeight: height
             contentWidth: appletsSpace.width

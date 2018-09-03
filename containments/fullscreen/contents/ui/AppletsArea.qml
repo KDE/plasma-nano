@@ -48,7 +48,7 @@ MouseArea {
         property Item target
         property real to
         NumberAnimation {
-            properties: "x"
+            properties: "y"
             duration: units.longDuration
             easing.type: Easing.InOutQuad
             target: removeAnim.target
@@ -59,6 +59,7 @@ MouseArea {
         }
     }
 
+    /*NOTE: for the first version any direct manipulation is disabled, reenable in the future
     onPressed: {
         startMouseX = mouse.x;
         startMouseY = mouse.y;
@@ -148,19 +149,18 @@ MouseArea {
             root.layoutManager.insertBefore( dndSpacer, draggingApplet);
         } else {
             removeAnim.target = draggingApplet;
-            removeAnim.to = (draggingApplet.x > 0) ? root.width : -root.width
+            removeAnim.to = (draggingApplet.y > 0) ? draggingApplet.height : -draggingApplet.height
             removeAnim.running = true;
         }
         appletsView.interactive = true;
         dndSpacer.parent = appletsArea;
         draggingApplet = null;
     }
-
+*/
     Item {
         id: dndSpacer
         width: parent.width
     }
-
 
     Row {
         id: mainLayout
