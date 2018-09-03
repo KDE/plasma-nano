@@ -19,6 +19,7 @@
 import QtQuick 2.4
 import QtQuick.Layouts 1.1
 import QtQuick.Controls 2.0 as Controls
+import QtGraphicalEffects 1.0
 
 import org.kde.plasma.plasmoid 2.0
 import org.kde.plasma.core 2.0 as PlasmaCore
@@ -73,11 +74,6 @@ Item {
             //startupTimer.restart();
         }
     }
-
-
-
-
-
 //END functions
 
 //BEGIN slots
@@ -103,9 +99,7 @@ Item {
             property bool animationsEnabled: true
             property Item applet
             z: applet && applet.compactRepresentationItem && applet.expanded ? 99 : 0
-            opacity: 1 - Math.abs(x/(width/2))
-            Layout.fillWidth: true
-            Layout.fillHeight: applet && applet.Layout.fillHeight
+            opacity: 1 - Math.abs(y/(height/2))
 
             Connections {
                 target: plasmoid
@@ -118,25 +112,16 @@ Item {
                 }
             }
 
-            onAppletChanged: {
-                if (applet.backgroundHints == PlasmaCore.Types.StandardBackground) {
-                    applet.anchors.margins = background.margins.top;
-                } 
+            layer.enabled: applet && applet.backgroundHints == PlasmaCore.Types.StandardBackground
+            layer.effect: DropShadow {
+                transparentBorder: true
+                horizontalOffset: 0
+                verticalOffset: 2
             }
 
-            property int oldX: x
-            property int oldY: y
-            PlasmaCore.FrameSvgItem {
-                id: background
-                z: -1
-                anchors.fill: parent
-                imagePath: "widgets/background"
-                visible: applet.pluginName != "org.kde.plasma.mycroftplasmoid" && applet.backgroundHints == PlasmaCore.Types.StandardBackground
-            }
+            implicitWidth: root.smallScreenMode ? root.width :  Math.max(applet.switchWidth + 1, Math.max( applet.Layout.minimumWidth, root.width/4))
+            implicitHeight: appletsSpace.height
 
-            width: parent.width
-            height: Math.max(applet.switchHeight + 1 + background.margins.top + background.margins.bottom, Math.max(applet.Layout.minimumHeight, root.height / 2))
-            
             PlasmaComponents.BusyIndicator {
                 z: 1000
                 visible: applet && applet.busy
@@ -153,83 +138,64 @@ Item {
         z: 999
     }
 
-    MouseEventListener {
-        id: mainListener
+    PlasmaCore.ColorScope {
+        id: initialScreen
         anchors.fill: parent
 
-        //Events handling: those events are about clicking and reordering of app icons
-        //applet related events are in AppeltsArea.qml
-        onPressAndHold: {
-            var pos = mapToItem(appletsSpace.favoritesStrip, mouse.x, mouse.y);
-            //in favorites area?
-            var item;
-            if (appletsSpace.favoritesStrip.contains(pos)) {
-                item = appletsSpace.favoritesStrip.itemAt(pos.x, pos.y);
+        colorGroup: PlasmaCore.Theme.ComplementaryColorGroup
+
+        Flickable {
+            id: appletsArea
+            anchors {
+                left: parent.left
+                right: parent.right
+                top: parent.top
+                margins: units.largeSpacing
+            }
+            height: root.smallScreenMode ? parent.height : parent.height / 3
+            contentHeight: height
+            contentWidth: appletsSpace.width
+            AppletsArea {
+                id: appletsSpace
+                height: parent.height
             }
         }
 
-        onReleased: {
-            appletsView.interactive = true;
-            appletsView.dragData = null;
-        }
-
-        PlasmaCore.ColorScope {
-            id: initialScreen
-            anchors.fill: parent
-
-            colorGroup: PlasmaCore.Theme.ComplementaryColorGroup
-
-            Flickable {
-                id: appletsArea
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                    top: parent.top
-                }
-                height: root.smallScreenMode ? parent.height : parent.height / 3
-                contentHeight: height
-                contentWidth: appletsSpace.width
-                AppletsArea {
-                    id: appletsSpace
-                    height: parent.height
-                }
-            }
-
-            Item {
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                    bottom: parent.bottom
-                }
-                visible: !root.smallScreenMode
-                height: (parent.height / 3) * 2
-                PlasmaComponents.Label {
-                    anchors.centerIn: parent
-                    text: "Some mycroft dashbard stuff, useful only for 3rd gen"
-                }
-            }
-        }
-        //FIXME: placeholder
-        PlasmaComponents.Button {
-            z:999
-            anchors.bottom: parent.bottom
-            text: "Hey Mycroft"
-            onClicked: {
-                if (mainStack.depth > 1) {
-                    mainStack.pop();
-                } else {
-                    mainStack.push(mycroftView);
-                }
-            }
-        }
         Item {
-            id: mycroftView
-        }
-        Controls.StackView {
-            id: mainStack
-            anchors.fill: parent
-
-            initialItem: initialScreen
+            anchors {
+                left: parent.left
+                right: parent.right
+                bottom: parent.bottom
+            }
+            visible: !root.smallScreenMode
+            height: (parent.height / 3) * 2
+            PlasmaComponents.Label {
+                anchors.centerIn: parent
+                text: "Some mycroft dashbard stuff, useful only for 3rd gen"
+            }
         }
     }
+    //FIXME: placeholder
+    PlasmaComponents.Button {
+        z:999
+        anchors.bottom: parent.bottom
+        text: "Hey Mycroft"
+        onClicked: {
+            if (mainStack.depth > 1) {
+                mainStack.pop();
+            } else {
+                mainStack.push(mycroftView);
+            }
+        }
+    }
+    Item {
+        id: mycroftView
+    }
+    Controls.StackView {
+        id: mainStack
+        anchors.fill: parent
+
+        initialItem: initialScreen
+    }
+
 }

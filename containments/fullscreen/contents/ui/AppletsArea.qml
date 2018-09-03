@@ -27,9 +27,11 @@ import org.kde.kquickcontrolsaddons 2.0
 MouseArea {
     id: appletsArea
     z: 999
-    property alias layout: appletsLayout
-    width: root.width
-    height: Math.max(appletsView.height, mainLayout.Layout.minimumHeight)
+    property alias layout: mainLayout
+
+    implicitWidth: mainLayout.implicitWidth
+    implicitHeight: mainLayout.implicitHeight
+
     property Item draggingApplet
     property int startMouseX
     property int startMouseY
@@ -62,8 +64,8 @@ MouseArea {
         startMouseY = mouse.y;
     }
     onPressAndHold: {
-        var absolutePos = mapToItem(appletsLayout, mouse.x, mouse.y);
-        var absoluteStartPos = mapToItem(appletsLayout, startMouseX, startMouseY);
+        var absolutePos = mapToItem(mainLayout, mouse.x, mouse.y);
+        var absoluteStartPos = mapToItem(mainLayout, startMouseX, startMouseY);
 
         if (Math.abs(absolutePos.x - absoluteStartPos.x) > units.gridUnit*2 ||
             Math.abs(absolutePos.y - absoluteStartPos.y) > units.gridUnit*2) {
@@ -72,7 +74,7 @@ MouseArea {
         }
 
         editOverlay.visible = true;
-        var pos = mapToItem(appletsLayout, mouse.x, mouse.y);
+        var pos = mapToItem(mainLayout, mouse.x, mouse.y);
         draggingApplet = appletsSpace.layout.childAt(absolutePos.x, absolutePos.y);
         editOverlay.applet = draggingApplet;
 
@@ -112,11 +114,11 @@ MouseArea {
         oldMouseX = mouse.x;
         oldMouseY = mouse.y;
 
-        var pos = mapToItem(appletsLayout, mouse.x, mouse.y);
+        var pos = mapToItem(mainLayout, mouse.x, mouse.y);
         var itemUnderMouse = appletsSpace.layout.childAt(pos.x, pos.y);
 
         if (itemUnderMouse && itemUnderMouse != dndSpacer) {
-            dndSpacer.parent = colorScope;
+            dndSpacer.parent = appletsArea;
             if (pos.y < itemUnderMouse.y + itemUnderMouse.height/2) {
                 root.layoutManager.insertBefore(itemUnderMouse, dndSpacer);
             } else {
@@ -150,43 +152,29 @@ MouseArea {
             removeAnim.running = true;
         }
         appletsView.interactive = true;
-        dndSpacer.parent = colorScope;
+        dndSpacer.parent = appletsArea;
         draggingApplet = null;
     }
 
-    RowLayout {
+    Item {
+        id: dndSpacer
+        width: parent.width
+    }
+
+
+    Row {
         id: mainLayout
         anchors {
-            fill: parent
+            top: parent.top
+            bottom: parent.bottom
         }
-
-        PlasmaCore.ColorScope {
-            id: colorScope
-            //TODO: decide what color we want applets
-            colorGroup: PlasmaCore.Theme.NormalColorGroup
-            Layout.fillWidth: true
-            Layout.minimumHeight: appletsLayout.implicitHeight
-            Layout.maximumHeight: appletsLayout.implicitHeight
-            Row {
-                id: appletsLayout
-                width: parent.width
-                move: Transition {
-                    NumberAnimation {
-                        properties: "x,y"
-                        duration: units.longDuration
-                        easing.type: Easing.InOutQuad
-                    }
-                }
+        move: Transition {
+            NumberAnimation {
+                properties: "x,y"
+                duration: units.longDuration
+                easing.type: Easing.InOutQuad
             }
-            
-            Item {
-                id: dndSpacer
-                width: parent.width
-            }
-        }
-        Item {
-            Layout.fillWidth: true
-            Layout.minimumHeight: appletsLayout.children.length < 2 ? mainLayout.height / 2 : 0
         }
     }
+
 }
