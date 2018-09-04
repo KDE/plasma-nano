@@ -1,5 +1,5 @@
 /*
- *  Copyright 2015 Marco Martin <mart@kde.org>
+ *  Copyright 2018 Marco Martin <mart@kde.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -153,6 +153,7 @@ Item {
         id: initialScreen
 
         colorGroup: PlasmaCore.Theme.ComplementaryColorGroup
+        Kirigami.Theme.colorSet: Kirigami.Thmeme.Complementary
 
         Flickable {
             id: appletsView
@@ -173,49 +174,16 @@ Item {
             }
         }
 
-        ListView {
+        Loader {
             id: dashbardView
             anchors {
                 left: parent.left
                 right: parent.right
                 bottom: parent.bottom
             }
-            model: 3
-            highlightFollowsCurrentItem: true
-            highlightRangeMode: ListView.StrictlyEnforceRange
-            snapMode: ListView.SnapOneItem
-            orientation: ListView.Horizontal
-            visible: !root.smallScreenMode
             height: (parent.height / 3) * 2
-            delegate: PlasmaComponents.Label {
-                width: dashbardView.width
-                height: dashbardView.height
-                horizontalAlignment: Text.AlignHCenter
-                font.pointSize: 20
-                text: "Some mycroft dashbard stuff, item "+ (modelData+1)
-            }
-            layer.enabled: true
-            layer.effect: DropShadow {
-                transparentBorder: true
-                horizontalOffset: 0
-                verticalOffset: 2
-            }
-        }
-        Timer {
-            interval: 10000
-            running: true
-            repeat: true
-            onTriggered: dashbardView.currentIndex = (dashbardView.currentIndex + 1) % 3
-        }
-        Controls.PageIndicator {
-            visible: dashbardView.visible
-            anchors {
-                horizontalCenter: parent.horizontalCenter
-                bottom: parent.bottom
-                bottomMargin: Kirigami.Units.gridUnit * 4
-            }
-            count: 3
-            currentIndex: dashbardView.currentIndex
+            active: !root.smallScreenMode
+            source: Qt.resolvedUrl("./mycroft/Dashboard.qml")
         }
     }
     //FIXME: placeholder
@@ -230,7 +198,7 @@ Item {
             if (mainStack.depth > 1) {
                 mainStack.pop();
             } else {
-                mainStack.push(mycroftView);
+                mainStack.push(Qt.resolvedUrl("./mycroft/Result.qml"));
             }
         }
     }
