@@ -25,10 +25,10 @@ import org.kde.kirigami 2.5 as Kirigami
 
 Controls.Control {
     id: root
-    /*background: Rectangle {
+    background: Rectangle {
         Kirigami.Theme.colorSet: Kirigami.Theme.View
         color: Kirigami.Theme.backgroundColor
-    }*/
+    }
     Kirigami.Theme.colorSet: background ? background.Kirigami.Theme.colorSet : Kirigami.Theme.Complementary
 
     contentItem: Controls.Label {

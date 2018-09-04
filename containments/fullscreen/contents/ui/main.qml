@@ -257,7 +257,7 @@ Item {
                     from: 0
                     to: height/2
                     duration: Kirigami.Units.longDuration
-                    easing.type: Easing.OutCubic
+                    easing.type: Easing.InCubic
                 }
             }
         }
@@ -271,7 +271,7 @@ Item {
                     easing.type: Easing.InOutCubic
                 }
                 YAnimator {
-                    from: height/2
+                    from: height
                     to: 0
                     duration: Kirigami.Units.longDuration
                     easing.type: Easing.OutCubic 
@@ -284,7 +284,7 @@ Item {
                 from: 1
                 to: 0
                 duration: Kirigami.Units.longDuration
-                easing.type: Easing.OutCubic 
+                easing.type: Easing.InCubic 
             }
         }
     }
