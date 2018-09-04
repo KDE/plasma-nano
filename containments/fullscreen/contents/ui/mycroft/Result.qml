@@ -31,21 +31,32 @@ Controls.Control {
     }
     Kirigami.Theme.colorSet: background ? background.Kirigami.Theme.colorSet : Kirigami.Theme.Complementary
 
-    contentItem: Controls.Label {
-        anchors {
-            fill: parent
-            margins: Kirigami.Units.largeSpacing
-        }
-        horizontalAlignment: Text.AlignHCenter
-        verticalAlignment: Text.AlignVCenter
-        font.pointSize: 18
-        wrapMode: Text.WordWrap
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-        layer.enabled: !root.background
-        layer.effect: DropShadow {
-            transparentBorder: true
-            horizontalOffset: 0
-            verticalOffset: 2
+    contentItem: Flickable {
+        anchors.fill: parent
+        contentWidth: width
+        contentHeight: content.height
+        Item {
+            id: content
+            width: parent.width
+            height: Math.max(root.height, label.paintedHeight + Kirigami.Units.largeSpacing * 2)
+            Controls.Label {
+                id: label
+                anchors {
+                    fill: parent
+                    margins: Kirigami.Units.largeSpacing
+                }
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+                font.pointSize: 18
+                wrapMode: Text.WordWrap
+                text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                layer.enabled: !root.background
+                layer.effect: DropShadow {
+                    transparentBorder: true
+                    horizontalOffset: 0
+                    verticalOffset: 2
+                }
+            }
         }
     }
 }

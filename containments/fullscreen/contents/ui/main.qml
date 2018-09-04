@@ -37,7 +37,7 @@ Item {
 //BEGIN properties
     property Item toolBox
     property var layoutManager: LayoutManager
-    readonly property bool smallScreenMode: height < Kirigami.Units.gridUnit * 20
+    readonly property bool smallScreenMode: Math.min(width, height) < Kirigami.Units.gridUnit * 20
 //END properties
 
 //BEGIN functions
