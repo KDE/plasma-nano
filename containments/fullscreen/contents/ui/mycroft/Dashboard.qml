@@ -34,13 +34,12 @@ Item {
         snapMode: ListView.SnapOneItem
         orientation: ListView.Horizontal
 
-        delegate: Controls.Label {
+        delegate: Kirigami.Heading {
             width: dashbardView.width
             height: dashbardView.height
             horizontalAlignment: Text.AlignHCenter
-            font.pointSize: 20
             text: "Some mycroft dashbard stuff, item "+ (modelData+1)
-        }        
+        }
     }
     Timer {
         interval: 10000

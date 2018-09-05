@@ -154,7 +154,7 @@ Item {
         id: initialScreen
 
         colorGroup: PlasmaCore.Theme.ComplementaryColorGroup
-        Kirigami.Theme.colorSet: Kirigami.Thmeme.Complementary
+        Kirigami.Theme.colorSet: Kirigami.Theme.Complementary
 
         Flickable {
             id: appletsView
