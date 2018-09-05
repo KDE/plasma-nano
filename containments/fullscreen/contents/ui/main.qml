@@ -29,6 +29,8 @@ import org.kde.kirigami 2.5 as Kirigami
 
 import "LayoutManager.js" as LayoutManager
 
+import Mycroft 1.0 as Mycroft
+
 Item {
     id: root
     width: 480
@@ -70,9 +72,6 @@ Item {
             } else {
                 container.parent = appletsSpace.layout;
             }
-
-            //event compress the enable of animations
-            //startupTimer.restart();
         }
     }
 //END functions
@@ -83,6 +82,8 @@ Item {
         LayoutManager.root = root;
         LayoutManager.layout = appletsSpace.layout;
         LayoutManager.restore();
+
+        Mycroft.MycroftController.open("ws://0.0.0.0:8181/core");
     }
 
     Containment.onAppletAdded: {
@@ -186,55 +187,74 @@ Item {
             source: Qt.resolvedUrl("./mycroft/Dashboard.qml")
         }
     }
-    //FIXME: placeholder
-    PlasmaComponents.Button {
-        z:999
-        anchors {
-            bottom: parent.bottom
-            horizontalCenter: parent.horizontalCenter
-        }
-        text: "Hey Mycroft"
-        onClicked: {
-            if (mainStack.depth > 1) {
-                mainStack.pop();
+
+    Connections {
+        target: Mycroft.MycroftController
+        onSkillDataRecieved: {
+            //These few lines are a cludge to make existing skills work that don't have metadata (yet)
+            switch(Mycroft.MycroftController.currentSkill) {
+            case "JokingSkill.handle_general_joke":
+                data["type"] = "fallback"
+                break;
+            case "TimeSkill.handle_query_time":
+                data["type"] = "time"
+                break;
+            }
+
+            if (!data["type"]) {
+                return;
+            }
+
+            popTimer.running = false;
+            countdownAnim.running = false;
+            var _url = skillLoader.uiForMetadataType(data["type"]);
+            if (!_url) {
+                if (mainStack.depth > 1) {
+                    mainStack.pop();
+                    mainStack.metadataType = "";
+                }
+            }
+
+            //FIXME: broken
+            if (0&&mainStack.metadataType == data["type"]) {
+                Object.assign(mainStack.currentItem, data);
             } else {
-                mainStack.push(Qt.resolvedUrl("./mycroft/Result.qml"));
+                mainStack.metadataType = data["type"];
+                if (mainStack.depth > 1) {
+                    mainStack.replace(_url, data);
+                } else {
+                    mainStack.push(_url, data);
+                }
+            }
+        }
+
+        onSpeakingChanged: {
+            if (!Mycroft.MycroftController.speaking) {
+                popTimer.restart();
+                countdownAnim.restart();
             }
         }
     }
-    //STUBSTUBSTUB
-    Item {
-        id: mycroftView
-        visible: false
-        Kirigami.AbstractCard {
-            id: resultCard
-            anchors {
-                fill: parent
-                margins: root.smallScreenMode ? 0 : Kirigami.Units.gridUnit * 2
-            }
-            onClicked: mainStack.pop();
-            contentItem: ColumnLayout {
-                Layout.preferredHeight: resultCard.height
-                Item {
-                    Layout.fillHeight: true
-                }
-                Controls.Label {
-                    Layout.fillWidth: true
-                    //horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignVCenter
-                    font.pointSize: 18
-                    wrapMode: Text.WordWrap
-                    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-                }
-                Item {
-                    Layout.fillHeight: true
-                }
+
+    Mycroft.SkillLoader {
+        id: skillLoader
+    }
+
+    Timer {
+        id: popTimer
+        interval: 5000
+        onTriggered: {
+            if (mainStack.depth > 1) {
+                mainStack.pop(initialScreen);
+                mainStack.metadataType = "";
             }
         }
     }
     Controls.StackView {
         id: mainStack
         anchors.fill: parent
+
+        property string metadataType
 
         initialItem: initialScreen
         popEnter: Transition {
@@ -287,6 +307,62 @@ Item {
                 easing.type: Easing.InCubic 
             }
         }
+        replaceEnter: Transition {
+            OpacityAnimator {
+                from: 0
+                to: 1
+                duration: Kirigami.Units.longDuration * 2
+                easing.type: Easing.InOutCubic
+            }
+        }
+
+        replaceExit: Transition {
+            SequentialAnimation {
+                PauseAnimation {
+                    duration: Kirigami.Units.longDuration * 2
+                }
+                OpacityAnimator {
+                    from: 1
+                    to: 0
+                    duration: Kirigami.Units.longDuration
+                    easing.type: Easing.InCubic 
+                }
+            }
+        }
     }
 
+    Rectangle {
+        id: countdownScrollBar
+        anchors {
+            left: parent.left
+            bottom: parent.bottom
+        }
+        height: Kirigami.Units.smallSpacing
+        Kirigami.Theme.colorSet: Kirigami.Theme.Complementary
+        color: Kirigami.Theme.textColor
+        width: 0
+        opacity: countdownAnim.running ? 0.6 : 0
+        Behavior on opacity {
+            OpacityAnimator {
+                duration: Kirigami.Units.longDuration
+                easing.type: Easing.InOutCubic
+            }
+        }
+
+        PropertyAnimation {
+            id: countdownAnim
+            target: countdownScrollBar
+            property: "width"
+            from: root.width
+            to: 0
+            duration: popTimer.interval
+        }
+    }
+    Mycroft.StatusIndicator {
+        anchors {
+            horizontalCenter: parent.horizontalCenter
+            bottom: parent.bottom
+            bottomMargin: Kirigami.Units.largeSpacing * 2
+        }
+    }
 }
