@@ -52,7 +52,7 @@ Item {
         anchors {
             horizontalCenter: parent.horizontalCenter
             bottom: parent.bottom
-            bottomMargin: Kirigami.Units.gridUnit * 4
+            bottomMargin: Kirigami.Units.largeSpacing * 3
         }
         count: 3
         currentIndex: dashbardView.currentIndex

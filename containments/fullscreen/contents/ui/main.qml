@@ -39,7 +39,7 @@ Item {
 //BEGIN properties
     property Item toolBox
     property var layoutManager: LayoutManager
-    readonly property bool smallScreenMode: Math.min(width, height) < Kirigami.Units.gridUnit * 20
+    readonly property bool smallScreenMode: Math.min(width, height) < Kirigami.Units.gridUnit * 18
 //END properties
 
 //BEGIN functions
@@ -83,7 +83,7 @@ Item {
         LayoutManager.layout = appletsSpace.layout;
         LayoutManager.restore();
 
-        Mycroft.MycroftController.open("ws://0.0.0.0:8181/core");
+        Mycroft.MycroftController.start();
     }
 
     Containment.onAppletAdded: {
@@ -188,73 +188,9 @@ Item {
         }
     }
 
-    Connections {
-        target: Mycroft.MycroftController
-        onSkillDataRecieved: {
-            //These few lines are a cludge to make existing skills work that don't have metadata (yet)
-            switch(Mycroft.MycroftController.currentSkill) {
-            case "JokingSkill.handle_general_joke":
-                data["type"] = "fallback"
-                break;
-            case "TimeSkill.handle_query_time":
-                data["type"] = "time"
-                break;
-            }
-
-            if (!data["type"]) {
-                return;
-            }
-
-            popTimer.running = false;
-            countdownAnim.running = false;
-            var _url = skillLoader.uiForMetadataType(data["type"]);
-            if (!_url) {
-                if (mainStack.depth > 1) {
-                    mainStack.pop();
-                    mainStack.metadataType = "";
-                }
-            }
-
-            //FIXME: broken
-            if (0&&mainStack.metadataType == data["type"]) {
-                Object.assign(mainStack.currentItem, data);
-            } else {
-                mainStack.metadataType = data["type"];
-                if (mainStack.depth > 1) {
-                    mainStack.replace(_url, data);
-                } else {
-                    mainStack.push(_url, data);
-                }
-            }
-        }
-
-        onSpeakingChanged: {
-            if (!Mycroft.MycroftController.speaking) {
-                popTimer.restart();
-                countdownAnim.restart();
-            }
-        }
-    }
-
-    Mycroft.SkillLoader {
-        id: skillLoader
-    }
-
-    Timer {
-        id: popTimer
-        interval: 5000
-        onTriggered: {
-            if (mainStack.depth > 1) {
-                mainStack.pop(initialScreen);
-                mainStack.metadataType = "";
-            }
-        }
-    }
-    Controls.StackView {
+    Mycroft.StackSkillView {
         id: mainStack
         anchors.fill: parent
-
-        property string metadataType
 
         initialItem: initialScreen
         popEnter: Transition {
@@ -331,33 +267,6 @@ Item {
         }
     }
 
-    Rectangle {
-        id: countdownScrollBar
-        anchors {
-            left: parent.left
-            bottom: parent.bottom
-        }
-        height: Kirigami.Units.smallSpacing
-        Kirigami.Theme.colorSet: Kirigami.Theme.Complementary
-        color: Kirigami.Theme.textColor
-        width: 0
-        opacity: countdownAnim.running ? 0.6 : 0
-        Behavior on opacity {
-            OpacityAnimator {
-                duration: Kirigami.Units.longDuration
-                easing.type: Easing.InOutCubic
-            }
-        }
-
-        PropertyAnimation {
-            id: countdownAnim
-            target: countdownScrollBar
-            property: "width"
-            from: root.width
-            to: 0
-            duration: popTimer.interval
-        }
-    }
     Mycroft.StatusIndicator {
         anchors {
             horizontalCenter: parent.horizontalCenter
