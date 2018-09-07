@@ -18,205 +18,121 @@
  */
 
 import QtQuick 2.0
+import QtQuick.Controls 2.2 as Controls
 import QtQuick.Layouts 1.1
 import QtQuick.Window 2.2
 import org.kde.plasma.core 2.0 as PlasmaCore
+import org.kde.kirigami 2.5 as Kirigami
+import "quicksettings"
 
-Window {
-    id: window
+Controls.Drawer {
+    id: root
+    edge: Qt.TopEdge
+    width: window.width
 
-    property int offset: 0
-    property int peekHeight
-    property bool userInteracting: false
-    property bool expanded: false
+    property bool peeking: false
 
-    color: "transparent"
-    property alias contents: contentArea.data
-    property int headerHeight
+    property Item bottomItem
 
-    width: Screen.width
-    height: Screen.height
-
-    property alias fixedArea: fixedArea
-    function open() {
-        window.showFullScreen();
-        peekAnim.running = true;
+    onBottomItemChanged: {
+        bottomItem.parent = contentArea;
+        bottomItem.anchors.fill = contentArea;
     }
-    function close() {
-        closeAnim.running = true;
-    }
-    function updateState() {
-        if (expanded) {
-            openAnim.running = true;
-        } else if (offset < peekHeight / 2) {
-            close();
-        } else if (offset < peekHeight) {
-            open();
-        } else if (mainFlickable.contentY < 0) {
-            openAnim.running = true;
+
+    Kirigami.Theme.colorSet: Kirigami.Theme.Complementary
+    contentItem: PlasmaCore.ColorScope {
+        Kirigami.Theme.colorSet: root.Kirigami.Theme.colorSet
+        colorGroup: PlasmaCore.Theme.ComplementaryColorGroup
+        implicitWidth: layout.implicitWidth + Kirigami.Units.largeSpacing * 2
+        implicitHeight: layout.implicitHeight + Kirigami.Units.largeSpacing * 2
+        ColumnLayout {
+            id: layout
+            anchors {
+                fill: parent
+                margins: Kirigami.Units.largeSpacing
+            }
+
+            //height: 300
+            QuickSettings {
+                Layout.fillWidth: true
+                drawer: root
+            }
+            Controls.Label {
+                text:   root.bottomItem ? root.bottomItem.implicitHeight : 0
+            }
+            Item {
+                id: contentArea
+                Layout.fillWidth: true
+                Layout.preferredHeight: root.bottomItem ? root.bottomItem.implicitHeight : 0
+            }
         }
     }
-    Timer {
-        id: updateStateTimer
-        interval: 0
-        onTriggered: updateState()
-    }
-    onActiveChanged: {
-        if (!active) {
-            close();
+    background: Rectangle {
+        anchors.fill: parent
+        Kirigami.Theme.colorSet: root.Kirigami.Theme.colorSet
+        color: Kirigami.Theme.backgroundColor
+        Kirigami.Separator {
+            color: Kirigami.Theme.highlightColor
+            anchors {
+                left: parent.left
+                right: parent.right
+                bottom: parent.bottom
+            }
+        }
+        Rectangle {
+            height: units.smallSpacing
+            anchors {
+                left: parent.left
+                right: parent.right
+                top: parent.bottom
+            }
+            gradient: Gradient {
+                GradientStop {
+                    position: 0.0
+                    color: Qt.rgba(0, 0, 0, 0.6)
+                }
+                GradientStop {
+                    position: 0.5
+                    color: Qt.rgba(0, 0, 0, 0.2)
+                }
+                GradientStop {
+                    position: 1.0
+                    color: "transparent"
+                }
+            }
         }
     }
-    onVisibleChanged: {
-        if (visible) {
-            window.width = Screen.width;
-            window.height = Screen.height;
-            window.requestActivate();
+
+    onPeekingChanged:  {
+        if (peeking) {
+            root.enter.enabled = false;
+            root.exit.enabled = false;
+            visible = true;
         } else {
-            window.expanded = false;
+            positionResetAnim.to = position > 0.5 ? 1 : 0;
+            positionResetAnim.running = true
+            root.enter.enabled = true;
+            root.exit.enabled = true;
         }
     }
     SequentialAnimation {
-        id: closeAnim
-        PropertyAnimation {
-            target: window
-            duration: units.longDuration
-            easing.type: Easing.InOutQuad
-            properties: "offset"
-            from: window.offset
+        id: positionResetAnim
+        property alias to: internalAnim.to
+        NumberAnimation {
+            id: internalAnim
+            target: root
             to: 0
+            property: "position"
+            duration: (root.position)*Kirigami.Units.longDuration
         }
         ScriptAction {
             script: {
-                 window.visible = false;
-            }
-        }
-    }
-    PropertyAnimation {
-        id: peekAnim
-        target: window
-        duration: units.longDuration
-        easing.type: Easing.InOutQuad
-        properties: "offset"
-        from: window.offset
-        to: window.peekHeight - headerHeight
-    }
-    PropertyAnimation {
-        id: openAnim
-        target: window
-        duration: units.longDuration
-        easing.type: Easing.InOutQuad
-        properties: "offset"
-        from: window.offset
-        to: contentArea.height
-    }
-
-    Rectangle {
-        anchors.fill: parent
-        color: Qt.rgba(0, 0, 0, 0.6 * Math.min(1, offset/contentArea.height))
-    }
-
-    PlasmaCore.ColorScope {
-        anchors.fill: parent
-        y: Math.min(0, -height + window.offset)
-        colorGroup: PlasmaCore.Theme.ComplementaryColorGroup
-
-        Rectangle {
-            anchors {
-                top: parent.top
-                left: parent.left
-                right: parent.right
-            }
-            height: contentArea.height - mainFlickable.contentY
-            color: PlasmaCore.ColorScope.backgroundColor
-        }
-
-        Flickable {
-            id: mainFlickable
-            anchors.fill: parent
-            interactive: !window.expanded
-            Binding {
-                target: mainFlickable
-                property: "contentY"
-                value: -window.offset + contentArea.height - window.headerHeight
-                when: !mainFlickable.moving && !mainFlickable.dragging && !mainFlickable.flicking
-            }
-            //no loop as those 2 values compute to exactly the same
-            onContentYChanged: {
-                window.offset = -contentY + contentArea.height - window.headerHeight
-                if (contentY > contentArea.height - headerHeight) {
-                    contentY = contentArea.height - headerHeight;
+                if (internalAnim.to == 0) {
+                    root.close();
+                } else {
+                    root.open();
                 }
             }
-            contentWidth: window.width
-            contentHeight: window.height*2
-            bottomMargin: window.height
-            onMovementStarted: window.userInteracting = true;
-            onFlickStarted: window.userInteracting = true;
-            onMovementEnded: {
-                window.userInteracting = false;
-                window.updateState();
-            }
-            onFlickEnded: {
-                window.userInteracting = true;
-                window.updateState();
-            }
-            Item {
-                width: window.width
-                height: Math.max(contentArea.height, window.height*2)
-                Item {
-                    id: contentArea
-                    anchors {
-                        left: parent.left
-                        right: parent.right
-                    }
-                    height: children[0].implicitHeight
-                    onHeightChanged: {
-                        if (!window.userInteracting) {
-                            updateStateTimer.restart()
-                        }
-                    }
-                }
-                Rectangle {
-                    height: units.smallSpacing
-                    anchors {
-                        left: parent.left
-                        right: parent.right
-                        top: contentArea.bottom
-                    }
-                    gradient: Gradient {
-                        GradientStop {
-                            position: 0.0
-                            color: Qt.rgba(0, 0, 0, 0.6)
-                        }
-                        GradientStop {
-                            position: 0.5
-                            color: Qt.rgba(0, 0, 0, 0.2)
-                        }
-                        GradientStop {
-                            position: 1.0
-                            color: "transparent"
-                        }
-                    }
-                }
-                MouseArea {
-                    anchors {
-                        left: parent.left
-                        right: parent.right
-                        top: contentArea.bottom
-                    }
-                    height: window.height
-                    onClicked: window.close();
-                }
-            }
-        }
-        Item {
-            id: fixedArea
-            anchors {
-                left: parent.left
-                right: parent.right
-                top: parent.top
-            }
-            height: childrenRect.height
         }
     }
 }

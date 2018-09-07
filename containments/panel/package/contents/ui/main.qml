@@ -1,5 +1,5 @@
 /*
- *  Copyright 2015 Marco Martin <mart@kde.org>
+ *  Copyright 2018 Marco Martin <mart@kde.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -18,12 +18,12 @@
 
 import QtQuick 2.1
 import QtQuick.Layouts 1.3
+import QtQuick.Window 2.2
 
 import org.kde.plasma.plasmoid 2.0
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
-
-import org.kde.plasma.workspace.components 2.0 as PlasmaWorkspace
+import org.kde.kirigami 2.5 as Kirigami
 
 import "LayoutManager.js" as LayoutManager
 
@@ -36,9 +36,9 @@ PlasmaCore.ColorScope {
     colorGroup: PlasmaCore.Theme.ComplementaryColorGroup
 
     property Item toolBox
-    property int buttonHeight: width/4
-    property bool reorderingApps: false
     property var layoutManager: LayoutManager
+
+    Plasmoid.backgroundHints: PlasmaCore.Types.NoBackground
 
     Containment.onAppletAdded: {
         addApplet(applet, x, y);
@@ -55,19 +55,8 @@ PlasmaCore.ColorScope {
         container.applet = applet;
         applet.anchors.fill = container;
         applet.visible = true;
+        applet.expanded = false;
         container.visible = true;
-        if (applet.pluginName == "org.kde.phone.notifications") {
-            applet.fullRepresentationItem.parent = notificationsParent;
-            notificationsParent.applet = applet;
-            applet.fullRepresentationItem.anchors.fill = notificationsParent;
-        } else if (applet.pluginName != "org.kde.phone.quicksettings") {
-            applet.expanded = true
-            applet.expanded = false
-            quickSettings.addPlasmoid(applet, fullRepsLayout.count);
-            applet.fullRepresentationItem.parent = fullRepsLayout;
-            fullRepsLayout.currentIndex = 0
-            applet.fullRepresentationItem.anchors.fill = fullRepsLayout;
-        }
     }
 
     Component.onCompleted: {
@@ -77,6 +66,7 @@ PlasmaCore.ColorScope {
         LayoutManager.restore();
     }
 
+    //this for now just takes them into account, no visualization
     PlasmaCore.DataSource {
         id: statusNotifierSource
         engine: "statusnotifieritem"
@@ -106,198 +96,39 @@ PlasmaCore.ColorScope {
         }
     }
 
-    PlasmaCore.DataSource {
-        id: timeSource
-        engine: "time"
-        connectedSources: ["Local"]
-        interval: 60 * 1000
-    }
-
-    Rectangle {
-        z: 1
-       // parent: slidingPanel.visible ? panelContents : root
-        anchors {
-            left: parent.left
-            right: parent.right
-            bottom: parent.bottom
-        }
-        height: root.height
-        color: PlasmaCore.ColorScope.backgroundColor
-
-        Row {
-            id: sniRow
-            anchors.left: parent.right
-            height: parent.height
-            Repeater {
-                id: statusNotifierRepeater
-                model: PlasmaCore.SortFilterModel {
-                    id: filteredStatusNotifiers
-                    filterRole: "Title"
-                    sourceModel: PlasmaCore.DataModel {
-                        dataSource: statusNotifierSource
-                    }
-                }
-
-                delegate: TaskWidget {
-                }
-            }
-        }
-
-        PlasmaComponents.Label {
-            id: clock
-            anchors.fill: parent
-            text: Qt.formatTime(timeSource.data.Local.DateTime, "hh:mm")
-            color: PlasmaCore.ColorScope.textColor
-            horizontalAlignment: Qt.AlignHCenter
-            verticalAlignment: Qt.AlignVCenter
-            font.pixelSize: height / 2
-        }
-
-        RowLayout {
-            id: appletIconsRow
-            anchors {
-                bottom: parent.bottom
-                right: parent.right
-            }
-            height: parent.height
-        }
-
-        Rectangle {
-            height: units.smallSpacing/2
-            color: PlasmaCore.ColorScope.highlightColor
-            anchors {
-                left: parent.left
-                right: parent.right
-                bottom: parent.bottom
-            }
-        }
-    }
     MouseArea {
         z: 99
-        property int oldMouseY: 0
 
         anchors.fill: parent
         onPressed: {
-            slidingPanel.userInteracting = true;
-            oldMouseY = mouse.y;
-            slidingPanel.visible = true;
+            slidingPanel.peeking = true;
+            panelWindow.showFullScreen();
         }
         onPositionChanged: {
-            //var factor = (mouse.y - oldMouseY > 0) ? (1 - Math.max(0, (slidingArea.y + slidingPanel.overShoot) / slidingPanel.overShoot)) : 1
-            var factor = 1;
-            slidingPanel.offset = slidingPanel.offset + (mouse.y - oldMouseY) * factor;
-            oldMouseY = mouse.y;
+            slidingPanel.position = mouse.y/slidingPanel.contentItem.height;
         }
         onReleased: {
-            slidingPanel.userInteracting = false;
-            slidingPanel.updateState();
+            slidingPanel.peeking = false;
         }
     }
 
-    SlidingPanel {
-        id: slidingPanel
-        width: plasmoid.availableScreenRect.width
-        height: plasmoid.availableScreenRect.height
-        peekHeight: quickSettingsParent.height + notificationsParent.minimumHeight + root.height
-        headerHeight: root.height
-        onExpandedChanged: {
-            modeSwitchAnim.running = false;
-            modeSwitchAnim.to = expanded ? width : 0
-            modeSwitchAnim.running = true;
-        }
-        contents: Item {
-            id: panelContents
-            anchors.fill: parent
-            implicitHeight: slidingPanel.expanded ? (slidingPanel.height-slidingPanel.headerHeight)*0.8 :  (quickSettingsParent.height + notificationsParent.height + root.height)
-            Rectangle {
-                id: quickSettingsParent
-                parent: slidingPanel.fixedArea
-                color: PlasmaCore.ColorScope.backgroundColor
-                z: 2
-                width: parent.width
-                x: -modeFlick.contentX
-                y: Math.min(0, slidingPanel.offset - height - root.height)
-                height: quickSettings.Layout.minimumHeight
-                QuickSettings {
-                    id: quickSettings
-                    anchors.fill: parent
-                    onPlasmoidTriggered: {
-                        applet.expanded = true;
-                        fullRepsLayout.currentIndex = id;
-                        slidingPanel.expanded = true;
-                    }
-                }
-                Rectangle {
-                    anchors {
-                        left: parent.left
-                        right: parent.right
-                        bottom:parent.bottom
-                    }
-                    height: units.devicePixelRatio
-                    color: PlasmaCore.ColorScope.textColor
-                    opacity: 0.2
-                    visible: slidingPanel.offset + slidingPanel.headerHeight < panelContents.height
+    Window {
+        id: panelWindow
+        color: "transparent"
+        visible: false
+        SlidingPanel {
+            id: slidingPanel
+            width: plasmoid.availableScreenRect.width
+            onVisibleChanged: {
+                if (visible) {
+                    panelWindow.showFullScreen();
+                } else {
+                    panelWindow.visible = false;
                 }
             }
-            PropertyAnimation {
-                id: modeSwitchAnim
-                target: modeFlick
-                duration: units.longDuration
-                easing.type: Easing.InOutQuad
-                properties: "contentX"
-                from: modeFlick.contentX
-                to: 0
-            }
-            Flickable {
-                id: modeFlick
-                anchors.fill: parent
-                contentWidth: width * 2
-                contentHeight: height
-                boundsBehavior: Flickable.StopAtBounds
-                interactive: slidingPanel.expanded
-                onFlickEnded: movementEnded()
-                onMovementEnded: {
-                    slidingPanel.expanded = (contentX > panelContents.width/2);
-                    modeSwitchAnim.running = false;
-                    modeSwitchAnim.to = slidingPanel.expanded ? width : 0
-                    modeSwitchAnim.running = true;
-                }
-                Item {
-                    width: modeFlick.width
-                    height: modeFlick.height
-                    Item {
-                        id: notificationsParent
-                        anchors {
-                            left: parent.left
-                            bottom: parent.bottom
-                            right: parent.right
-                            bottomMargin: root.height
-                        }
-                        property var applet
-                        height: applet ? applet.fullRepresentationItem.Layout.maximumHeight : 0
-                        property int minimumHeight: applet ? applet.fullRepresentationItem.Layout.minimumHeight : 0
-                    }
-                    StackLayout {
-                        id: fullRepsLayout
-                        anchors {
-                            left: notificationsParent.right
-                            bottom: parent.bottom
-                        }
-                        width: panelContents.width
-                        height: panelContents.height
-                    }
-                    PlasmaComponents.ToolButton {
-                        anchors {
-                            left: fullRepsLayout.left
-                            right: fullRepsLayout.right
-                            bottom: parent.bottom
-                            bottomMargin: root.height
-                        }
-                        text: i18n("Back")
-                        iconName: "go-previous"
-                        onClicked: slidingPanel.expanded = false;
-                    }
-                }
+            bottomItem: RowLayout {
+                id: appletIconsRow
+                readonly property int implicitHeight: children.length > 0 ? Kirigami.Units.gridUnit * 5 : 0
             }
         }
     }
