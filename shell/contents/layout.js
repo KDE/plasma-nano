@@ -10,3 +10,7 @@ for (var j = 0; j < desktopsArray.length; j++) {
     desk.writeConfig("SlideInterval", 480);
     desk.writeConfig("SlidePaths", "/usr/share/wallpapers/");
 }
+
+var panel = new Panel("org.kde.mycroft.panel")
+panel.location = "top";
+panel.hiding = "windowsbelow";
