@@ -69,13 +69,7 @@ Item {
                     }
                 }
             }
-        }
-        layer.enabled: true
-        layer.effect: DropShadow {
-            transparentBorder: true
-            horizontalOffset: 0
-            verticalOffset: 2
-        }
+       }
     }
     Timer {
         id: switchTimer
@@ -93,6 +87,12 @@ Item {
         }
         count: rep.count
         currentIndex: dashbardView.currentIndex
+    }
+    layer.enabled: true
+    layer.effect: DropShadow {
+        transparentBorder: true
+        horizontalOffset: 0
+        verticalOffset: 2
     }
 }
 
