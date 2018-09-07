@@ -67,18 +67,9 @@ ColumnLayout {
 
         property int delegateSize: Kirigami.Units.iconSizes.medium * 2 + Kirigami.Units.smallSpacing*2
 
-        Delegate {
-            iconSource: "go-home"
-            text: i18n("Home")
-        }
-        Delegate {
-            iconSource: "mic-off"
-            text: i18n("Disable")
-        }
-        Delegate {
-            iconSource: "configure"
-            text: i18n("Settings")
-        }
+        HomeDelegate {}
+        DisableMycroftDelegate {}
+        SystemSettingsDelegate {}
     }
 
 
