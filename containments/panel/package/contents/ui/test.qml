@@ -17,16 +17,20 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import QtQuick 2.1
+import QtQuick 2.0
+import QtQuick.Controls 2.2 as Controls
 import QtQuick.Layouts 1.1
+import QtQuick.Window 2.2
+import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.kirigami 2.5 as Kirigami
-import Mycroft 1.0 as Mycroft
+import "quicksettings"
 
-Delegate {
-    iconSource: "go-home"
-    text: i18n("Home")
-    onClicked: {
-        Mycroft.MycroftController.sendRequest("mycroft.stop", {});
+Item {
+    id: root
+    width: 500
+    height: 600
+    SlidingPanel {
+        Kirigami.Theme.colorSet: Kirigami.Theme.Window
+        width: root.width
     }
 }
-

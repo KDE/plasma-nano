@@ -1,5 +1,6 @@
 /*
- *   Copyright 2018 Marco Martin <notmart@gmail.com>
+ *   Copyright 2018 Marco Martin <mart@kde.org>
+ *   Copyright 2018 David Edmundson <<davidedmundson@kde.org>>
  *
  *   This program is free software; you can redistribute it and/or modify
  *   it under the terms of the GNU Library General Public License as
@@ -17,16 +18,9 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import QtQuick 2.1
-import QtQuick.Layouts 1.1
-import org.kde.kirigami 2.5 as Kirigami
-import Mycroft 1.0 as Mycroft
+import QtQuick 2.9
 
-Delegate {
-    iconSource: "go-home"
-    text: i18n("Home")
-    onClicked: {
-        Mycroft.MycroftController.sendRequest("mycroft.stop", {});
-    }
+SliderBase {
+    leftIconSource: "audio-volume-low"
+    rightIconSource: "audio-volume-high"
 }
-

@@ -35,26 +35,6 @@ ColumnLayout {
     spacing: units.largeSpacing
     property Controls.Drawer drawer
 
-    property int screenBrightness
-    readonly property int maximumScreenBrightness: pmSource.data["PowerDevil"] ? pmSource.data["PowerDevil"]["Maximum Screen Brightness"] || 0 : 0
-
-    PlasmaCore.DataSource {
-        id: pmSource
-        engine: "powermanagement"
-        connectedSources: ["PowerDevil"]
-        onSourceAdded: {
-            if (source === "PowerDevil") {
-                disconnectSource(source);
-                connectSource(source);
-            }
-        }
-
-        onDataChanged: {
-            root.screenBrightness = pmSource.data["PowerDevil"]["Screen Brightness"];
-        }
-    }
-
-
     Flow {
         id: flow
         Layout.alignment: Qt.AlignHCenter
@@ -73,41 +53,10 @@ ColumnLayout {
     }
 
 
-    RowLayout {
-        PlasmaCore.SvgItem {
-            Layout.preferredWidth: units.iconSizes.medium
-            Layout.preferredHeight: Layout.preferredWidth
-            //TODO: put in theme
-            svg: PlasmaCore.Svg {
-                colorGroup: PlasmaCore.ColorScope.colorGroup
-                imagePath: Qt.resolvedUrl("./brightness-decrease.svg")
-            }
-        }
-
-        PlasmaComponents.Slider {
-            id: brightnessSlider
-            Layout.fillWidth: true
-            value: root.screenBrightness
-            onMoved: {
-                var service = pmSource.serviceForSource("PowerDevil");
-                var operation = service.operationDescription("setBrightness");
-                operation.brightness = value;
-                operation.silent = true
-                service.startOperationCall(operation);
-            }
-            from: to > 100 ? 1 : 0
-            to: root.maximumScreenBrightness
-            //stepSize: 1
-        }
-
-        PlasmaCore.SvgItem {
-            Layout.preferredWidth: units.iconSizes.medium
-            Layout.preferredHeight: Layout.preferredWidth
-            //TODO: put in theme
-            svg: PlasmaCore.Svg {
-                colorGroup: PlasmaCore.ColorScope.colorGroup
-                imagePath: Qt.resolvedUrl("./brightness-increase.svg")
-            }
-        }
+    BrightnessSlider {
+        Layout.fillWidth: true
+    }
+    VolumeSlider {
+        Layout.fillWidth: true
     }
 }
