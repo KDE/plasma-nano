@@ -30,53 +30,62 @@ Item {
         anchors.fill: parent
         property real currentIndex: 0
         property int startX
+        property int count: children.length
         onPressed: {
            switchTimer.running = false;
            startX = mouse.x;
         }
         onReleased: {
             if (mouse.x - startX < width/4) {
-                dashbardView.currentIndex = (Math.round(dashbardView.currentIndex) + 1) % rep.count
+                dashbardView.currentIndex = (Math.round(dashbardView.currentIndex) + 1) % dashbardView.count
             } else if (mouse.x - startX > width/4) {
                 if (currentIndex == 0) {
-                    currentIndex = rep.count-1;
+                    currentIndex = dashbardView.count-1;
                 } else {
                     currentIndex--;
                 }
             }
             switchTimer.restart();
-       }
-       Repeater {
-           id: rep
-            model: 3
-            delegate: Kirigami.Heading {
-                x: Math.min(width/2, Math.max(-width/2, (width * (index - dashbardView.currentIndex))))
-                width: dashbardView.width
-                height: dashbardView.height
+        }
+        ItemBase {
+            index: 0
+            Kirigami.Heading {
+                anchors.centerIn: parent
                 horizontalAlignment: Text.AlignHCenter
-                text: "Some mycroft dashbard stuff, item "+ (modelData+1)
-                opacity: index == dashbardView.currentIndex
-                Behavior on x {
-                    XAnimator {
-                        duration: Kirigami.Units.longDuration*3
-                        easing.type: Easing.InOutCubic
-                    }
+                text: "News item from a newspaper"
+            }
+        }
+        ItemBase {
+            index: 1
+            RowLayout {
+                Kirigami.Icon {
+                    source: "weather-few-clouds"
+                    Layout.preferredWidth: Kirigami.Units.iconSizes.enormous
+                    Layout.preferredHeight: Layout.preferredWidth
                 }
-                Behavior on opacity {
-                    OpacityAnimator {
-                        duration: Kirigami.Units.longDuration*2
-                        easing.type: Easing.InOutCubic
-                    }
+                Kirigami.Heading {
+                    //anchors.centerIn: parent
+                //   horizontalAlignment: Text.AlignHCenter
+                    text: "Overcast, 26 ºC"
                 }
             }
-       }
+        }
+        ItemBase {
+            index: 2
+            Kirigami.Heading {
+                anchors.centerIn: parent
+                horizontalAlignment: Text.AlignHCenter
+                text: "You have an appointment today at 15:30"
+            }
+        }
+
     }
     Timer {
         id: switchTimer
         interval: 10000
         running: true
         repeat: true
-        onTriggered: dashbardView.currentIndex = (Math.round(dashbardView.currentIndex) + 1) % rep.count
+        onTriggered: dashbardView.currentIndex = (Math.round(dashbardView.currentIndex) + 1) % dashbardView.count
     }
     Controls.PageIndicator {
         visible: dashbardView.visible
@@ -85,7 +94,7 @@ Item {
             bottom: parent.bottom
             bottomMargin: Kirigami.Units.largeSpacing * 3
         }
-        count: rep.count
+        count: dashbardView.count
         currentIndex: dashbardView.currentIndex
     }
     layer.enabled: true
