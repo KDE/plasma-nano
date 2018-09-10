@@ -31,5 +31,12 @@ Item {
     width: parent.width
     height: parent.height
     opacity: PathView.opacity
+    layer.enabled: true
+    layer.effect: DropShadow {
+        opacity: root.opacity
+        transparentBorder: true
+        horizontalOffset: 0
+        verticalOffset: 2
+    }
 }
 
