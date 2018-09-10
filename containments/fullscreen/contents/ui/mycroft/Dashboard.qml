@@ -42,30 +42,14 @@ Item {
         //STUB STUB STUB
         model: ObjectModel {
             ItemBase {
-                index: 0
                 Kirigami.Heading {
                     anchors.centerIn: parent
                     horizontalAlignment: Text.AlignHCenter
                     text: "News item from a newspaper"
                 }
             }
+            WeatherItem {}
             ItemBase {
-                index: 1
-                RowLayout {
-                    Kirigami.Icon {
-                        source: "weather-few-clouds"
-                        Layout.preferredWidth: Kirigami.Units.iconSizes.enormous
-                        Layout.preferredHeight: Layout.preferredWidth
-                    }
-                    Kirigami.Heading {
-                        //anchors.centerIn: parent
-                    //   horizontalAlignment: Text.AlignHCenter
-                        text: "Overcast, 26 °C"
-                    }
-                }
-            }
-            ItemBase {
-                index: 2
                 Kirigami.Heading {
                     anchors.centerIn: parent
                     horizontalAlignment: Text.AlignHCenter
@@ -136,11 +120,6 @@ Item {
         count: dashbardView.count
         currentIndex: dashbardView.currentIndex
     }
-    layer.enabled: true
-    layer.effect: DropShadow {
-        transparentBorder: true
-        horizontalOffset: 0
-        verticalOffset: 2
-    }
+
 }
 

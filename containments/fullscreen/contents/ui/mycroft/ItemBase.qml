@@ -26,8 +26,6 @@ import org.kde.kirigami 2.5 as Kirigami
 Item {
     id: root
 
-    property int index
-
     width: parent.width
     height: parent.height
     opacity: PathView.opacity
