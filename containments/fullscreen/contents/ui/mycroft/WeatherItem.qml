@@ -41,6 +41,13 @@ ItemBase {
 
     Component.onCompleted: fetchDashWeather()
 
+    Timer {
+        running: true
+        repeat: true
+        //update weather every 5 minutes
+        interval: 5*60*1000
+        onTriggered: fetchDashWeather();
+    }
     function fetchDashWeather() {
         for(var i in geoDataSource.data) {
             print("GGG"+i+" "+geoDataSource.data.keys())
