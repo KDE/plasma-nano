@@ -19,8 +19,39 @@
  */
 
 import QtQuick 2.9
+import Mycroft 1.0 as Mycroft
+import org.kde.plasma.private.volume 0.1 as PA
 
 SliderBase {
     leftIconSource: "audio-volume-low"
     rightIconSource: "audio-volume-high"
+
+    slider.from: PA.PulseAudio.MinimalVolume
+    slider.to: PA.PulseAudio.MaximalVolume
+
+    slider.value: paSinkModel.preferredSink ? paSinkModel.preferredSink.volume : PA.PulseAudio.MinimalVolume
+    slider.onMoved: paSinkModel.preferredSink.volume = slider.value
+
+    PA.SinkModel {
+        id: paSinkModel
+    }
+
+    //TODO: no way to query programmatically the volume from mycroft, especially without making it speak
+    Connections {
+        target: Mycroft.MycroftController
+        onSocketStatusChanged: {
+            if (Mycroft.MycroftController.status == Mycroft.MycroftController.Open) {
+                //Mycroft.MycroftController.sendRequest("mycroft.volume.query", {});
+            }
+        }
+        onSkillDataRecieved: {
+            for (var i in data) {
+                print(i+ ": "+data[i])
+            }
+            //TODO
+            if (type == "mycroft.volume") {
+                
+            }
+        }
+    }
 }
