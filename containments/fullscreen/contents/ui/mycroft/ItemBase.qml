@@ -28,22 +28,8 @@ Item {
 
     property int index
 
-    x: Math.min(width/2, Math.max(-width/2, (width * (index - parent.currentIndex))))
     width: parent.width
     height: parent.height
-    opacity: index == parent.currentIndex
-
-    Behavior on x {
-        XAnimator {
-            duration: Kirigami.Units.longDuration*3
-            easing.type: Easing.InOutCubic
-        }
-    }
-    Behavior on opacity {
-        OpacityAnimator {
-            duration: Kirigami.Units.longDuration*2
-            easing.type: Easing.InOutCubic
-        }
-    }
+    opacity: PathView.opacity
 }
 
