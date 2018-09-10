@@ -60,7 +60,7 @@ Item {
                     Kirigami.Heading {
                         //anchors.centerIn: parent
                     //   horizontalAlignment: Text.AlignHCenter
-                        text: "Overcast, 26 ºC"
+                        text: "Overcast, 26 °C"
                     }
                 }
             }
