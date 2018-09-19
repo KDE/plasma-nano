@@ -33,6 +33,6 @@ feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAG
 
 include(CheckIncludeFiles)
 
-plasma_install_package(shell org.kde.plasma.mycroft shells)
+plasma_install_package(shell org.kde.plasma.mini shells)
 
-add_subdirectory(containments)
+

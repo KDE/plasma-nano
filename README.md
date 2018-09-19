@@ -1,9 +1,9 @@
-plasma-mycroft-shell
+plasma-minishell
 =======================
 
-UI components for a standalone Mycroft device
+A minimal plasma shell package intended for embedded devices
 
 Test on a development machine
 =======================
 
-plasmashell -p org.kde.plasma.mycroft
+plasmashell -p org.kde.plasma.mini
