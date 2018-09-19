@@ -23,10 +23,10 @@ include(ECMGenerateHeaders)
 include(GenerateExportHeader)
 include(FeatureSummary)
 
-find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED Core Gui Widgets Qml Quick Test)
+find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED Core)
 
 find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS Plasma)
-find_package(KF5 REQUIRED COMPONENTS PlasmaQuick DBusAddons Notifications)
+
 
 
 feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
