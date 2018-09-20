@@ -23,7 +23,7 @@ import QtQuick 2
 Item {
     id: main
 
-    property string shell  : "org.kde.plasma.mycroft"
+    property string shell  : "org.kde.plasma.mini"
     property bool willing  : true
     property int  priority : 10
 
