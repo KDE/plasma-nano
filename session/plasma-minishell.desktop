@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=XSession
+Exec=/usr/bin/startkde
+TryExec=/usr/bin/startkde
+DesktopNames=KDE
+Name=Plasma Minishell
+X-KDE-PluginInfo-Version=5.13.3

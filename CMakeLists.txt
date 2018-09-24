@@ -33,4 +33,4 @@ include(CheckIncludeFiles)
 
 plasma_install_package(shell org.kde.plasma.mini shells)
 
-
+add_subdirectory(session)

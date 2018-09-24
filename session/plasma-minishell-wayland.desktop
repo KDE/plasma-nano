@@ -1,0 +1,6 @@
+[Desktop Entry]
+Exec=dbus-run-session /usr/bin/startplasmacompositor
+TryExec=/usr/bin/startplasmacompositor
+DesktopNames=KDE
+Name=Plasma Minishell
+X-KDE-PluginInfo-Version=5.13.3
