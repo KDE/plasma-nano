@@ -88,6 +88,8 @@ Item {
         id: expandedOverlay
         color: Qt.rgba(0, 0, 0, 0.5)
         visible: plasmoid.expanded
+        width: Screen.width
+        height: Screen.height
         MouseArea {
             anchors.fill: parent
             onClicked: plasmoid.expanded = false
