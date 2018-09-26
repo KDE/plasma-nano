@@ -23,6 +23,8 @@ import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.kquickcontrolsaddons 2.0
 
+import org.kde.plasma.private.minishell 2.0 as MiniShell
+
 Item {
     id: root
     objectName: "org.kde.desktop-CompactApplet"
@@ -82,7 +84,7 @@ Item {
         }
     }
 
-    Window {
+    MiniShell.FullScreenPanel {
         id: expandedOverlay
         color: Qt.rgba(0, 0, 0, 0.5)
         visible: plasmoid.expanded

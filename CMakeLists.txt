@@ -23,7 +23,8 @@ include(ECMGenerateHeaders)
 include(GenerateExportHeader)
 include(FeatureSummary)
 
-find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS Plasma)
+find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED Core Gui Qml Quick)
+find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS Plasma WindowSystem Wayland)
 
 
 
@@ -33,4 +34,5 @@ include(CheckIncludeFiles)
 
 plasma_install_package(shell org.kde.plasma.mini shells)
 
+add_subdirectory(components)
 add_subdirectory(session)
