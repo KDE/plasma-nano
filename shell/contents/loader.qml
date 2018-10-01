@@ -25,7 +25,7 @@ Item {
 
     property string shell  : "org.kde.plasma.mini"
     property bool willing  : true
-    //property string currentSession
+    property string currentSession
     property int priority : currentSession == "plasma-minishell" ? 0 : 10
 
     // This is not needed, but allows the
