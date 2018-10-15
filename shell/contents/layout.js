@@ -16,6 +16,11 @@ for (var j = 0; j < desktopsArray.length; j++) {
 var panel = new Panel("org.kde.mycroft.panel")
 panel.location = "top";
 panel.height = 2 * gridUnit;
-panel.addWidget("org.kde.plasma.battery");
+
+var battery = panel.addWidget("org.kde.plasma.battery");
+battery.currentConfigGroup = ["Configuration", "General"]
+battery.writeConfig("showPercentage", true)
+battery.reloadConfig()
+
 panel.addWidget("org.kde.plasma.networkmanagement");
 //panel.hiding = "windowsbelow";
