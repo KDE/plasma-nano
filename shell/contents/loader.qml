@@ -26,7 +26,7 @@ Item {
     property string shell  : "org.kde.plasma.mini"
     property bool willing  : true
     property string currentSession
-    property int priority : currentSession == "/usr/share/xsessions/plasma-minishell" ? 0 : 10
+    property int priority : 0 //currentSession == "/usr/share/xsessions/plasma-minishell" ? 0 : 10
 
     // This is not needed, but allows the
     // handler to know whether its shell is loaded
