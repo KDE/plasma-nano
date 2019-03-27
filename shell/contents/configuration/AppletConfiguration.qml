@@ -39,6 +39,7 @@ Item {
 //BEGIN properties
     readonly property bool horizontal: root.width > root.height
     property bool isContainment: false
+    property alias internalDialog: dialog
 //END properties
 
 //BEGIN model
@@ -359,7 +360,7 @@ Item {
                             id: pageTitle
                             Layout.fillWidth: true
                             level: 1
-                            text: pageStack.title + pageStack.currentItem.implicitHeight
+                            text: pageStack.title
                         }
 
                         QtControls.StackView {

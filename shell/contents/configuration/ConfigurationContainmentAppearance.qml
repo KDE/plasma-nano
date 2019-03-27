@@ -86,6 +86,7 @@ ColumnLayout {
                     root.configurationChanged()
                 }
             }
+            /* //need mobile friendly ghns
             QtControls.Button {
                 icon.name: "get-hot-new-stuff"
                 text: i18nd("plasma_shell_org.kde.plasma.desktop", "Get New Plugins...")
@@ -96,7 +97,7 @@ ColumnLayout {
                 ShellPrivate.WallpaperPlugin {
                     id: wallpaperPlugin
                 }
-            }
+            }*/
         }
     }
 
