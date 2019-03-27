@@ -18,18 +18,25 @@
 
 import QtQuick 2.0
 import org.kde.plasma.configuration 2.0
-import QtQuick.Controls 1.0 as QtControls
+import QtQuick.Controls 2.3 as QtControls
 import QtQuick.Layouts 1.1
+
+import org.kde.kconfig 1.0 // for KAuthorized
+import org.kde.plasma.private.shell 2.0 as ShellPrivate // for WallpaperPlugin
+import org.kde.kirigami 2.5 as Kirigami
 
 ColumnLayout {
     id: root
 
-    property string currentWallpaper: "org.kde.image"
-    property string containmentPlugin: ""
+    property int formAlignment: wallpaperComboBox.Kirigami.ScenePosition.x - root.Kirigami.ScenePosition.x + (units.largeSpacing/2)
+    property string currentWallpaper: ""
     signal configurationChanged
 
 //BEGIN functions
     function saveConfig() {
+        if (main.currentItem.saveConfig) {
+            main.currentItem.saveConfig()
+        }
         for (var key in configDialog.wallpaperConfiguration) {
             if (main.currentItem["cfg_"+key] !== undefined) {
                 configDialog.wallpaperConfiguration[key] = main.currentItem["cfg_"+key]
@@ -38,19 +45,60 @@ ColumnLayout {
         configDialog.currentWallpaper = root.currentWallpaper;
         configDialog.applyWallpaper()
     }
+//END functions
 
-    function restoreConfig() {
-        for (var key in configDialog.wallpaperConfiguration) {
-            if (main.currentItem["cfg_"+key] !== undefined) {
-                main.currentItem["cfg_"+key] = configDialog.wallpaperConfiguration[key]
-            }
-           
-            if (main.currentItem["cfg_"+key+"Changed"]) {
-                main.currentItem["cfg_"+key+"Changed"].connect(root.configurationChanged)
+    Component.onCompleted: {
+        for (var i = 0; i < configDialog.wallpaperConfigModel.count; ++i) {
+            var data = configDialog.wallpaperConfigModel.get(i);
+            if (configDialog.currentWallpaper == data.pluginName) {
+                wallpaperComboBox.currentIndex = i
+                wallpaperComboBox.activated(i);
+                break;
             }
         }
     }
-//END functions
+
+    Kirigami.InlineMessage {
+        visible: plasmoid.immutable || animating
+        text: i18nd("plasma_shell_org.kde.plasma.desktop", "Layout cannot be changed while widgets are locked")
+        showCloseButton: true
+        Layout.fillWidth: true
+        Layout.leftMargin: Kirigami.Units.smallSpacing
+        Layout.rightMargin: Kirigami.Units.smallSpacing
+    }
+
+    Kirigami.FormLayout {
+        Layout.fillWidth: true
+        RowLayout {
+            Layout.fillWidth: true
+            Kirigami.FormData.label: i18nd("plasma_shell_org.kde.plasma.desktop", "Wallpaper Type:")
+            QtControls.ComboBox {
+                id: wallpaperComboBox
+                Layout.preferredWidth: Math.max(implicitWidth, pluginComboBox.implicitWidth)
+                model: configDialog.wallpaperConfigModel
+                width: theme.mSize(theme.defaultFont).width * 24
+                textRole: "name"
+                onActivated: {
+                    var model = configDialog.wallpaperConfigModel.get(currentIndex)
+                    root.currentWallpaper = model.pluginName
+                    configDialog.currentWallpaper = model.pluginName
+                    main.sourceFile = model.source
+                    root.configurationChanged()
+                }
+            }
+            QtControls.Button {
+                icon.name: "get-hot-new-stuff"
+                text: i18nd("plasma_shell_org.kde.plasma.desktop", "Get New Plugins...")
+                visible: KAuthorized.authorize("ghns")
+                onClicked: wallpaperPlugin.getNewWallpaperPlugin(this)
+                Layout.preferredHeight: wallpaperComboBox.height
+
+                ShellPrivate.WallpaperPlugin {
+                    id: wallpaperPlugin
+                }
+            }
+        }
+    }
 
     Item {
         id: emptyConfig
@@ -58,29 +106,34 @@ ColumnLayout {
 
     QtControls.StackView {
         id: main
+
         Layout.fillHeight: true;
-        anchors {
-            left: parent.left;
-            right: parent.right;
-        }
-        property string sourceFile
+        Layout.fillWidth: true;
+
+        // Bug 360862: if wallpaper has no config, sourceFile will be ""
+        // so we wouldn't load emptyConfig and break all over the place
+        // hence set it to some random value initially
+        property string sourceFile: "tbd"
         onSourceFileChanged: {
-            if (sourceFile != "") {
-                replace(Qt.resolvedUrl(sourceFile))
+            if (sourceFile) {
+                var props = {}
+
+                var wallpaperConfig = configDialog.wallpaperConfiguration
+                for (var key in wallpaperConfig) {
+                    props["cfg_" + key] = wallpaperConfig[key]
+                }
+
+                var newItem = replace(Qt.resolvedUrl(sourceFile), props)
+
+                for (var key in wallpaperConfig) {
+                    var changedSignal = newItem["cfg_" + key + "Changed"]
+                    if (changedSignal) {
+                        changedSignal.connect(root.configurationChanged)
+                    }
+                }
             } else {
-                replace(emptyConfig);
+                replace(emptyConfig)
             }
         }
-    }
-    
-    Component.onCompleted: {
-        for (var i = 0; i < configDialog.wallpaperConfigModel.count; ++i) {
-            var data = configDialog.wallpaperConfigModel.get(i);
-            if (configDialog.currentWallpaper == data.pluginName) {
-                main.sourceFile = data.source;
-                break;
-            }
-        }
-        root.restoreConfig()
     }
 }

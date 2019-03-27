@@ -17,45 +17,56 @@
  */
 
 import QtQuick 2.0
-import QtQuick.Controls 1.0 as QtControls
-import org.kde.plasma.core 2.0 as PlasmaCore
+import QtQuick.Layouts 1.1
+import QtQuick.Controls 2.3 as QtControls
+import QtQuick.Window 2.2
+
+import org.kde.kquickcontrolsaddons 2.0
+import org.kde.kirigami 2.5 as Kirigami
 
 MouseArea {
     id: delegate
 
 //BEGIN properties
-    y: units.smallSpacing *2
-    width: parent.width
-    height: delegateContents.height + units.smallSpacing * 4
+    implicitWidth: delegateContents.implicitWidth + 4 * units.smallSpacing
+    implicitHeight: delegateContents.height + units.smallSpacing * 4
+    Layout.fillWidth: true
     hoverEnabled: true
-    property bool current: model.source == main.sourceFile
-    property string name: model.name
+
+    property bool current: (model.kcm && pageStack.currentItem.kcm && model.kcm == pageStack.currentItem.kcm) || (model.source == pageStack.sourceFile)
 //END properties
 
 //BEGIN functions
     function openCategory() {
+        if (current) {
+            return;
+        }
         if (typeof(categories.currentItem) !== "undefined") {
-            main.invertAnimations = (categories.currentItem.y > delegate.y);
+            pageStack.invertAnimations = (categories.currentItem.y > delegate.y);
             categories.currentItem = delegate;
         }
-        main.sourceFile = model.source
-        main.title = model.name
+        if (model.source) {
+            pageStack.sourceFile = model.source;
+        } else if (model.kcm) {
+            pageStack.sourceFile = "";
+            pageStack.sourceFile = Qt.resolvedUrl("ConfigurationKcmPage.qml");
+            pageStack.currentItem.kcm = model.kcm;
+        } else {
+            pageStack.sourceFile = "";
+        }
+        pageStack.title = model.name
     }
 //END functions
 
 //BEGIN connections
-    onClicked: {
-        print("model source: " + model.source + " " + main.sourceFile);
-        if (root.configurationHasChanged()) {
-            messageDialog.delegate = delegate
-            messageDialog.open();
+    onPressed: {
+        categoriesScroll.forceActiveFocus()
+
+        if (current) {
             return;
         }
-        if (delegate.current) {
-            return;
-        } else {
-            openCategory();
-        }
+
+        openCategory();
     }
     onCurrentChanged: {
         if (current) {
@@ -67,50 +78,60 @@ MouseArea {
 //BEGIN UI components
     Rectangle {
         anchors.fill: parent
-        color: syspal.highlight
-        opacity: {
-            if (categories.currentItem == delegate) {
-                return 1
+        color: Kirigami.Theme.highlightColor
+        opacity: { // try to match Breeze style hover handling
+            var active = categoriesScroll.activeFocus && Window.active
+            if (current) {
+                if (active) {
+                    return 1
+                } else if (delegate.containsMouse) {
+                    return 0.6
+                } else {
+                    return 0.3
+                }
             } else if (delegate.containsMouse) {
-                return 0.3 // there's no "hover" color in SystemPalette
-            } else {
-                return 0
+                if (active) {
+                    return 0.3
+                } else {
+                    return 0.1
+                }
             }
+            return 0
         }
         Behavior on opacity {
             NumberAnimation {
                 duration: units.longDuration
+                easing.type: Easing.InOutQuad
             }
         }
     }
 
-    Column {
+    ColumnLayout {
         id: delegateContents
         spacing: units.smallSpacing
-        anchors {
-            verticalCenter: parent.verticalCenter
-            left: parent.left
-            right: parent.right
-        }
-        PlasmaCore.IconItem {
-            anchors.horizontalCenter: parent.horizontalCenter
-            width: theme.IconSizeHuge
+        width: parent.width
+        anchors.verticalCenter: parent.verticalCenter
+
+        QIconItem {
+            id: iconItem
+            Layout.alignment: Qt.AlignHCenter
+            width: units.iconSizes.medium
             height: width
-            source: model.icon
+            icon: model.icon
+            state: current && categoriesScroll.activeFocus ? QIconItem.SelectedState : QIconItem.DefaultState
         }
+
         QtControls.Label {
-            anchors {
-                left: parent.left
-                right: parent.right
-            }
+            id: nameLabel
+            Layout.fillWidth: true
             text: model.name
             wrapMode: Text.Wrap
             horizontalAlignment: Text.AlignHCenter
-            color: current ? syspal.highlightedText : syspal.text
+            color: current && categoriesScroll.activeFocus ? Kirigami.Theme.highlightedTextColor : Kirigami.Theme.textColor
             Behavior on color {
                 ColorAnimation {
                     duration: units.longDuration
-                    easing.type: "InOutQuad"
+                    easing.type: Easing.InOutQuad
                 }
             }
         }
