@@ -40,6 +40,9 @@ Rectangle {
 
     Component.onCompleted: splitDrawer.contentX = typeSelector.width
 
+    property int topPadding
+    property int bottomPadding
+
     MouseArea {
         anchors.fill: parent
         drag.filterChildren: true
@@ -85,7 +88,7 @@ Rectangle {
             id: main
 
             x: -width
-            width: parent.width - parent.width/6
+            width: units.gridUnit * 10
             height: parent.height
             color: theme.backgroundColor
 
@@ -178,6 +181,8 @@ Rectangle {
                         anchors {
                             top: parent.top
                             bottom: parent.bottom
+                            topMargin: root.topPadding
+                            bottomMargin: root.bottomPadding
                         }
                         width: splitDrawer.width
 

@@ -42,15 +42,15 @@ Rectangle {
         id: widgetExplorerStack
         z: 99
         asynchronous: true
-        y: containment ? containment.availableScreenRect.y : 0
-        height: containment ? containment.availableScreenRect.height : parent.height
-        width: parent.width
+        anchors.fill: parent
         
         onLoaded: {
             if (widgetExplorerStack.item) {
                 item.closed.connect(function() {
                     widgetExplorerStack.source = ""
                 });
+                item.topPadding = containment.availableScreenRect.y
+                item.bottomPadding = root.height - containment.availableScreenRect.height
             }
         }
     }
