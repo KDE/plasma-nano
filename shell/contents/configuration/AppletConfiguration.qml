@@ -131,9 +131,8 @@ Item {
         width: Math.min(dialogRootItem.implicitWidth + leftPadding + rightPadding, root.width)
         height: Math.min(root.height - units.gridUnit * 2, dialogRootItem.implicitHeight + topPadding + bottomPadding, root.height)
 
-        Item {
+        contentItem: Item {
             id: dialogRootItem
-            anchors.fill: parent
 
             states: [
                 State {
@@ -164,7 +163,7 @@ Item {
                     }
                     PropertyChanges {
                         target: categoriesScroll
-                        width: Math.min(categories.implicitWidth, units.gridUnit * 7)
+                        width: categoriesScroll.visible ? Math.min(categories.implicitWidth, units.gridUnit * 7) : 0
                     }
                     AnchorChanges {
                         target: separator
@@ -207,7 +206,7 @@ Item {
                     }
                     PropertyChanges {
                         target: categoriesScroll
-                        height: categories.implicitHeight
+                        height: categoriesScroll.visible ? categories.implicitHeight : 0
                     }
                     AnchorChanges {
                         target: separator
@@ -355,6 +354,8 @@ Item {
                     ColumnLayout {
                         id: pageColumn
                         spacing: units.largeSpacing / 2
+                        width: pageFlickable.width
+                        height: Math.max(implicitHeight, pageFlickable.height)
 
                         Kirigami.Heading {
                             id: pageTitle
@@ -370,8 +371,8 @@ Item {
 
                             Layout.fillWidth: true
                             Layout.fillHeight: true
-                            implicitWidth: Math.max(currentItem ? currentItem.implicitWidth : 0, units.gridUnit * 15)
-                            implicitHeight: Math.max(currentItem ? currentItem.implicitHeight : 0, units.gridUnit * 15)
+                            implicitWidth: Math.max(currentItem ? Math.max(currentItem.Layout.minimumWidth, currentItem.Layout.preferredWidth, currentItem.implicitWidth) : 0, units.gridUnit * 15)
+                            implicitHeight: Math.max(currentItem ? Math.max(currentItem.Layout.minimumHeight, currentItem.Layout.preferredHeight, currentItem.implicitHeight) : 0, units.gridUnit * 15)
 
                             property string sourceFile
 

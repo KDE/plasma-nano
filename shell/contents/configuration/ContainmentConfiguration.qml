@@ -31,7 +31,10 @@ import org.kde.kcm 1.1 as KCM
 AppletConfiguration {
     id: root
     isContainment: true
+
     internalDialog.visible: false
+    internalDialog.width: Math.min(root.height - units.gridUnit * 2, Math.max(internalDialog.implicitWidth, units.gridUnit * 45))
+    internalDialog.height: Math.min(root.width, Math.max(internalDialog.implicitHeight, units.gridUnit * 29))
 
 //BEGIN model
     globalConfigModel: globalContainmentConfigModel
