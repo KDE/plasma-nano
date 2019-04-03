@@ -32,9 +32,8 @@ import QtQuick.Layouts 1.1
 
 import org.kde.plasma.private.shell 2.0
 
-Rectangle {
+Item {
     id: root
-    color: Qt.rgba(0, 0, 0, (1 - Math.abs(main.x / (main.width/2))) * 0.8)
     signal closed()
     property alias containment: widgetExplorer.containment
 

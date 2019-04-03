@@ -25,6 +25,7 @@ import org.kde.plasma.extras 2.0 as PlasmaExtras
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.draganddrop 2.0
 import org.kde.kquickcontrolsaddons 2.0
+import org.kde.draganddrop 2.0 as DragDrop
 
 Item {
     id: delegate
@@ -155,13 +156,29 @@ Item {
         }
     }
 
+
+    Item {
+        id: draggable
+        anchors.fill: parent
+        Drag.active: mouseArea.longPressing
+        Drag.hotSpot.x: 0
+        Drag.hotSpot.y: 0
+        Drag.mimeData: { "text/x-plasmoidservicename": pluginName }
+        Drag.dragType: Drag.Automatic
+        Drag.onDragFinished: if (dropAction == Qt.MoveAction) item.display = ""
+    }
     MouseArea {
         id: mouseArea
         anchors.fill: parent
         hoverEnabled: true
-        onClicked: {
-            widgetExplorer.addApplet(pluginName);
-            root.closed()
+        drag.target: draggable
+
+        property bool longPressing: false
+        onReleased: longPressing = false;
+        onCanceled: longPressing = false;
+
+        onPressAndHold: {
+            longPressing = true;
         }
         onEntered: list.currentIndex = index
         onExited: list.currentIndex = -1
