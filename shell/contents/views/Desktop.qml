@@ -34,7 +34,7 @@ Rectangle {
         if (widgetExplorerStack.source != "") {
             widgetExplorerStack.source = "";
         } else {
-            widgetExplorerStack.setSource(Qt.resolvedUrl("../explorer/WidgetExplorer.qml"), {"containment": containment})
+            widgetExplorerStack.setSource(Qt.resolvedUrl("../explorer/WidgetExplorer.qml"), {"containment": root.containment})
         }
     }
 
@@ -49,8 +49,12 @@ Rectangle {
                 item.closed.connect(function() {
                     widgetExplorerStack.source = ""
                 });
-                item.topPadding = containment.availableScreenRect.y
-                item.bottomPadding = root.height - containment.availableScreenRect.height
+
+                item.topPanelHeight = containment.availableScreenRect.y
+                item.bottomPanelHeight = root.height - (containment.availableScreenRect.height + containment.availableScreenRect.y)
+
+                item.leftPanelWidth = containment.availableScreenRect.x
+                item.rightPanelWidth = root.width - (containment.availableScreenRect.width + containment.availableScreenRect.x)
             }
         }
     }

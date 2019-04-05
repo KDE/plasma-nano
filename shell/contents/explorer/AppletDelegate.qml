@@ -32,10 +32,8 @@ Item {
 
     readonly property string pluginName: model.pluginName
 
-    width: list.cellWidth
-    height: list.cellHeight
-
-
+    width: root.delegateSize
+    height: mainLayout.implicitHeight + mainLayout.anchors.margins
 
     ColumnLayout {
         id: mainLayout
@@ -51,9 +49,8 @@ Item {
 
         Item {
             id: iconContainer
-            width: units.iconSizes.enormous
-            height: width
-            anchors.horizontalCenter: parent.horizontalCenter
+            implicitWidth: root.delegateSize
+            implicitHeight: width
 
             Item {
                 id: iconWidget
@@ -64,7 +61,7 @@ Item {
                     visible: model.screenshot == ""
                 }
                 Image {
-                    width: units.iconSizes.enormous
+                    width: root.delegateSize
                     height: width
                     anchors.fill: parent
                     fillMode: Image.PreserveAspectFit
