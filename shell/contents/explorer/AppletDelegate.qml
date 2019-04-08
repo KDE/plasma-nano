@@ -143,6 +143,7 @@ Item {
         PlasmaComponents.Label {
             Layout.fillWidth: true
             // otherwise causes binding loop due to the way the Plasma sets the height
+            visible: !root.horizontal
             height: implicitHeight
             text: model.description
             font.pointSize: theme.smallestFont.pointSize
@@ -164,6 +165,7 @@ Item {
         Drag.dragType: Drag.Automatic
         Drag.onDragFinished: if (dropAction == Qt.MoveAction) item.display = ""
     }
+
     MouseArea {
         id: mouseArea
         anchors.fill: parent
@@ -171,9 +173,14 @@ Item {
         drag.target: draggable
 
         property bool longPressing: false
+
         onReleased: longPressing = false;
         onCanceled: longPressing = false;
 
+        onDoubleClicked: {
+            widgetExplorer.addApplet(pluginName);
+            root.closed()
+        }
         onPressAndHold: {
             longPressing = true;
         }

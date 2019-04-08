@@ -49,7 +49,7 @@ Controls.Drawer {
     edge: horizontal ? Qt.BottomEdge : Qt.LeftEdge
 
     leftPadding: leftPanelWidth
-    rightPadding: horizontal ? rightPanelWidth : 0
+    rightPadding: horizontal ? rightPanelWidth : units.largeSpacing
     topPadding: horizontal ? 0 : topPanelHeight
     bottomPadding: bottomPanelHeight
 
@@ -96,7 +96,7 @@ Controls.Drawer {
                 Layout.column: 1
                 Layout.row: root.horizontal ? 2 : 1
                 implicitHeight: units.gridUnit * 2
-                implicitWidth: units.gridUnit * 8
+                implicitWidth: units.gridUnit * 5
                 
                 ListView {
                     clip: false
