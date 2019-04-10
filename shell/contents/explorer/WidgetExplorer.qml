@@ -96,7 +96,7 @@ Controls.Drawer {
                 Layout.column: 1
                 Layout.row: root.horizontal ? 2 : 1
                 implicitHeight: units.gridUnit * 2
-                implicitWidth: units.gridUnit * 5
+                implicitWidth: units.gridUnit * 8
                 
                 ListView {
                     clip: false
