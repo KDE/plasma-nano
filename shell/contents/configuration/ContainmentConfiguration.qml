@@ -36,6 +36,8 @@ AppletConfiguration {
     internalDialog.width: Math.min(root.height - units.gridUnit * 2, Math.max(internalDialog.implicitWidth, units.gridUnit * 45))
     internalDialog.height: Math.min(root.width, Math.max(internalDialog.implicitHeight, units.gridUnit * 29))
 
+    readonly property bool horizontal: root.width > root.height
+
 //BEGIN model
     globalConfigModel: globalContainmentConfigModel
 
