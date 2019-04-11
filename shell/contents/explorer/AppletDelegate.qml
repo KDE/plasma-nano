@@ -43,13 +43,12 @@ Item {
             right: parent.right
             //bottom: parent.bottom
             margins: units.smallSpacing * 2
-            rightMargin: units.smallSpacing * 2 // don't cram the text to the border too much
             top: parent.top
         }
 
         Item {
             id: iconContainer
-            implicitWidth: root.delegateSize
+            Layout.fillWidth: true
             implicitHeight: width
 
             Item {
@@ -170,7 +169,7 @@ Item {
         id: mouseArea
         anchors.fill: parent
         hoverEnabled: true
-        drag.target: draggable
+       // drag.target: draggable
 
         property bool longPressing: false
 
@@ -184,8 +183,8 @@ Item {
         onPressAndHold: {
             longPressing = true;
         }
-        onEntered: list.currentIndex = index
-        onExited: list.currentIndex = -1
+//        onEntered: list.currentIndex = index
+  //      onExited: list.currentIndex = -1
     }
 
 }

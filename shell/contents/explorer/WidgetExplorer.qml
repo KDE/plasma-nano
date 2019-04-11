@@ -22,6 +22,7 @@ import QtQuick.Layouts 1.4
 import QtQuick.Controls 2.3 as Controls
 
 import org.kde.plasma.core 2.0 as PlasmaCore
+import org.kde.plasma.extras 2.0 as PlasmaExtras
 import org.kde.kquickcontrolsaddons 2.0 as KQuickControlsAddons
 import org.kde.kirigami 2.6 as Kirigami
 
@@ -44,52 +45,61 @@ Controls.Drawer {
 
     visible: true
 
-    width: horizontal ? Screen.width : implicitWidth + bottomPanelHeight
-    height: horizontal ? implicitHeight + leftPanelWidth : Screen.height
+    width: horizontal ? Screen.width : implicitWidth + leftPanelWidth
+    height: horizontal ? implicitHeight + bottomPanelHeight : Screen.height
     edge: horizontal ? Qt.BottomEdge : Qt.LeftEdge
 
     leftPadding: leftPanelWidth
-    rightPadding: horizontal ? rightPanelWidth : units.largeSpacing
-    topPadding: horizontal ? 0 : topPanelHeight
+    rightPadding: horizontal ? rightPanelWidth : 0
     bottomPadding: bottomPanelHeight
 
+    implicitWidth: categoriesView.shouldBeVisible ? layout.implicitWidth : view.implicitWidth + units.smallSpacing
+    implicitHeight: categoriesView.shouldBeVisible ? layout.implicitHeight : view.implicitHeight + units.smallSpacing
 
+    Behavior on implicitWidth {
+        NumberAnimation {
+            duration: units.longDuration
+            easing.type: Easing.InOutQuad
+        }
+    }
+    Behavior on implicitHeight {
+        NumberAnimation {
+            duration: units.longDuration
+            easing.type: Easing.InOutQuad
+        }
+    }
     contentItem: Item {
         implicitWidth: layout.implicitWidth
         implicitHeight: layout.implicitHeight
         clip: false
 
-        Behavior on implicitWidth {
-            NumberAnimation {
-                duration: units.longDuration
-                easing.type: Easing.InOutQuad
-            }
-        }
-        Behavior on implicitHeight {
-            NumberAnimation {
-                duration: units.longDuration
-                easing.type: Easing.InOutQuad
-            }
-        }
         Controls.RoundButton {
             z: 1
             anchors.bottom: parent.bottom
             x: root.horizontal ? parent.width - width : 0
+            width: units.iconSizes.huge
+            height: width
 
             icon.name: "view-filter"
-            checked: categoriesView.visible
-            onClicked: categoriesView.visible = !categoriesView.visible
+            checked: categoriesView.shouldBeVisible
+            onClicked: categoriesView.shouldBeVisible = !categoriesView.shouldBeVisible
         }
 
         GridLayout {
             id: layout
-            anchors.fill: parent
+            anchors {
+                top: parent.top
+                right: parent.right
+
+                bottom: root.horizontal ? undefined : parent.bottom
+                left: root.horizontal ? parent.left : undefined
+            }
             rows: root.horizontal ? 2 : 1
             columns: root.horizontal ? 1 : 2
             
-            Controls.ScrollView {
+            PlasmaExtras.ScrollArea {
                 id: categoriesView
-                visible: false
+                property bool shouldBeVisible: false
                 clip: false
                 Layout.fillWidth: root.horizontal
                 Layout.fillHeight: !root.horizontal
@@ -97,11 +107,12 @@ Controls.Drawer {
                 Layout.row: root.horizontal ? 2 : 1
                 implicitHeight: units.gridUnit * 2
                 implicitWidth: units.gridUnit * 8
-                
+
                 ListView {
                     clip: false
                     model: widgetExplorer.filterModel
                     orientation: root.horizontal ? ListView.Horizontal : ListView.Vertical
+                    topMargin: root.horizontal ? 0 : root.topPanelHeight
                     delegate: Kirigami.BasicListItem {
                         height: model.separator ? 1 : implicitHeight
                         width: root.horizontal ? implicitWidth : parent.width
@@ -118,18 +129,20 @@ Controls.Drawer {
                 }
             }
 
-            Controls.ScrollView {
+            PlasmaExtras.ScrollArea {
                 id: view
                 clip: false
-                Layout.fillWidth: true
-                Layout.fillHeight: true
+                Layout.fillWidth: root.horizontal
+                Layout.fillHeight: !root.horizontal
                 Layout.row: 1
                 Layout.column: root.horizontal ? 1 : 2
-                implicitWidth: delegateSize
+                implicitWidth: delegateSize + units.gridUnit
                 implicitHeight: delegateSize + units.gridUnit*3
 
                 ListView {
+                    id: appletsList
                     clip: false
+                    topMargin: root.horizontal ? 0 : root.topPanelHeight
                     header: Kirigami.Heading {
                         text: i18n("Widgets")
                         visible: !root.horizontal
@@ -139,9 +152,8 @@ Controls.Drawer {
                     orientation: root.horizontal ? ListView.Horizontal : ListView.Vertical
                     model: widgetExplorer.widgetsModel
                     delegate: AppletDelegate {}
+                    Component.onCompleted: appletsList.contentY = -appletsList.topMargin - headerItem.height
                 }
-                //FIXME
-                Component.onCompleted: contentItem.clip = false;
             }
         }
     }
