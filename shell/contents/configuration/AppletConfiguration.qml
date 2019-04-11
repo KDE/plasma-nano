@@ -27,7 +27,7 @@ import org.kde.plasma.configuration 2.0
 
 
 //TODO: all of this will be done with desktop components
-MouseArea {
+Item {
     id: root
     Layout.minimumWidth:  Screen.width
     Layout.minimumHeight: Screen.height
@@ -99,8 +99,6 @@ MouseArea {
 
 
 //BEGIN connections
-    onClicked: configDialog.close();
-
     Component.onCompleted: {
         if (!isContainment && configDialog.configModel && configDialog.configModel.count > 0) {
             if (configDialog.configModel.get(0).source) {
@@ -123,33 +121,38 @@ MouseArea {
 
 //BEGIN UI components
 
-    Rectangle {
-        anchors.fill: parent
-        color: Qt.rgba(0, 0, 0, 0.3)
-        visible: dialog.visible
-    }
-
-    QtControls.Pane {
+    QtControls.Drawer {
         id: dialog
         visible: true
-        //onClosed: configDialog.close()
+        edge: Qt.BottomEdge
+        onClosed: configDialog.close()
         x: parent.width/2 - width/2
-        y: parent.height - height
-        width: Math.min(Math.max(units.gridUnit * 35, dialogRootItem.implicitWidth + leftPadding + rightPadding), root.width)
-        height: Math.min(root.height - units.gridUnit * 2, dialogRootItem.implicitHeight + topPadding + bottomPadding, root.height)
 
+        opacity: position
+        width: Math.min(Math.max(units.gridUnit * 35, dialogRootItem.implicitWidth + leftPadding + rightPadding), root.width)
+        height: Math.min(root.height - units.gridUnit * 2, dialogRootItem.implicitHeight + topPadding + bottomPadding + units.gridUnit, root.height)
+
+        leftPadding: background.margins.left
+        topPadding: background.margins.top
+        rightPadding: background.margins.right
+        bottomPadding: 0
+        background: PlasmaCore.FrameSvgItem {
+            imagePath: "widgets/background"
+            enabledBorders: PlasmaCore.FrameSvgItem.LeftBorder | PlasmaCore.FrameSvgItem.TopBorder | PlasmaCore.FrameSvgItem.RightBorder
+        }
         contentItem: ColumnLayout {
             id: dialogRootItem
 
-            implicitWidth: categoriesScroll.width + units.smallSpacing + scroll.implicitWidth 
-            implicitHeight: scroll.implicitHeight
+            spacing: 0
+            implicitWidth: scroll.implicitWidth
 
             QtControls.ScrollView {
                 id: scroll
 
                 activeFocusOnTab: false
 
-//                Layout.fillWidth: true
+                Layout.fillWidth: true
+                Layout.fillHeight: true
 
                 implicitWidth: pageColumn.implicitWidth
                 implicitHeight: pageColumn.implicitHeight
@@ -188,7 +191,10 @@ MouseArea {
                 }
                 Flickable {
                     id: pageFlickable
-                    anchors.fill: parent
+                    anchors {
+                        fill: parent
+                        margins: units.smallSpacing
+                    }
                     contentHeight: pageColumn.height
                     contentWidth: width
                     ColumnLayout {

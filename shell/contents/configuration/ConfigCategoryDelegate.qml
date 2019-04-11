@@ -42,9 +42,10 @@ MouseArea {
             return;
         }
         if (typeof(categories.currentItem) !== "undefined") {
-            pageStack.invertAnimations = (categories.currentItem.y > delegate.y);
+            pageStack.invertAnimations = (categories.currentItem.x > delegate.x);
             categories.currentItem = delegate;
         }
+
         if (model.source) {
             pageStack.sourceFile = model.source;
         } else if (model.kcm) {
