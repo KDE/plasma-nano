@@ -27,7 +27,7 @@ import org.kde.plasma.configuration 2.0
 
 
 //TODO: all of this will be done with desktop components
-Item {
+MouseArea {
     id: root
     Layout.minimumWidth:  Screen.width
     Layout.minimumHeight: Screen.height
@@ -100,6 +100,8 @@ Item {
 
 
 //BEGIN connections
+    onClicked: configDialog.close();
+
     Component.onCompleted: {
         if (!isContainment && configDialog.configModel && configDialog.configModel.count > 0) {
             if (configDialog.configModel.get(0).source) {
@@ -122,10 +124,10 @@ Item {
 
 //BEGIN UI components
 
-    QtControls.Dialog {
+    QtControls.Pane {
         id: dialog
         visible: true
-        onClosed: configDialog.close()
+        //onClosed: configDialog.close()
         x: parent.width/2 - width/2
         y: parent.height - height
         width: Math.min(dialogRootItem.implicitWidth + leftPadding + rightPadding, root.width)

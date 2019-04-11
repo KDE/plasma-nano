@@ -84,7 +84,7 @@ AppletConfiguration {
                     icon.name: "configure"
                     text: "More Wallpapers..."
                     onClicked: {
-                        internalDialog.open()
+                        internalDialog.visible = true;
                         imageWallpaperDrawer.close()
                     }
                 }
