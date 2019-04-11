@@ -37,7 +37,6 @@ MouseArea {
     LayoutMirroring.childrenInherit: true
 
 //BEGIN properties
-    readonly property bool horizontal: root.width > root.height
     property bool isContainment: false
     property alias internalDialog: dialog
 //END properties
@@ -124,194 +123,33 @@ MouseArea {
 
 //BEGIN UI components
 
+    Rectangle {
+        anchors.fill: parent
+        color: Qt.rgba(0, 0, 0, 0.3)
+        visible: dialog.visible
+    }
+
     QtControls.Pane {
         id: dialog
         visible: true
         //onClosed: configDialog.close()
         x: parent.width/2 - width/2
         y: parent.height - height
-        width: Math.min(dialogRootItem.implicitWidth + leftPadding + rightPadding, root.width)
+        width: Math.min(Math.max(units.gridUnit * 35, dialogRootItem.implicitWidth + leftPadding + rightPadding), root.width)
         height: Math.min(root.height - units.gridUnit * 2, dialogRootItem.implicitHeight + topPadding + bottomPadding, root.height)
 
-        contentItem: Item {
+        contentItem: ColumnLayout {
             id: dialogRootItem
 
-            states: [
-                State {
-                    name: "horizontal"
-                    when: root.horizontal
-                    PropertyChanges {
-                        target: dialogRootItem
-                        implicitWidth: categoriesScroll.width + units.smallSpacing + scroll.implicitWidth 
-                        implicitHeight: scroll.implicitHeight
-                    }
-                    AnchorChanges {
-                        target: categoriesScroll
-                        anchors.left: dialogRootItem.left
-                        anchors.top: dialogRootItem.top
-                        anchors.bottom: dialogRootItem.bottom
-                    }
-                    AnchorChanges {
-                        target: scroll
-                        anchors.left: categoriesScroll.right
-                        anchors.right: dialogRootItem.right
-                        anchors.top: dialogRootItem.top
-                        anchors.bottom: dialogRootItem.bottom
-                    }
-                    PropertyChanges {
-                        target: scroll
-                        anchors.leftMargin: units.smallSpacing
-                        anchors.bottomMargin: 0
-                    }
-                    PropertyChanges {
-                        target: categoriesScroll
-                        width: categoriesScroll.visible ? Math.min(categories.implicitWidth, units.gridUnit * 7) : 0
-                    }
-                    AnchorChanges {
-                        target: separator
-                        anchors.left: categoriesScroll.right
-                        anchors.right: undefined
-                        anchors.top: dialogRootItem.top
-                        anchors.bottom: dialogRootItem.bottom
-                    }
-                    PropertyChanges {
-                        target: separator
-                        width: Math.round(units.devicePixelRatio)
-                    }
-                },
-                State {
-                    name: "vertical"
-                    when: !root.horizontal
-                    PropertyChanges {
-                        target: dialogRootItem
-                        implicitWidth: scroll.implicitWidth
-                        implicitHeight: categoriesScroll.height + units.smallSpacing + scroll.implicitHeight
-                    }
-                    AnchorChanges {
-                        target: categoriesScroll
-                        anchors.left: dialogRootItem.left
-                        anchors.right: dialogRootItem.right
-                        anchors.top: undefined
-                        anchors.bottom: dialogRootItem.bottom
-                    }
-                    AnchorChanges {
-                        target: scroll
-                        anchors.left: dialogRootItem.left
-                        anchors.right: dialogRootItem.right
-                        anchors.top: dialogRootItem.top
-                        anchors.bottom: categoriesScroll.top
-                    }
-                    PropertyChanges {
-                        target: scroll
-                        anchors.leftMargin: 0
-                        anchors.bottomMargin: units.smallSpacing
-                    }
-                    PropertyChanges {
-                        target: categoriesScroll
-                        height: categoriesScroll.visible ? categories.implicitHeight : 0
-                    }
-                    AnchorChanges {
-                        target: separator
-                        anchors.left: dialogRootItem.left
-                        anchors.right: dialogRootItem.right
-                        anchors.top: undefined
-                        anchors.bottom: categoriesScroll.top
-                    }
-                    PropertyChanges {
-                        target: separator
-                        height: Math.round(units.devicePixelRatio)
-                    }
-                }
-            ]
-
-            QtControls.ScrollView {
-                id: categoriesScroll
-
-                visible: (configDialog.configModel ? configDialog.configModel.count : 0) + globalConfigModel.count > 1
-
-                Keys.onUpPressed: {
-                    var buttons = categories.children
-
-                    var foundPrevious = false
-                    for (var i = buttons.length - 1; i >= 0; --i) {
-                        var button = buttons[i];
-                        if (!button.hasOwnProperty("current")) {
-                            // not a ConfigCategoryDelegate
-                            continue;
-                        }
-
-                        if (foundPrevious) {
-                            button.openCategory()
-                            return
-                        } else if (button.current) {
-                            foundPrevious = true
-                        }
-                    }
-                }
-
-                Keys.onDownPressed: {
-                    var buttons = categories.children
-
-                    var foundNext = false
-                    for (var i = 0, length = buttons.length; i < length; ++i) {
-                        var button = buttons[i];
-                        console.log(button)
-                        if (!button.hasOwnProperty("current")) {
-                            continue;
-                        }
-
-                        if (foundNext) {
-                            button.openCategory()
-                            return
-                        } else if (button.current) {
-                            foundNext = true
-                        }
-                    }
-                }
-
-                GridLayout {
-                    id: categories
-                    rowSpacing: 0
-                    columnSpacing: 0
-                    rows: root.horizontal ? -1 : 1
-                    columns: root.horizontal ? 1 : -1
-                    width: root.horizontal ? categoriesScroll.width : implicitWidth
-                    height: root.horizontal ? implicitHeight : categoriesScroll.height
-
-                    property Item currentItem: children[1]
-
-                    Repeater {
-                        model: root.isContainment ? globalConfigModel : undefined
-                        delegate: ConfigCategoryDelegate {}
-                    }
-                    Repeater {
-                        model: configDialogFilterModel
-                        delegate: ConfigCategoryDelegate {}
-                    }
-                    Repeater {
-                        model: !root.isContainment ? globalConfigModel : undefined
-                        delegate: ConfigCategoryDelegate {}
-                    }
-                }
-            }
-
-            Rectangle {
-                id: separator
-                color: Kirigami.Theme.highlightColor
-                visible: categoriesScroll.visible
-                opacity: categoriesScroll.activeFocus && Window.active ? 1 : 0.3
-                Behavior on color {
-                    ColorAnimation {
-                        duration: units.longDuration
-                        easing.type: Easing.InOutQuad
-                    }
-                }
-            }
+            implicitWidth: categoriesScroll.width + units.smallSpacing + scroll.implicitWidth 
+            implicitHeight: scroll.implicitHeight
 
             QtControls.ScrollView {
                 id: scroll
 
                 activeFocusOnTab: false
+
+//                Layout.fillWidth: true
 
                 implicitWidth: pageColumn.implicitWidth
                 implicitHeight: pageColumn.implicitHeight
@@ -450,6 +288,91 @@ MouseArea {
                                 }
                             }
                         }
+                    }
+                }
+            }
+
+            Rectangle {
+                id: separator
+                Layout.fillWidth: true
+                Layout.preferredHeight: 1
+                color: Kirigami.Theme.highlightColor
+                visible: categoriesScroll.visible
+                Behavior on color {
+                    ColorAnimation {
+                        duration: units.longDuration
+                        easing.type: Easing.InOutQuad
+                    }
+                }
+            }
+
+            QtControls.ScrollView {
+                id: categoriesScroll
+
+                Layout.fillWidth: true
+                Layout.preferredHeight: categories.implicitHeight
+
+                visible: (configDialog.configModel ? configDialog.configModel.count : 0) + globalConfigModel.count > 1
+
+                Keys.onLeftPressed: {
+                    var buttons = categories.children
+
+                    var foundPrevious = false
+                    for (var i = buttons.length - 1; i >= 0; --i) {
+                        var button = buttons[i];
+                        if (!button.hasOwnProperty("current")) {
+                            // not a ConfigCategoryDelegate
+                            continue;
+                        }
+
+                        if (foundPrevious) {
+                            button.openCategory()
+                            return
+                        } else if (button.current) {
+                            foundPrevious = true
+                        }
+                    }
+                }
+
+                Keys.onRightPressed: {
+                    var buttons = categories.children
+
+                    var foundNext = false
+                    for (var i = 0, length = buttons.length; i < length; ++i) {
+                        var button = buttons[i];
+                        console.log(button)
+                        if (!button.hasOwnProperty("current")) {
+                            continue;
+                        }
+
+                        if (foundNext) {
+                            button.openCategory()
+                            return
+                        } else if (button.current) {
+                            foundNext = true
+                        }
+                    }
+                }
+
+                RowLayout {
+                    id: categories
+                    spacing: 0
+                    width: categoriesScroll.width
+                    height: implicitHeight
+
+                    property Item currentItem: children[1]
+
+                    Repeater {
+                        model: root.isContainment ? globalConfigModel : undefined
+                        delegate: ConfigCategoryDelegate {}
+                    }
+                    Repeater {
+                        model: configDialogFilterModel
+                        delegate: ConfigCategoryDelegate {}
+                    }
+                    Repeater {
+                        model: !root.isContainment ? globalConfigModel : undefined
+                        delegate: ConfigCategoryDelegate {}
                     }
                 }
             }
