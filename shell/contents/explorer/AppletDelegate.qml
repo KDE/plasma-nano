@@ -158,8 +158,8 @@ Item {
         id: draggable
         anchors.fill: parent
         Drag.active: mouseArea.longPressing
-        Drag.hotSpot.x: 0
-        Drag.hotSpot.y: 0
+        Drag.hotSpot.x: width/2
+        Drag.hotSpot.y: height/2
         Drag.mimeData: { "text/x-plasmoidservicename": pluginName }
         Drag.dragType: Drag.Automatic
         Drag.onDragFinished: if (dropAction == Qt.MoveAction) item.display = ""
@@ -181,7 +181,10 @@ Item {
             root.closed()
         }
         onPressAndHold: {
-            longPressing = true;
+            delegate.grabToImage(function(result) {
+                draggable.Drag.imageSource = result.url
+                longPressing = true;
+            })
         }
 //        onEntered: list.currentIndex = index
   //      onExited: list.currentIndex = -1
