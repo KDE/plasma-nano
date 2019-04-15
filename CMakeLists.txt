@@ -33,6 +33,7 @@ feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAG
 include(CheckIncludeFiles)
 
 plasma_install_package(shell org.kde.plasma.mini shells)
+plasma_install_package(desktoptoolbox org.kde.plasma.mini.desktoptoolbox packages package)
 
 add_subdirectory(components)
 add_subdirectory(session)

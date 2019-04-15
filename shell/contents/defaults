@@ -3,7 +3,10 @@
 
 [Desktop]
 Containment=org.kde.mycroft.fullscreen
-ToolBox=
+ToolBox=org.kde.plasma.mini.desktoptoolbox
+
+[Panel]
+ToolBox=null
 
 [Desktop][ContainmentActions]
 
