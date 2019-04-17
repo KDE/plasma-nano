@@ -97,5 +97,19 @@ void FullScreenPanel::showEvent(QShowEvent *event)
     QQuickWindow::showEvent(event);
 }
 
+bool FullScreenPanel::event(QEvent *e)
+{
+    if (e->type() == QEvent::PlatformSurface) {
+        QPlatformSurfaceEvent *pe = static_cast<QPlatformSurfaceEvent*>(e);
+
+        if (pe->surfaceEventType() == QPlatformSurfaceEvent::SurfaceCreated) {
+            KWindowSystem::setState(winId(), NET::SkipTaskbar | NET::SkipPager);
+            setFlags(Qt::FramelessWindowHint|Qt::WindowDoesNotAcceptFocus);
+        }
+    }
+
+    return QQuickWindow::event(e);
+}
+
 #include "fullscreenpanel.moc"
 

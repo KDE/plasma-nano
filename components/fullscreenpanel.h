@@ -47,7 +47,8 @@ Q_SIGNALS:
     void activeChanged();
 
 protected:
-    void showEvent(QShowEvent *event);
+    void showEvent(QShowEvent *event) override;
+    bool event(QEvent *event) override;
 
 private:
     void initWayland();
