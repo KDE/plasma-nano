@@ -94,6 +94,7 @@ void FullScreenPanel::initWayland()
 void FullScreenPanel::showEvent(QShowEvent *event)
 {
     using namespace KWayland::Client;
+    KWindowSystem::setState(winId(), NET::SkipTaskbar | NET::SkipPager);
     QQuickWindow::showEvent(event);
 }
 
