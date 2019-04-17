@@ -38,6 +38,7 @@ class FullScreenPanel : public QQuickWindow
 {
     Q_OBJECT
     Q_PROPERTY(bool active READ isActive NOTIFY activeChanged)
+    Q_PROPERTY(bool acceptsFocus MEMBER m_acceptsFocus NOTIFY acceptsFocusChanged)
 
 public:
     FullScreenPanel(QQuickWindow *parent = 0);
@@ -45,6 +46,7 @@ public:
 
 Q_SIGNALS:
     void activeChanged();
+    void acceptsFocusChanged();
 
 protected:
     void showEvent(QShowEvent *event) override;
@@ -57,6 +59,7 @@ private:
     KWayland::Client::Surface *m_surface = nullptr;
     KWayland::Client::PlasmaShell *m_plasmaShellInterface = nullptr;
     KWayland::Client::Shell *m_shellInterface = nullptr;
+    bool m_acceptsFocus = true;
 };
 
 #endif
