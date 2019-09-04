@@ -1,14 +1,9 @@
-# [kdeglobals][KDE]
-# LookAndFeelPackage=org.kde.plasma.phone
-
 [Desktop]
-Containment=org.kde.mycroft.fullscreen
-ToolBox=org.kde.plasma.mini.desktoptoolbox
+ToolBox=org.kde.plasma.nano.desktoptoolbox
 
 [Panel]
 ToolBox=null
 
 [Desktop][ContainmentActions]
 
-# [plasmarc][Theme]
-# name=breeze-dark
+

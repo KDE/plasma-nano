@@ -1,15 +1,15 @@
-project(minishellprivate)
+project(nanoshellprivate)
 
-set(minishellprivate_SRCS
-    minishellprivateplugin.cpp
+set(nanoshellprivate_SRCS
+    nanoshellprivateplugin.cpp
     fullscreenpanel.cpp
     )
 
-add_library(plasmaminishellprivateplugin SHARED ${minishellprivate_SRCS})
-target_link_libraries(plasmaminishellprivateplugin Qt5::Core Qt5::Qml Qt5::Quick  KF5::WindowSystem KF5::WaylandClient)
+add_library(plasmananoshellprivateplugin SHARED ${nanoshellprivate_SRCS})
+target_link_libraries(plasmananoshellprivateplugin Qt5::Core Qt5::Qml Qt5::Quick  KF5::WindowSystem KF5::WaylandClient)
 
-install(TARGETS plasmaminishellprivateplugin DESTINATION ${KDE_INSTALL_QMLDIR}/org/kde/plasma/private/minishell)
+install(TARGETS plasmananoshellprivateplugin DESTINATION ${KDE_INSTALL_QMLDIR}/org/kde/plasma/private/nanoshell)
 
-install(FILES qmldir DESTINATION ${KDE_INSTALL_QMLDIR}/org/kde/plasma/private/minishell)
+install(FILES qmldir DESTINATION ${KDE_INSTALL_QMLDIR}/org/kde/plasma/private/nanoshell)
 
 

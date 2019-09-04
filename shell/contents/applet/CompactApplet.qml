@@ -23,7 +23,7 @@ import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.kquickcontrolsaddons 2.0
 
-import org.kde.plasma.private.minishell 2.0 as MiniShell
+import org.kde.plasma.private.nanoshell 2.0 as NanoShell
 
 Item {
     id: root
@@ -84,7 +84,7 @@ Item {
         }
     }
 
-    MiniShell.FullScreenPanel {
+    NanoShell.FullScreenPanel {
         id: expandedOverlay
         color: Qt.rgba(0, 0, 0, 0.5)
         visible: plasmoid.expanded

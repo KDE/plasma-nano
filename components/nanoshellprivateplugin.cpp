@@ -20,7 +20,7 @@
     THE SOFTWARE.
 */
 
-#include "minishellprivateplugin.h"
+#include "nanoshellprivateplugin.h"
 #include "fullscreenpanel.h"
 
 #include <QtQml>
@@ -28,7 +28,7 @@
 
 void PlasmaMiniShellPrivatePlugin::registerTypes(const char *uri)
 {
-    Q_ASSERT(uri == QLatin1String("org.kde.plasma.private.minishell"));
+    Q_ASSERT(uri == QLatin1String("org.kde.plasma.private.nanoshell"));
 
     qmlRegisterType<FullScreenPanel>(uri, 2, 0, "FullScreenPanel");
 }

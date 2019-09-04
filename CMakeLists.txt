@@ -1,4 +1,4 @@
-project(plasma-mycroft-shell)
+project(plasma-nano)
 
 # minimal requirements
 cmake_minimum_required (VERSION 2.8.12 FATAL_ERROR)
@@ -32,8 +32,7 @@ feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAG
 
 include(CheckIncludeFiles)
 
-plasma_install_package(shell org.kde.plasma.mini shells)
-plasma_install_package(desktoptoolbox org.kde.plasma.mini.desktoptoolbox packages package)
+plasma_install_package(shell org.kde.plasma.nano shells)
+plasma_install_package(desktoptoolbox org.kde.plasma.nano.desktoptoolbox packages package)
 
 add_subdirectory(components)
-add_subdirectory(session)
