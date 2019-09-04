@@ -45,13 +45,14 @@ Controls.Drawer {
 
     visible: true
 
-    width: horizontal ? Screen.width : implicitWidth + leftPanelWidth
-    height: horizontal ? implicitHeight + bottomPanelHeight : Screen.height
+    width: horizontal ? containment.screenGeometry.width : implicitWidth + leftPadding
+    height: horizontal ? implicitHeight + bottomPadding : containment.screenGeometry.height
     edge: horizontal ? Qt.BottomEdge : Qt.LeftEdge
 
-    leftPadding: leftPanelWidth
-    rightPadding: horizontal ? rightPanelWidth : 0
-    bottomPadding: bottomPanelHeight
+    leftPadding: containment.availableScreenRect.x
+    topPadding: horizontal ? units.smallSpacing : containment.availableScreenRect.y
+    rightPadding: horizontal ? containment.screenGeometry.width - containment.availableScreenRect.width - containment.availableScreenRect.x : 0
+    bottomPadding: containment.screenGeometry.height - containment.availableScreenRect.height - containment.availableScreenRect.y
 
     implicitWidth: categoriesView.shouldBeVisible ? layout.implicitWidth : view.implicitWidth + units.smallSpacing
     implicitHeight: categoriesView.shouldBeVisible ? layout.implicitHeight : view.implicitHeight + units.smallSpacing
