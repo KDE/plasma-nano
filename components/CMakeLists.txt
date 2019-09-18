@@ -2,7 +2,7 @@ project(nanoshellprivate)
 
 set(nanoshellprivate_SRCS
     nanoshellprivateplugin.cpp
-    fullscreenpanel.cpp
+    fullscreenoverlay.cpp
     )
 
 add_library(plasmananoshellprivateplugin SHARED ${nanoshellprivate_SRCS})

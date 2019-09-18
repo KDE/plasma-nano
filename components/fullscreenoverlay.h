@@ -16,8 +16,8 @@
  *   Free Software Foundation, Inc.,                                       *
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA .        *
  ***************************************************************************/
-#ifndef FULLSCREENPANEL_H
-#define FULLSCREENPANEL_H
+#ifndef FULLSCREENOVERLAY_H
+#define FULLSCREENOVERLAY_H
 
 #include <QQuickWindow>
 
@@ -34,15 +34,15 @@ class Surface;
 }
 }
 
-class FullScreenPanel : public QQuickWindow
+class FullScreenOverlay : public QQuickWindow
 {
     Q_OBJECT
     Q_PROPERTY(bool active READ isActive NOTIFY activeChanged)
     Q_PROPERTY(bool acceptsFocus MEMBER m_acceptsFocus NOTIFY acceptsFocusChanged)
 
 public:
-    FullScreenPanel(QQuickWindow *parent = 0);
-    ~FullScreenPanel();
+    FullScreenOverlay(QQuickWindow *parent = 0);
+    ~FullScreenOverlay();
 
 Q_SIGNALS:
     void activeChanged();

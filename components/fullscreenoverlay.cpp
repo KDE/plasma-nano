@@ -17,7 +17,7 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA .        *
  ***************************************************************************/
 
-#include "fullscreenpanel.h"
+#include "fullscreenoverlay.h"
 
 #include <QStandardPaths>
 
@@ -32,21 +32,21 @@
 #include <KWayland/Client/surface.h>
 #include <KWayland/Client/shell.h>
 
-FullScreenPanel::FullScreenPanel(QQuickWindow *parent)
+FullScreenOverlay::FullScreenOverlay(QQuickWindow *parent)
     : QQuickWindow(parent)
 {
     setFlags(Qt::FramelessWindowHint);
     setWindowState(Qt::WindowFullScreen);
-   // connect(this, &FullScreenPanel::activeFocusItemChanged, this, [this]() {qWarning()<<"hide()";});
-    connect(this, &QWindow::activeChanged, this, &FullScreenPanel::activeChanged);
+   // connect(this, &FullScreenOverlay::activeFocusItemChanged, this, [this]() {qWarning()<<"hide()";});
+    connect(this, &QWindow::activeChanged, this, &FullScreenOverlay::activeChanged);
     initWayland();
 }
 
-FullScreenPanel::~FullScreenPanel()
+FullScreenOverlay::~FullScreenOverlay()
 {
 }
 
-void FullScreenPanel::initWayland()
+void FullScreenOverlay::initWayland()
 {
     if (!QGuiApplication::platformName().startsWith(QLatin1String("wayland"), Qt::CaseInsensitive)) {
         return;
@@ -91,7 +91,7 @@ void FullScreenPanel::initWayland()
     connection->roundtrip();
 }
 
-void FullScreenPanel::showEvent(QShowEvent *event)
+void FullScreenOverlay::showEvent(QShowEvent *event)
 {
     using namespace KWayland::Client;
     KWindowSystem::setState(winId(), NET::SkipTaskbar | NET::SkipPager);
@@ -107,7 +107,7 @@ void FullScreenPanel::showEvent(QShowEvent *event)
     QQuickWindow::showEvent(event);
 }
 
-bool FullScreenPanel::event(QEvent *e)
+bool FullScreenOverlay::event(QEvent *e)
 {
     if (e->type() == QEvent::PlatformSurface) {
         QPlatformSurfaceEvent *pe = static_cast<QPlatformSurfaceEvent*>(e);
@@ -126,5 +126,5 @@ bool FullScreenPanel::event(QEvent *e)
     return QQuickWindow::event(e);
 }
 
-#include "fullscreenpanel.moc"
+#include "fullscreenoverlay.moc"
 
