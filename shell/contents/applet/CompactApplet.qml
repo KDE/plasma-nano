@@ -84,7 +84,7 @@ Item {
         }
     }
 
-    NanoShell.FullScreenPanel {
+    NanoShell.FullScreenOverlay {
         id: expandedOverlay
         color: Qt.rgba(0, 0, 0, 0.5)
         visible: plasmoid.expanded
