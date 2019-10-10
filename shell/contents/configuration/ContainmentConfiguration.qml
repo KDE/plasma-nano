@@ -73,7 +73,7 @@ AppletConfiguration {
             anchors.fill: parent
             orientation: root.horizontal ? ListView.Vertical : ListView.Horizontal
             model: imageWallpaper.wallpaperModel
-            header: Controls.Control {
+            footer: Controls.Control {
                 z: 999
                 width: root.horizontal ? parent.width : implicitWidth
                 height: root.horizontal ? implicitHeight : parent.height

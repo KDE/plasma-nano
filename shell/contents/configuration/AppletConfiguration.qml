@@ -27,7 +27,7 @@ import org.kde.plasma.configuration 2.0
 
 
 //TODO: all of this will be done with desktop components
-Item {
+Rectangle {
     id: root
     Layout.minimumWidth:  plasmoid.availableScreenRect.width
     Layout.minimumHeight: plasmoid.availableScreenRect.height
@@ -35,6 +35,8 @@ Item {
 
     LayoutMirroring.enabled: Qt.application.layoutDirection === Qt.RightToLeft
     LayoutMirroring.childrenInherit: true
+
+    color: Qt.rgba(0, 0, 0, 0.6 * dialog.position)
 
 //BEGIN properties
     property bool isContainment: false
