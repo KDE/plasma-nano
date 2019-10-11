@@ -23,7 +23,7 @@
 
 #include <QDebug>
 #include <QGuiApplication>
-
+#include <QScreen>
 #include <kwindowsystem.h>
 
 #include <KWayland/Client/connection_thread.h>
@@ -91,37 +91,18 @@ void FullScreenOverlay::initWayland()
     connection->roundtrip();
 }
 
-void FullScreenOverlay::showEvent(QShowEvent *event)
-{
-    using namespace KWayland::Client;
-    KWindowSystem::setState(winId(), NET::SkipTaskbar | NET::SkipPager | NET::FullScreen);
-    if (!m_acceptsFocus) {
-        setFlags(Qt::FramelessWindowHint|Qt::WindowDoesNotAcceptFocus);
-        KWindowSystem::setType(winId(), NET::Dock);
-    } else {
-        setFlags(Qt::FramelessWindowHint);
-    }
-    //TODO: use plasmashellinterface in wayland?
-    setX(0);
-    setY(0);
-    if (m_plasmaShellSurface) {
-        m_plasmaShellSurface->setPosition(QPoint(0,0));
-    }
-    QQuickWindow::showEvent(event);
-}
-
 bool FullScreenOverlay::event(QEvent *e)
 {
     if (e->type() == QEvent::PlatformSurface) {
         QPlatformSurfaceEvent *pe = static_cast<QPlatformSurfaceEvent*>(e);
 
         if (pe->surfaceEventType() == QPlatformSurfaceEvent::SurfaceCreated) {
-            KWindowSystem::setState(winId(), NET::SkipTaskbar | NET::SkipPager);
+            KWindowSystem::setState(winId(), NET::SkipTaskbar | NET::SkipPager | NET::FullScreen);
             if (!m_acceptsFocus) {
-                setFlags(Qt::FramelessWindowHint|Qt::WindowDoesNotAcceptFocus);
-                KWindowSystem::setType(winId(), NET::Dock);
+                setFlags(flags() | Qt::FramelessWindowHint|Qt::WindowDoesNotAcceptFocus);
+                //KWindowSystem::setType(winId(), NET::Dock);
             } else {
-                setFlags(Qt::FramelessWindowHint);
+                setFlags(flags() | Qt::FramelessWindowHint);
             }
         }
     }

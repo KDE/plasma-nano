@@ -49,7 +49,6 @@ Q_SIGNALS:
     void acceptsFocusChanged();
 
 protected:
-    void showEvent(QShowEvent *event) override;
     bool event(QEvent *event) override;
 
 private:
