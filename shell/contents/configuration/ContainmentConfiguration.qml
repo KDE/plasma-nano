@@ -16,7 +16,7 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  2.010-1301, USA.
  */
 
-import QtQuick 2.6
+import QtQuick 2.12
 import QtQuick.Layouts 1.0
 import QtQuick.Controls 2.3 as Controls
 import org.kde.plasma.extras 2.0 as PlasmaExtras
@@ -60,6 +60,9 @@ AppletConfiguration {
                 configDialog.close()
             }
         }
+        onOpened: {
+            wallpapersView.forceActiveFocus()
+        }
         implicitWidth: units.gridUnit * 10
         implicitHeight: units.gridUnit * 8
         width: root.horizontal ? implicitWidth : root.width
@@ -70,9 +73,14 @@ AppletConfiguration {
         background: null
 
         ListView {
+            id: wallpapersView
             anchors.fill: parent
             orientation: root.horizontal ? ListView.Vertical : ListView.Horizontal
+            keyNavigationEnabled: true
+            highlightFollowsCurrentItem: true
+            snapMode: ListView.SnapToItem
             model: imageWallpaper.wallpaperModel
+            onCountChanged: currentIndex =  Math.min(model.indexOf(configDialog.wallpaperConfiguration["Image"]), model.rowCount()-1)
             footer: Controls.Control {
                 z: 999
                 width: root.horizontal ? parent.width : implicitWidth
@@ -85,7 +93,8 @@ AppletConfiguration {
                 contentItem: Controls.Button {
                     icon.name: "configure"
                     text: "More Wallpapers..."
-                    onClicked: {
+                    onClicked: {print(wallpapersView.model.indexOf(configDialog.wallpaperConfiguration["Image"]))
+                        print(wallpapersView.currentIndex)
                         internalDialog.visible = true;
                         imageWallpaperDrawer.close()
                     }
@@ -98,7 +107,16 @@ AppletConfiguration {
             delegate: Controls.ItemDelegate {
                 width: root.horizontal ? parent.width : height * 1.6
                 height: root.horizontal ? width / 1.6 : parent.height
+                
 
+                property bool isCurrent: configDialog.wallpaperConfiguration["Image"] == model.path
+                onIsCurrentChanged: {
+                    if (isCurrent) {
+                        wallpapersView.currentIndex = index;
+                    }
+                }
+                
+                z: wallpapersView.currentIndex === index ? 2 : 0
                 Addons.QIconItem {
                     anchors.centerIn: parent
                     width: units.iconSizes.large
@@ -109,7 +127,16 @@ AppletConfiguration {
 
                 Addons.QPixmapItem {
                     id: walliePreview
-                    anchors.fill: parent
+                    anchors {
+                        fill: parent
+                        margins: wallpapersView.currentIndex === index ? -units.gridUnit : 0
+                        Behavior on margins {
+                            NumberAnimation {
+                                duration: units.longDuration
+                                easing.type: Easing.InOutQuad
+                            }
+                        }
+                    }
                     visible: model.screenshot != null
                     smooth: true
                     pixmap: model.screenshot
@@ -119,6 +146,9 @@ AppletConfiguration {
                     configDialog.currentWallpaper = "org.kde.image";
                     configDialog.wallpaperConfiguration["Image"] = model.path;
                     configDialog.applyWallpaper()
+                }
+                Keys.onReturnPressed: {
+                    clicked();
                 }
                 background: Rectangle {
                     color: "lightGray"
