@@ -93,7 +93,7 @@ AppletConfiguration {
                 contentItem: Controls.Button {
                     icon.name: "configure"
                     text: "More Wallpapers..."
-                    onClicked: {print(wallpapersView.model.indexOf(configDialog.wallpaperConfiguration["Image"]))
+                    onClicked: {
                         print(wallpapersView.currentIndex)
                         internalDialog.visible = true;
                         imageWallpaperDrawer.close()
