@@ -38,7 +38,6 @@ FullScreenOverlay::FullScreenOverlay(QQuickWindow *parent)
     setFlags(Qt::FramelessWindowHint);
     setWindowState(Qt::WindowFullScreen);
    // connect(this, &FullScreenOverlay::activeFocusItemChanged, this, [this]() {qWarning()<<"hide()";});
-    connect(this, &QWindow::activeChanged, this, &FullScreenOverlay::activeChanged);
     initWayland();
 }
 
