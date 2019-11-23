@@ -1,5 +1,20 @@
 [Desktop Entry]
 Name=Plasma Nano
+Name[ca]=Plasma Nano
+Name[cs]=Plasma Nano
+Name[en_GB]=Plasma Nano
+Name[es]=Plasma Nano
+Name[et]=Plasma Nano
+Name[it]=Plasma Nano
+Name[nl]=Plasma Nano
+Name[pl]=Plazma Nano
+Name[pt]=Plasma Nano
+Name[pt_BR]=Plasma Nano
+Name[sk]=Plasma Nano
+Name[sv]=Plasma Nano
+Name[uk]=Плазма Nano
+Name[x-test]=xxPlasma Nanoxx
+Name[zh_TW]=Plasma Nano
 Type=Service
 
 X-KDE-ServiceTypes=Plasma/Shell
