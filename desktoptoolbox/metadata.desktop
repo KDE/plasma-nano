@@ -1,6 +1,7 @@
 [Desktop Entry]
 Name=Plasma Nano Toolbox
 Name[ca]=Quadre d'eines del Plasma Nano
+Name[da]=Værktøjskasse til Plasma Nano
 Name[en_GB]=Plasma Nano Toolbox
 Name[es]=Caja de herramientas Plasma Nano
 Name[et]=Plasma Nano tööriistakast
@@ -21,9 +22,11 @@ Name[sk]=Nástrojový panel Plasma Nano
 Name[sv]=Plasma Nano verktygslåda
 Name[uk]=Набір інструментів Плазми Nano
 Name[x-test]=xxPlasma Nano Toolboxxx
+Name[zh_CN]=Plasma Nano 工具箱
 Name[zh_TW]=Plasma Nano 工具箱
 Comment=Manage Wallpaper and Widgets
 Comment[ca]=Gestiona els fons de pantalla i els estris
+Comment[da]=Håndtér baggrundsbillede og widgets
 Comment[en_GB]=Manage Wallpaper and Widgets
 Comment[es]=Gestión de fondos del escritorio y de elementos gráficos
 Comment[et]=Taustapiltide ja vidinate haldamine
@@ -44,6 +47,7 @@ Comment[sk]=Spravovať plochy a widgety
 Comment[sv]=Hantera skrivbordsunderlägg och grafiska komponenter
 Comment[uk]=Керування шпалерами та віджетами
 Comment[x-test]=xxManage Wallpaper and Widgetsxx
+Comment[zh_CN]=管理壁纸和部件
 Comment[zh_TW]=管理桌布及元件
 
 
