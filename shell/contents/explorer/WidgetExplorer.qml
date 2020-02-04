@@ -34,8 +34,9 @@ import org.kde.plasma.private.shell 2.0
 Controls.Drawer {
     id: root
 
-    property Item containment
-    readonly property bool horizontal: containment.width <= containment.height
+    property QtObject containment
+    property Item containmentInterface
+    readonly property bool horizontal: containmentInterface.width <= containmentInterface.height
     readonly property int delegateSize: units.gridUnit * 8
 
     property int topPanelHeight
@@ -45,14 +46,14 @@ Controls.Drawer {
 
     visible: true
 
-    width: horizontal ? containment.screenGeometry.width : implicitWidth + leftPadding
-    height: horizontal ? implicitHeight + bottomPadding : containment.screenGeometry.height
+    width: horizontal ? containmentInterface.screenGeometry.width : implicitWidth + leftPadding
+    height: horizontal ? implicitHeight + bottomPadding : containmentInterface.screenGeometry.height
     edge: horizontal ? Qt.BottomEdge : Qt.LeftEdge
 
-    leftPadding: containment.availableScreenRect.x
-    topPadding: horizontal ? units.smallSpacing : containment.availableScreenRect.y
-    rightPadding: horizontal ? containment.screenGeometry.width - containment.availableScreenRect.width - containment.availableScreenRect.x : 0
-    bottomPadding: containment.screenGeometry.height - containment.availableScreenRect.height - containment.availableScreenRect.y
+    leftPadding: containmentInterface.availableScreenRect.x
+    topPadding: horizontal ? units.smallSpacing : containmentInterface.availableScreenRect.y
+    rightPadding: horizontal ? containmentInterface.screenGeometry.width - containmentInterface.availableScreenRect.width - containmentInterface.availableScreenRect.x : 0
+    bottomPadding: containmentInterface.screenGeometry.height - containmentInterface.availableScreenRect.height - containmentInterface.availableScreenRect.y
 
     implicitWidth: categoriesView.shouldBeVisible ? layout.implicitWidth : view.implicitWidth + units.smallSpacing
     implicitHeight: categoriesView.shouldBeVisible ? layout.implicitHeight : view.implicitHeight + units.smallSpacing
@@ -161,6 +162,7 @@ Controls.Drawer {
 
     WidgetExplorer {
         id: widgetExplorer
+        containment: root.containment
         //view: desktop
         onShouldClose: root.close();
     }

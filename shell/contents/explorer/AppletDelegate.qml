@@ -176,7 +176,7 @@ Item {
         onReleased: longPressing = false;
         onCanceled: longPressing = false;
 
-        onDoubleClicked: {
+        onClicked: {
             widgetExplorer.addApplet(pluginName);
             root.closed()
         }

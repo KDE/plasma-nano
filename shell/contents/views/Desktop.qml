@@ -34,7 +34,7 @@ Rectangle {
         if (widgetExplorerStack.source != "") {
             widgetExplorerStack.source = "";
         } else {
-            widgetExplorerStack.setSource(Qt.resolvedUrl("../explorer/WidgetExplorer.qml"), {"containment": root.containment})
+            widgetExplorerStack.setSource(Qt.resolvedUrl("../explorer/WidgetExplorer.qml"), {"containment": containment, "containmentInterface": root.containment})
         }
     }
 
