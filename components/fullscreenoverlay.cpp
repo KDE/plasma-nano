@@ -92,7 +92,9 @@ void FullScreenOverlay::initWayland()
 
 bool FullScreenOverlay::event(QEvent *e)
 {
-    if (e->type() == QEvent::PlatformSurface) {
+    if (e->type() == QEvent::FocusIn || e->type() == QEvent::FocusOut) {
+        emit activeChanged();
+    } else if (e->type() == QEvent::PlatformSurface) {
         QPlatformSurfaceEvent *pe = static_cast<QPlatformSurfaceEvent*>(e);
 
         if (pe->surfaceEventType() == QPlatformSurfaceEvent::SurfaceCreated) {
