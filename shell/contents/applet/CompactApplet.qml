@@ -100,8 +100,8 @@ Item {
             imagePath: "widgets/background"
             //used only indesktop mode, not panel
 
-            x: Math.min(parent.width - width - units.largeSpacing, Math.max(units.largeSpacing, root.mapToItem(root.rootItem, 0, 0).x + root.width / 2 - width / 2))
-            y: Math.min(parent.height - height - units.largeSpacing, Math.max(units.largeSpacing, root.mapToItem(root.rootItem, 0, 0).y + root.height / 2 - height / 2))
+            x: Math.max(0, Math.min(parent.width - width - units.largeSpacing, Math.max(units.largeSpacing, root.mapToItem(root.rootItem, 0, 0).x + root.width / 2 - width / 2)))
+            y: Math.max(0, Math.min(parent.height - height - units.largeSpacing, Math.max(units.largeSpacing, root.mapToItem(root.rootItem, 0, 0).y + root.height / 2 - height / 2)))
             width: Math.min(expandedOverlay.width,  Math.max(Math.max(root.fullRepresentation.implicitWidth, units.gridUnit * 15), plasmoid.switchWidth) * 1.5)
             height: Math.min(expandedOverlay.height, Math.max(Math.max(root.fullRepresentation.implicitHeight, units.gridUnit * 15), plasmoid.switchHeight) * 1.5)
         }
