@@ -20,8 +20,8 @@
     THE SOFTWARE.
 */
 
-#ifndef MINISHELLPRIVATE_H
-#define MINISHELLPRIVATE_H
+#ifndef NANOSHELLPRIVATEPLUGIN_H
+#define NANOSHELLPRIVATEPLUGIN_H
 
 #include <QQmlExtensionPlugin>
 

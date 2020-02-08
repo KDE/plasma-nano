@@ -41,7 +41,7 @@ class FullScreenOverlay : public QQuickWindow
     Q_PROPERTY(bool acceptsFocus MEMBER m_acceptsFocus NOTIFY acceptsFocusChanged)
 
 public:
-    FullScreenOverlay(QQuickWindow *parent = 0);
+    explicit FullScreenOverlay(QQuickWindow *parent = 0);
     ~FullScreenOverlay();
 
 Q_SIGNALS:
