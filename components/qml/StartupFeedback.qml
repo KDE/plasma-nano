@@ -30,11 +30,11 @@ pragma Singleton
 Window {
     id: window
 
-    function open(splashIcon, title, color, x, y, width, height) {
+    function open(splashIcon, title, color, x, y, sourceIconSize) {
+        iconParent.scale = sourceIconSize/iconParent.width;
+        background.scale = 0;
         background.x = -window.width/2 + x
         background.y = -window.height/2 + y
-        background.scale = width/window.width;
-        print(background.scale)
         window.title = title;
         icon.source = splashIcon;
         background.color = color;
@@ -57,18 +57,22 @@ Window {
         }
     }
 
-    Rectangle {
-        id: background
-        width: window.width
-        height: window.height
+    Timer {
+        running: background.state == "open"
+        interval: 15000
+        onTriggered: background.state = "closed";
+    }
 
-        state: "closed"
+    Item {
+        id: iconParent
+        z: 2
+        anchors.centerIn: background
+        width: units.iconSizes.enormous
+        height: width
         PlasmaCore.IconItem {
-            anchors.centerIn: parent
             id: icon
+            anchors.fill:parent
             colorGroup: PlasmaCore.Theme.ComplementaryColorGroup
-            width: units.iconSizes.enormous
-            height: width
         }
         DropShadow {
             anchors.fill: icon
@@ -79,14 +83,17 @@ Window {
             color: "#80000000"
             source: icon
         }
+    }
+    Rectangle {
+        id: background
+        width: window.width
+        height: window.height
+
+        state: "closed"
 
         states: [
             State {
                 name: "closed"
-                PropertyChanges {
-                    target: background
-                    scale: 0
-                }
                 PropertyChanges {
                     target: window
                     visible: false
@@ -94,10 +101,7 @@ Window {
             },
             State {
                 name: "open"
-                PropertyChanges {
-                    target: background
-                    scale: 1
-                }
+
                 PropertyChanges {
                     target: window
                     visible: true
@@ -117,6 +121,15 @@ Window {
                     ParallelAnimation {
                         ScaleAnimator {
                             target: background
+                            from: background.scale
+                            to: 1
+                            duration: units.longDuration
+                            easing.type: Easing.InOutQuad
+                        }
+                        ScaleAnimator {
+                            target: iconParent
+                            from: iconParent.scale
+                            to: 1
                             duration: units.longDuration
                             easing.type: Easing.InOutQuad
                         }
