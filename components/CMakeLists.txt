@@ -12,6 +12,6 @@ install(TARGETS plasmananoshellprivateplugin DESTINATION ${KDE_INSTALL_QMLDIR}/o
 
 install(FILES qmldir DESTINATION ${KDE_INSTALL_QMLDIR}/org/kde/plasma/private/nanoshell)
 
-install(DIRECTORY qml/ DESTINATION ${KDE_INSTALL_QMLDIR}/org/kde/plasma/private/nanoshell)
+install(DIRECTORY qml DESTINATION ${KDE_INSTALL_QMLDIR}/org/kde/plasma/private/nanoshell/)
 
 
