@@ -72,12 +72,6 @@ Window {
         }
     }
 
-    Timer {
-        running: background.state == "open"
-        interval: 15000
-        onTriggered: background.state = "closed";
-    }
-
     Item {
         id: iconParent
         z: 2
