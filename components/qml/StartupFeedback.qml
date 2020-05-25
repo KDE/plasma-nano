@@ -45,7 +45,11 @@ Window {
         icon.source = splashIcon;
 
         if (color !== undefined) {
+            // Break binding to use custom color
             background.color = color
+        } else {
+            // Recreate binding
+            background.color = Qt.binding(function() { return colorGenerator.dominant})
         }
 
         background.state = "open";
