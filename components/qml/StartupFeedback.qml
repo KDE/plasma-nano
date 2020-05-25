@@ -36,13 +36,18 @@ Window {
         source: icon.source
     }
 
-    function open(splashIcon, title, x, y, sourceIconSize) {
+    function open(splashIcon, title, x, y, sourceIconSize, color) {
         iconParent.scale = sourceIconSize/iconParent.width;
         background.scale = 0;
         background.x = -window.width/2 + x
         background.y = -window.height/2 + y
         window.title = title;
         icon.source = splashIcon;
+
+        if (color !== undefined) {
+            background.color = color
+        }
+
         background.state = "open";
     }
 
