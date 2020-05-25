@@ -21,31 +21,36 @@ import QtQuick 2.12
 import QtQuick.Layouts 1.1
 import QtQuick.Window 2.2
 import org.kde.plasma.core 2.0 as PlasmaCore
-import org.kde.plasma.components 2.0 as PlasmaComponents
-import org.kde.plasma.extras 2.0 as PlasmaExtras
 import QtGraphicalEffects 1.12
+
+import org.kde.kirigami 2.13 as Kirigami
 
 pragma Singleton
 
 Window {
     id: window
 
-    function open(splashIcon, title, color, x, y, sourceIconSize) {
+    Kirigami.ImageColors {
+        id: colorGenerator
+
+        source: icon.source
+    }
+
+    function open(splashIcon, title, x, y, sourceIconSize) {
         iconParent.scale = sourceIconSize/iconParent.width;
         background.scale = 0;
         background.x = -window.width/2 + x
         background.y = -window.height/2 + y
         window.title = title;
         icon.source = splashIcon;
-        background.color = color;
         background.state = "open";
     }
 
     property alias state: background.state
     property alias icon: icon.source
+
     width: Screen.width
     height: Screen.height
-    color: "transparent"
     onVisibleChanged: {
         if (!visible) {
             background.state = "closed";
@@ -88,6 +93,8 @@ Window {
         id: background
         width: window.width
         height: window.height
+
+        color: colorGenerator.dominant
 
         state: "closed"
 
