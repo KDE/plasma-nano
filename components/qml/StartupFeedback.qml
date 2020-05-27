@@ -60,6 +60,7 @@ Window {
 
     width: Screen.width
     height: Screen.height
+    color: "transparent"
     onVisibleChanged: {
         if (!visible) {
             background.state = "closed";
