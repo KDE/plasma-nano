@@ -29,7 +29,7 @@ List of Dependencies
 - KDE KF5 Dependencies:
   - Plasma
   - WindowSystem
-  - Wayland
+  - KWayland
   
 - Qt Dependencies:
   - Core
