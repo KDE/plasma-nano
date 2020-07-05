@@ -92,7 +92,7 @@ AppletConfiguration {
 
                 contentItem: Controls.Button {
                     icon.name: "configure"
-                    text: "More Wallpapers..."
+                    text: i18nd("plasma_shell_org.kde.plasma.desktop", "More Wallpapers...")
                     onClicked: {
                         print(wallpapersView.currentIndex)
                         internalDialog.visible = true;
