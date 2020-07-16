@@ -79,7 +79,7 @@ Controls.Drawer {
             z: 1
             anchors.bottom: parent.bottom
             x: root.horizontal ? parent.width - width : 0
-            width: units.iconSizes.huge
+            width: units.iconSizes.large
             height: width
 
             icon.name: "view-filter"
@@ -105,10 +105,18 @@ Controls.Drawer {
                 clip: false
                 Layout.fillWidth: root.horizontal
                 Layout.fillHeight: !root.horizontal
-                Layout.column: 1
-                Layout.row: root.horizontal ? 2 : 1
+                Layout.column: 0
+                Layout.row: root.horizontal ? 1 : 0
                 implicitHeight: units.gridUnit * 2
                 implicitWidth: units.gridUnit * 8
+                opacity: categoriesView.shouldBeVisible
+
+                Behavior on opacity {
+                    NumberAnimation {
+                        duration: units.longDuration
+                        easing.type: Easing.InOutQuad
+                    }
+                }
 
                 ListView {
                     clip: false
@@ -136,10 +144,10 @@ Controls.Drawer {
                 clip: false
                 Layout.fillWidth: root.horizontal
                 Layout.fillHeight: !root.horizontal
-                Layout.row: 1
-                Layout.column: root.horizontal ? 1 : 2
+                Layout.row: 0
+                Layout.column: root.horizontal ? 0 : 1
                 implicitWidth: delegateSize + units.gridUnit
-                implicitHeight: delegateSize + units.gridUnit*3
+                implicitHeight: delegateSize + units.gridUnit * 3
 
                 ListView {
                     id: appletsList
