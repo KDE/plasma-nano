@@ -99,8 +99,8 @@ bool FullScreenOverlay::event(QEvent *e)
         QPlatformSurfaceEvent *pe = static_cast<QPlatformSurfaceEvent*>(e);
 
         if (pe->surfaceEventType() == QPlatformSurfaceEvent::SurfaceCreated) {
-            KWindowSystem::setState(winId(), NET::SkipTaskbar | NET::SkipPager | NET::FullScreen);
-            setWindowStates(Qt::WindowFullScreen);
+            //KWindowSystem::setState(winId(), NET::SkipTaskbar | NET::SkipPager | NET::FullScreen);
+           // setWindowStates(Qt::WindowFullScreen);
             if (!m_acceptsFocus) {
                 setFlags(flags() | Qt::FramelessWindowHint|Qt::WindowDoesNotAcceptFocus);
                 //KWindowSystem::setType(winId(), NET::Dock);
