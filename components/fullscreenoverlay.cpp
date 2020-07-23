@@ -30,7 +30,6 @@
 #include <KWayland/Client/plasmashell.h>
 #include <KWayland/Client/registry.h>
 #include <KWayland/Client/surface.h>
-#include <KWayland/Client/shell.h>
 
 FullScreenOverlay::FullScreenOverlay(QQuickWindow *parent)
     : QQuickWindow(parent)
@@ -72,23 +71,12 @@ void FullScreenOverlay::initWayland()
             m_plasmaShellSurface->setSkipTaskbar(true);
         }
     );
-    /*
-    connect(registry, &Registry::shellAnnounced, this,
-        [this, registry] (quint32 name, quint32 version) {
 
-            m_shellInterface = registry->createShell(name, version, this);
-            if (!m_shellInterface) {
-                return;
-            }
-            //bshah: following code results in error...
-            //wl_surface@67: error 0: ShellSurface already created
-            //Wayland display got fatal error 71: Protocol error
-            //Additionally, errno was set to 71: Protocol error
-            m_shellSurface = m_shellInterface->createSurface(m_surface, this);
-        }
-    );*/
     registry->setup();
     connection->roundtrip();
+    //HACK: why the first time is shown fullscreen won't work?
+    showFullScreen();
+    hide();
 }
 
 bool FullScreenOverlay::event(QEvent *e)
@@ -101,12 +89,20 @@ bool FullScreenOverlay::event(QEvent *e)
         if (pe->surfaceEventType() == QPlatformSurfaceEvent::SurfaceCreated) {
             //KWindowSystem::setState(winId(), NET::SkipTaskbar | NET::SkipPager | NET::FullScreen);
            // setWindowStates(Qt::WindowFullScreen);
+            if (m_plasmaShellSurface) {
+                m_plasmaShellSurface->setSkipTaskbar(true);
+            }
+
             if (!m_acceptsFocus) {
                 setFlags(flags() | Qt::FramelessWindowHint|Qt::WindowDoesNotAcceptFocus);
                 //KWindowSystem::setType(winId(), NET::Dock);
             } else {
                 setFlags(flags() | Qt::FramelessWindowHint);
             }
+        }
+    } else if (e->type() == QEvent::Show) {
+        if (m_plasmaShellSurface) {
+            m_plasmaShellSurface->setSkipTaskbar(true);
         }
     }
 
