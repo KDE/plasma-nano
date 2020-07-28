@@ -25,15 +25,16 @@ import QtGraphicalEffects 1.12
 
 import org.kde.kirigami 2.13 as Kirigami
 
+import org.kde.plasma.private.nanoshell 2.0 as NanoShell
+
 pragma Singleton
 
-Window {
+NanoShell.FullScreenOverlay {
     id: window
 
+    property alias backgroundColor: background.color
     Kirigami.ImageColors {
         id: colorGenerator
-
-        source: icon.source
     }
 
     function open(splashIcon, title, x, y, sourceIconSize, color) {
@@ -43,6 +44,7 @@ Window {
         background.y = -window.height/2 + y
         window.title = title;
         icon.source = splashIcon;
+        colorGenerator.source = splashIcon;
 
         if (color !== undefined) {
             // Break binding to use custom color
@@ -93,21 +95,34 @@ Window {
             source: icon
         }
     }
+
     Rectangle {
         id: background
         width: window.width
         height: window.height
+        radius: Kirigami.Units.gridUnit
 
         color: colorGenerator.dominant
 
         state: "closed"
 
+        Rectangle {
+            id: fill
+            z: -1
+            anchors.fill: parent
+            opacity: 0
+            color: Kirigami.Theme.backgroundColor
+        }
         states: [
             State {
                 name: "closed"
                 PropertyChanges {
                     target: window
                     visible: false
+                }
+                PropertyChanges {
+                    target: fill
+                    opacity: 0
                 }
             },
             State {
@@ -158,6 +173,13 @@ Window {
                             duration: units.longDuration
                             easing.type: Easing.InOutQuad
                         }
+                    }
+                    OpacityAnimator {
+                        target: fill
+                        from: 0
+                        to: 1
+                        duration: units.shortDuration
+                        easing.type: Easing.InOutQuad
                     }
                 }
             }
