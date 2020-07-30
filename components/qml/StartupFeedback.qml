@@ -29,7 +29,7 @@ import org.kde.plasma.private.nanoshell 2.0 as NanoShell
 
 pragma Singleton
 
-NanoShell.FullScreenOverlay {
+Window {
     id: window
 
     property alias backgroundColor: background.color
@@ -100,19 +100,11 @@ NanoShell.FullScreenOverlay {
         id: background
         width: window.width
         height: window.height
-        radius: Kirigami.Units.gridUnit
 
         color: colorGenerator.dominant
 
         state: "closed"
 
-        Rectangle {
-            id: fill
-            z: -1
-            anchors.fill: parent
-            opacity: 0
-            color: Kirigami.Theme.backgroundColor
-        }
         states: [
             State {
                 name: "closed"
