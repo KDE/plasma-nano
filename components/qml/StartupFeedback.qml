@@ -151,14 +151,14 @@ Window {
                             duration: units.longDuration
                             easing.type: Easing.InOutQuad
                         }
-                        NumberAnimation {
+                        XAnimator {
                             target: background
                             property: "x"
                             to: 0
                             duration: units.longDuration
                             easing.type: Easing.InOutQuad
                         }
-                        NumberAnimation {
+                        YAnimator {
                             target: background
                             property: "y"
                             to: 0
