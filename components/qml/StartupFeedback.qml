@@ -153,14 +153,12 @@ Window {
                         }
                         XAnimator {
                             target: background
-                            property: "x"
                             to: 0
                             duration: units.longDuration
                             easing.type: Easing.InOutQuad
                         }
                         YAnimator {
                             target: background
-                            property: "y"
                             to: 0
                             duration: units.longDuration
                             easing.type: Easing.InOutQuad
