@@ -18,6 +18,7 @@
 
 import QtQuick 2.12
 import QtQuick.Layouts 1.0
+import QtQuick.Window 2.2
 import QtQuick.Controls 2.3 as Controls
 import org.kde.plasma.extras 2.0 as PlasmaExtras
 import org.kde.plasma.core 2.0 as PlasmaCore
@@ -105,9 +106,19 @@ AppletConfiguration {
             }
             headerPositioning: ListView.PullBackHeader
             delegate: Controls.ItemDelegate {
-                width: root.horizontal ? parent.width : height * 1.6
-                height: root.horizontal ? width / 1.6 : parent.height
-                
+                width: root.horizontal ? parent.width : height * (root.Screen.width / root.Screen.height)
+                height: root.horizontal ? width / (root.Screen.width / root.Screen.height) : parent.height
+                padding: wallpapersView.currentIndex === index ? units.gridUnit / 4 : units.gridUnit / 2
+                leftPadding: padding
+                topPadding: padding
+                rightPadding: padding
+                bottomPadding: padding
+                Behavior on padding {
+                    NumberAnimation {
+                        duration: units.longDuration
+                        easing.type: Easing.InOutQuad
+                    }
+                }
 
                 property bool isCurrent: configDialog.wallpaperConfiguration["Image"] == model.path
                 onIsCurrentChanged: {
@@ -117,30 +128,24 @@ AppletConfiguration {
                 }
                 
                 z: wallpapersView.currentIndex === index ? 2 : 0
-                Addons.QIconItem {
-                    anchors.centerIn: parent
-                    width: units.iconSizes.large
-                    height: width
-                    icon: "view-preview"
-                    visible: !walliePreview.visible
-                }
-
-                Addons.QPixmapItem {
-                    id: walliePreview
-                    anchors {
-                        fill: parent
-                        margins: wallpapersView.currentIndex === index ? -units.gridUnit : 0
-                        Behavior on margins {
-                            NumberAnimation {
-                                duration: units.longDuration
-                                easing.type: Easing.InOutQuad
-                            }
-                        }
+                contentItem: Item {
+                    Addons.QIconItem {
+                        anchors.centerIn: parent
+                        width: units.iconSizes.large
+                        height: width
+                        icon: "view-preview"
+                        visible: !walliePreview.visible
                     }
-                    visible: model.screenshot != null
-                    smooth: true
-                    pixmap: model.screenshot
-                    fillMode: Image.PreserveAspectCrop
+
+                    Addons.QPixmapItem {
+                        id: walliePreview
+                        anchors.fill: parent
+                        visible: model.screenshot != null
+                        smooth: true
+                        pixmap: model.screenshot
+                        fillMode: Image.PreserveAspectCrop
+                        
+                    }
                 }
                 onClicked: {
                     configDialog.currentWallpaper = "org.kde.image";
@@ -150,9 +155,20 @@ AppletConfiguration {
                 Keys.onReturnPressed: {
                     clicked();
                 }
-                background: Rectangle {
-                    color: "lightGray"
-                    opacity: 0.8
+                background: Item {
+                    Rectangle {
+                        anchors {
+                            fill: parent
+                            margins: wallpapersView.currentIndex === index ? 0 : units.gridUnit / 4
+                            Behavior on margins {
+                                NumberAnimation {
+                                    duration: units.longDuration
+                                    easing.type: Easing.InOutQuad
+                                }
+                            }
+                        }
+                        radius: units.gridUnit / 4
+                    }
                 }
             }
         }
