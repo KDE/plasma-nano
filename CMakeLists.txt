@@ -3,7 +3,7 @@ project(plasma-nano)
 # minimal requirements
 cmake_minimum_required (VERSION 2.8.12 FATAL_ERROR)
 set (QT_MIN_VERSION "5.12.0")
-set(KF5_MIN_VERSION "5.66.0")
+set(KF5_MIN_VERSION "5.74")
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
