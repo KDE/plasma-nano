@@ -91,13 +91,18 @@ AppletConfiguration {
                 rightPadding: units.gridUnit
                 bottomPadding: units.gridUnit
 
-                contentItem: Controls.Button {
-                    icon.name: "configure"
-                    text: i18nd("plasma_shell_org.kde.plasma.desktop", "More Wallpapers...")
-                    onClicked: {
-                        print(wallpapersView.currentIndex)
-                        internalDialog.visible = true;
-                        imageWallpaperDrawer.close()
+                contentItem: ColumnLayout {
+                    Controls.Button {
+                        icon.name: "configure"
+                        text: i18nd("plasma_shell_org.kde.plasma.desktop", "Customize...")
+                        onClicked: {
+                            print(wallpapersView.currentIndex)
+                            internalDialog.visible = true;
+                            imageWallpaperDrawer.close()
+                        }
+                    }
+                    Loader {
+                        source: Qt.resolvedUrl("GHNSButton.qml")
                     }
                 }
                 background: Rectangle {
