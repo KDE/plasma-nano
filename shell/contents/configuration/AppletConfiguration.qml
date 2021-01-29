@@ -29,8 +29,8 @@ import org.kde.plasma.configuration 2.0
 //TODO: all of this will be done with desktop components
 Rectangle {
     id: root
-    Layout.minimumWidth:  plasmoid.availableScreenRect.width
-    Layout.minimumHeight: plasmoid.availableScreenRect.height
+   // Layout.minimumWidth:  plasmoid.availableScreenRect.width
+   // Layout.minimumHeight: plasmoid.availableScreenRect.height
     
 
     LayoutMirroring.enabled: Qt.application.layoutDirection === Qt.RightToLeft

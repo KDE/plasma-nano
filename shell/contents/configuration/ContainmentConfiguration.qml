@@ -34,8 +34,8 @@ AppletConfiguration {
     isContainment: true
 
     internalDialog.visible: false
-    internalDialog.width: Math.min(root.height - units.gridUnit * 2, Math.max(internalDialog.implicitWidth, units.gridUnit * 45))
-    internalDialog.height: Math.min(root.width, Math.max(internalDialog.implicitHeight, units.gridUnit * 29))
+    internalDialog.width: root.width < root.height ? root.width : Math.min(root.width, Math.max(internalDialog.implicitWidth, units.gridUnit * 45))
+    internalDialog.height: Math.min(root.height, Math.max(internalDialog.implicitHeight, units.gridUnit * 29))
 
     readonly property bool horizontal: root.width > root.height
 
