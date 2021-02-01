@@ -103,9 +103,6 @@ AppletConfiguration {
                             imageWallpaperDrawer.close()
                         }
                     }
-                    Loader {
-                        source: Qt.resolvedUrl("GHNSButton.qml")
-                    }
                 }
                 background: Rectangle {
                     color: Qt.rgba (0, 0, 0, 0.3)
