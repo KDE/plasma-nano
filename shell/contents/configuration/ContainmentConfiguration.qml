@@ -56,6 +56,8 @@ AppletConfiguration {
         id: imageWallpaperDrawer
         edge: root.horizontal ? Qt.LeftEdge : Qt.BottomEdge
         visible: true
+        dragMargin: 0
+
         onClosed: {
             if (!root.internalDialog.visible) {
                 configDialog.close()
