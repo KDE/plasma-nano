@@ -36,11 +36,11 @@ Rectangle {
     LayoutMirroring.enabled: Qt.application.layoutDirection === Qt.RightToLeft
     LayoutMirroring.childrenInherit: true
 
-    color: Qt.rgba(0, 0, 0, 0.6 * dialog.position)
+    color: "transparent"
 
 //BEGIN properties
     property bool isContainment: false
-    property alias internalDialog: dialog
+    property alias internalDialog: dialogContents
 //END properties
 
 //BEGIN model
@@ -119,31 +119,24 @@ Rectangle {
 //         root.width = dialogRootItem.implicitWidth
 //         root.height = dialogRootItem.implicitHeight
     }
+    onVisibleChanged: {
+        if (visible) {
+            dialogContents.visible = true;
+        }
+    }
 //END connections
 
 //BEGIN UI components
 
-    QtControls.Drawer {
-        id: dialog
+    Rectangle {
+        id: dialogContents
         visible: true
-        edge: Qt.BottomEdge
-        onClosed: configDialog.close()
-        x: parent.width/2 - width/2
+        anchors.fill: parent
+        color: Kirigami.Theme.backgroundColor
 
-        opacity: position
-        width: Math.min(Math.max(units.gridUnit * 35, dialogRootItem.implicitWidth + leftPadding + rightPadding), root.width)
-        height: Math.min(root.height - units.gridUnit * 2, dialogRootItem.implicitHeight + topPadding + bottomPadding + units.gridUnit, root.height)
-
-        leftPadding: background.margins.left
-        topPadding: background.margins.top
-        rightPadding: background.margins.right
-        bottomPadding: 0
-        background: PlasmaCore.FrameSvgItem {
-            imagePath: "widgets/background"
-            enabledBorders: PlasmaCore.FrameSvgItem.LeftBorder | PlasmaCore.FrameSvgItem.TopBorder | PlasmaCore.FrameSvgItem.RightBorder
-        }
-        contentItem: ColumnLayout {
+        ColumnLayout {
             id: dialogRootItem
+            anchors.fill: parent
 
             spacing: 0
             implicitWidth: scroll.implicitWidth
