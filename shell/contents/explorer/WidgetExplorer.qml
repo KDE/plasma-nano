@@ -19,11 +19,11 @@
 
 import QtQuick 2.2
 import QtQuick.Layouts 1.4
-import QtQuick.Controls 2.3 as Controls
 
 import org.kde.plasma.core 2.0 as PlasmaCore
+import org.kde.plasma.components 3.0 as PC3
 import org.kde.plasma.extras 2.0 as PlasmaExtras
-import org.kde.kquickcontrolsaddons 2.0 as KQuickControlsAddons
+import org.kde.kquickcontrolsaddons 2.0 as KQuickPC3Addons
 import org.kde.kirigami 2.6 as Kirigami
 
 import QtQuick.Window 2.1
@@ -31,7 +31,7 @@ import QtQuick.Window 2.1
 
 import org.kde.plasma.private.shell 2.0
 
-Controls.Drawer {
+PC3.Drawer {
     id: root
 
     property QtObject containment
@@ -75,7 +75,7 @@ Controls.Drawer {
         implicitHeight: layout.implicitHeight
         clip: false
 
-        Controls.RoundButton {
+        PC3.RoundButton {
             z: 1
             anchors.bottom: parent.bottom
             x: root.horizontal ? parent.width - width : 0
@@ -153,7 +153,7 @@ Controls.Drawer {
                     id: appletsList
                     clip: false
                     topMargin: root.horizontal ? 0 : root.topPanelHeight
-                    header: Kirigami.Heading {
+                    header: PlasmaExtras.Heading {
                         text: i18n("Widgets")
                         visible: !root.horizontal
                         width: visible ? implicitWidth : 0
