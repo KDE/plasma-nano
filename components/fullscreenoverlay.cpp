@@ -23,7 +23,7 @@ FullScreenOverlay::FullScreenOverlay(QQuickWindow *parent)
 {
     setFlags(Qt::FramelessWindowHint);
     setWindowState(Qt::WindowFullScreen);
-   // connect(this, &FullScreenOverlay::activeFocusItemChanged, this, [this]() {qWarning()<<"hide()";});
+    // connect(this, &FullScreenOverlay::activeFocusItemChanged, this, [this]() {qWarning()<<"hide()";});
     initWayland();
     setWindowStates(Qt::WindowFullScreen);
 }
@@ -49,19 +49,16 @@ void FullScreenOverlay::initWayland()
     if (!m_surface) {
         return;
     }
-    connect(registry, &Registry::plasmaShellAnnounced, this,
-        [this, registry] (quint32 name, quint32 version) {
+    connect(registry, &Registry::plasmaShellAnnounced, this, [this, registry](quint32 name, quint32 version) {
+        m_plasmaShellInterface = registry->createPlasmaShell(name, version, this);
 
-            m_plasmaShellInterface = registry->createPlasmaShell(name, version, this);
-
-            m_plasmaShellSurface = m_plasmaShellInterface->createSurface(m_surface, this);
-            m_plasmaShellSurface->setSkipTaskbar(true);
-        }
-    );
+        m_plasmaShellSurface = m_plasmaShellInterface->createSurface(m_surface, this);
+        m_plasmaShellSurface->setSkipTaskbar(true);
+    });
 
     registry->setup();
     connection->roundtrip();
-    //HACK: why the first time is shown fullscreen won't work?
+    // HACK: why the first time is shown fullscreen won't work?
     showFullScreen();
     hide();
 }
@@ -71,18 +68,18 @@ bool FullScreenOverlay::event(QEvent *e)
     if (e->type() == QEvent::FocusIn || e->type() == QEvent::FocusOut) {
         emit activeChanged();
     } else if (e->type() == QEvent::PlatformSurface) {
-        QPlatformSurfaceEvent *pe = static_cast<QPlatformSurfaceEvent*>(e);
+        QPlatformSurfaceEvent *pe = static_cast<QPlatformSurfaceEvent *>(e);
 
         if (pe->surfaceEventType() == QPlatformSurfaceEvent::SurfaceCreated) {
-            //KWindowSystem::setState(winId(), NET::SkipTaskbar | NET::SkipPager | NET::FullScreen);
-           // setWindowStates(Qt::WindowFullScreen);
+            // KWindowSystem::setState(winId(), NET::SkipTaskbar | NET::SkipPager | NET::FullScreen);
+            // setWindowStates(Qt::WindowFullScreen);
             if (m_plasmaShellSurface) {
                 m_plasmaShellSurface->setSkipTaskbar(true);
             }
 
             if (!m_acceptsFocus) {
-                setFlags(flags() | Qt::FramelessWindowHint|Qt::WindowDoesNotAcceptFocus);
-                //KWindowSystem::setType(winId(), NET::Dock);
+                setFlags(flags() | Qt::FramelessWindowHint | Qt::WindowDoesNotAcceptFocus);
+                // KWindowSystem::setType(winId(), NET::Dock);
             } else {
                 setFlags(flags() | Qt::FramelessWindowHint);
             }
@@ -97,4 +94,3 @@ bool FullScreenOverlay::event(QEvent *e)
 }
 
 #include "fullscreenoverlay.moc"
-

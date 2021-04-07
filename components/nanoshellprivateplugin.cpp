@@ -9,7 +9,6 @@
 
 #include <QtQml>
 
-
 void PlasmaMiniShellPrivatePlugin::registerTypes(const char *uri)
 {
     Q_ASSERT(uri == QLatin1String("org.kde.plasma.private.nanoshell"));
