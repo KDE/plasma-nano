@@ -3,7 +3,7 @@ project(plasma-nano)
 # minimal requirements
 cmake_minimum_required(VERSION 3.16)
 set (QT_MIN_VERSION "5.15.0")
-set(KF5_MIN_VERSION "5.78")
+set(KF5_MIN_VERSION "5.79")
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -22,6 +22,8 @@ include(ECMInstallIcons)
 include(ECMSetupVersion)
 include(ECMMarkNonGuiExecutable)
 include(ECMGenerateHeaders)
+include(KDEClangFormat)
+include(KDEGitCommitHooks)
 include(GenerateExportHeader)
 include(FeatureSummary)
 
@@ -38,3 +40,8 @@ plasma_install_package(shell org.kde.plasma.nano shells)
 plasma_install_package(desktoptoolbox org.kde.plasma.nano.desktoptoolbox packages package)
 
 add_subdirectory(components)
+
+# add clang-format target for all our real source files
+file(GLOB_RECURSE ALL_CLANG_FORMAT_SOURCE_FILES *.cpp *.h)
+kde_clang_format(${ALL_CLANG_FORMAT_SOURCE_FILES})
+kde_configure_git_pre_commit_hook(CHECKS CLANG_FORMAT)
