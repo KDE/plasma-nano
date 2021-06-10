@@ -15,7 +15,7 @@ Rectangle {
     visible: false //adjust borders is run during setup. We want to avoid painting till completed
     property Item containment
 
-    color: containment.backgroundHints == PlasmaCore.Types.NoBackground ? "transparent" : theme.textColor
+    color: containment.backgroundHints == PlasmaCore.Types.NoBackground ? "transparent" : PlasmaCore.Theme.textColor
 
     function toggleWidgetExplorer(containment) {
         console.log("Widget Explorer toggled");

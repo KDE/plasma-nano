@@ -62,7 +62,7 @@ ColumnLayout {
                 id: wallpaperComboBox
                 Layout.preferredWidth: Math.max(implicitWidth, pluginComboBox.implicitWidth)
                 model: configDialog.wallpaperConfigModel
-                width: theme.mSize(theme.defaultFont).width * 24
+                width: PlasmaCore.Theme.mSize(PlasmaCore.Theme.defaultFont).width * 24
                 textRole: "name"
                 onActivated: {
                     var model = configDialog.wallpaperConfigModel.get(currentIndex)

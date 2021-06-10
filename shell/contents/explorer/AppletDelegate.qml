@@ -73,9 +73,9 @@ Item {
             Rectangle {
                 id: runningBadge
                 width: height
-                height: Math.round(theme.mSize(countLabel.font).height * 1.3)
+                height: Math.round(PlasmaCore.Theme.mSize(countLabel.font).height * 1.3)
                 radius: height
-                color: theme.highlightColor
+                color: PlasmaCore.Theme.highlightColor
                 visible: running
                 onVisibleChanged: maskShaderSource.scheduleUpdate()
 
@@ -132,7 +132,7 @@ Item {
             visible: !root.horizontal
             height: implicitHeight
             text: model.description
-            font.pointSize: theme.smallestFont.pointSize
+            font.pointSize: PlasmaCore.Theme.smallestFont.pointSize
             wrapMode: Text.WordWrap
             elide: Text.ElideRight
             maximumLineCount: heading.lineCount === 1 ? 3 : 2
