@@ -38,6 +38,15 @@ Rectangle {
         id: globalAppletConfigModel
     }
 
+    Connections {
+        target: root.Window.window
+        function onVisibleChanged() {
+            if (root.Window.window.visible) {
+                root.Window.window.showMaximized();
+            }
+        }
+    }
+
     PlasmaCore.SortFilterModel {
         id: configDialogFilterModel
         sourceModel: configDialog.configModel
