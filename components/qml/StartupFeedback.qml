@@ -104,10 +104,6 @@ Window {
                         target: window
                         visible: false
                     }
-                    PropertyChanges {
-                        target: fill
-                        opacity: 0
-                    }
                 },
                 State {
                     name: "open"
@@ -157,13 +153,6 @@ Window {
                                 duration: units.longDuration
                                 easing.type: Easing.InOutQuad
                             }
-                        }
-                        OpacityAnimator {
-                            target: fill
-                            from: 0
-                            to: 1
-                            duration: units.shortDuration
-                            easing.type: Easing.InOutQuad
                         }
                     }
                 }
