@@ -3,10 +3,11 @@ project(nanoshellprivate)
 set(nanoshellprivate_SRCS
     nanoshellprivateplugin.cpp
     fullscreenoverlay.cpp
+    startupnotifier.cpp
     )
 
 add_library(plasmananoshellprivateplugin SHARED ${nanoshellprivate_SRCS})
-target_link_libraries(plasmananoshellprivateplugin Qt5::Core Qt5::Qml Qt5::Quick  KF5::WindowSystem KF5::WaylandClient)
+target_link_libraries(plasmananoshellprivateplugin Qt5::Core Qt5::Qml Qt5::Quick  KF5::WindowSystem KF5::WaylandClient KF5::Service)
 
 install(TARGETS plasmananoshellprivateplugin DESTINATION ${KDE_INSTALL_QMLDIR}/org/kde/plasma/private/nanoshell)
 

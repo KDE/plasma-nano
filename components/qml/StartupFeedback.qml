@@ -22,6 +22,7 @@ Window {
     property alias backgroundColor: background.color
     Kirigami.ImageColors {
         id: colorGenerator
+        source: icon.source
     }
 
     function open(splashIcon, title, x, y, sourceIconSize, color) {
@@ -31,7 +32,6 @@ Window {
         backgroundParent.y = -window.height/2 + y
         window.title = title;
         icon.source = splashIcon;
-        colorGenerator.source = splashIcon;
 
         if (color !== undefined) {
             // Break binding to use custom color
@@ -41,7 +41,23 @@ Window {
             background.color = Qt.binding(function() { return colorGenerator.dominant})
         }
 
-        background.state = "open";
+        if (!NanoShell.StartupNotifier.isValid) {
+            background.state = "open";
+        }
+    }
+
+    Connections {
+        target: NanoShell.StartupNotifier
+        enabled: NanoShell.StartupNotifier.isValid
+
+        function onActivationStarted(appId, iconName) {
+            icon.source = iconName
+            background.state = "open";
+        }
+
+        function onActivationFinished() {
+            background.state = "closed";
+        }
     }
 
     property alias state: background.state
