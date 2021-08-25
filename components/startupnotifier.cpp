@@ -25,10 +25,10 @@ StartupNotifier::StartupNotifier(QObject *parent)
     Registry *registry = new Registry(this);
     registry->create(connection);
 
-    connect(registry, &Registry::plasmaWindowManagementAnnounced, this, [this, registry](quint32 name, quint32 version) {
-        auto iface = registry->createPlasmaWindowManagement(name, version, this);
+    connect(registry, &Registry::plasmaActivationFeedbackAnnounced, this, [this, registry](quint32 name, quint32 version) {
+        auto iface = registry->createPlasmaActivationFeedback(name, version, this);
 
-        connect(iface, &PlasmaWindowManagement::activation, this, [this](PlasmaActivation *activation) {
+        connect(iface, &PlasmaActivationFeedback::activation, this, [this](PlasmaActivation *activation) {
             connect(activation, &PlasmaActivation::applicationId, this, [this](const QString &appId) {
                 const auto servicesFound = KApplicationTrader::query([&appId](const KService::Ptr &service) {
                     if (service->exec().isEmpty())
