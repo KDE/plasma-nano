@@ -19,6 +19,7 @@ pragma Singleton
 Window {
     id: window
 
+    flags: Qt.SplashScreen | Qt.FramelessWindowHint
     property alias backgroundColor: background.color
     Kirigami.ImageColors {
         id: colorGenerator
