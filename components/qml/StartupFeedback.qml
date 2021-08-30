@@ -42,9 +42,7 @@ Window {
             background.color = Qt.binding(function() { return colorGenerator.dominant})
         }
 
-        if (!NanoShell.StartupNotifier.isValid) {
-            background.state = "open";
-        }
+        background.state = "open";
     }
 
     Connections {
@@ -54,10 +52,6 @@ Window {
         function onActivationStarted(appId, iconName) {
             icon.source = iconName
             background.state = "open";
-        }
-
-        function onActivationFinished() {
-            background.state = "closed";
         }
     }
 
