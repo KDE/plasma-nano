@@ -22,8 +22,8 @@ AppletConfiguration {
     isContainment: true
 
     internalDialog.visible: false
-    internalDialog.width: root.width < root.height ? root.width : Math.min(root.width, Math.max(internalDialog.implicitWidth, units.gridUnit * 45))
-    internalDialog.height: Math.min(root.height, Math.max(internalDialog.implicitHeight, units.gridUnit * 29))
+    internalDialog.width: root.width < root.height ? root.width : Math.min(root.width, Math.max(internalDialog.implicitWidth, PlasmaCore.Units.gridUnit * 45))
+    internalDialog.height: Math.min(root.height, Math.max(internalDialog.implicitHeight, PlasmaCore.Units.gridUnit * 29))
 
     readonly property bool horizontal: root.width > root.height
 
@@ -54,8 +54,8 @@ AppletConfiguration {
         onOpened: {
             wallpapersView.forceActiveFocus()
         }
-        implicitWidth: units.gridUnit * 10
-        implicitHeight: units.gridUnit * 8
+        implicitWidth: PlasmaCore.Units.gridUnit * 10
+        implicitHeight: PlasmaCore.Units.gridUnit * 8
         width: root.horizontal ? implicitWidth : root.width
         height: root.horizontal ? root.height : implicitHeight
         Wallpaper.Image {
@@ -76,10 +76,10 @@ AppletConfiguration {
                 z: 999
                 width: root.horizontal ? parent.width : implicitWidth
                 height: root.horizontal ? implicitHeight : parent.height
-                leftPadding: units.gridUnit
-                topPadding: units.gridUnit
-                rightPadding: units.gridUnit
-                bottomPadding: units.gridUnit
+                leftPadding: PlasmaCore.Units.gridUnit
+                topPadding: PlasmaCore.Units.gridUnit
+                rightPadding: PlasmaCore.Units.gridUnit
+                bottomPadding: PlasmaCore.Units.gridUnit
 
                 contentItem: ColumnLayout {
                     Controls.Button {
@@ -100,14 +100,14 @@ AppletConfiguration {
             delegate: Controls.ItemDelegate {
                 width: root.horizontal ? parent.width : height * (root.Screen.width / root.Screen.height)
                 height: root.horizontal ? width / (root.Screen.width / root.Screen.height) : parent.height
-                padding: wallpapersView.currentIndex === index ? units.gridUnit / 4 : units.gridUnit / 2
+                padding: wallpapersView.currentIndex === index ? PlasmaCore.Units.gridUnit / 4 : PlasmaCore.Units.gridUnit / 2
                 leftPadding: padding
                 topPadding: padding
                 rightPadding: padding
                 bottomPadding: padding
                 Behavior on padding {
                     NumberAnimation {
-                        duration: units.longDuration
+                        duration: PlasmaCore.Units.longDuration
                         easing.type: Easing.InOutQuad
                     }
                 }
@@ -123,7 +123,7 @@ AppletConfiguration {
                 contentItem: Item {
                     Addons.QIconItem {
                         anchors.centerIn: parent
-                        width: units.iconSizes.large
+                        width: PlasmaCore.Units.iconSizes.large
                         height: width
                         icon: "view-preview"
                         visible: !walliePreview.visible
@@ -151,15 +151,15 @@ AppletConfiguration {
                     Rectangle {
                         anchors {
                             fill: parent
-                            margins: wallpapersView.currentIndex === index ? 0 : units.gridUnit / 4
+                            margins: wallpapersView.currentIndex === index ? 0 : PlasmaCore.Units.gridUnit / 4
                             Behavior on margins {
                                 NumberAnimation {
-                                    duration: units.longDuration
+                                    duration: PlasmaCore.Units.longDuration
                                     easing.type: Easing.InOutQuad
                                 }
                             }
                         }
-                        radius: units.gridUnit / 4
+                        radius: PlasmaCore.Units.gridUnit / 4
                     }
                 }
             }

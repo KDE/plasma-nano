@@ -20,7 +20,7 @@ PlasmaCore.FrameSvgItem {
     enabledBorders: PlasmaCore.FrameSvgItem.TopBorder | PlasmaCore.FrameSvgItem.LeftBorder | PlasmaCore.FrameSvgItem.RightBorder
     Behavior on opacity {
         OpacityAnimator {
-            duration: units.longDuration
+            duration: PlasmaCore.Units.longDuration
             easing.type: Easing.InOutQuad
         }
     }
@@ -28,7 +28,7 @@ PlasmaCore.FrameSvgItem {
         y: plasmoid.editMode ? 0 : root.height
         Behavior on y {
             NumberAnimation {
-                duration: units.longDuration
+                duration: PlasmaCore.Units.longDuration
                 easing.type: Easing.InOutQuad
             }
         }
@@ -38,7 +38,7 @@ PlasmaCore.FrameSvgItem {
         bottom: parent.bottom
     }
     width: childrenRect.width + fixedMargins.left + fixedMargins.right
-    height: childrenRect.height + fixedMargins.top + fixedMargins.bottom - units.smallSpacing
+    height: childrenRect.height + fixedMargins.top + fixedMargins.bottom - PlasmaCore.Units.smallSpacing
 
     RowLayout {
         x: parent.fixedMargins.left

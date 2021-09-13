@@ -82,7 +82,7 @@ Window {
             id: iconParent
             z: 2
             anchors.centerIn: background
-            width: units.iconSizes.enormous
+            width: PlasmaCore.Units.iconSizes.enormous
             height: width
             PlasmaCore.IconItem {
                 id: icon
@@ -140,28 +140,28 @@ Window {
                                 target: background
                                 from: background.scale
                                 to: 1
-                                duration: units.longDuration
+                                duration: PlasmaCore.Units.longDuration
                                 easing.type: Easing.InOutQuad
                             }
                             ScaleAnimator {
                                 target: iconParent
                                 from: iconParent.scale
                                 to: 1
-                                duration: units.longDuration
+                                duration: PlasmaCore.Units.longDuration
                                 easing.type: Easing.InOutQuad
                             }
                             XAnimator {
                                 target: backgroundParent
                                 from: backgroundParent.x
                                 to: 0
-                                duration: units.longDuration
+                                duration: PlasmaCore.Units.longDuration
                                 easing.type: Easing.InOutQuad
                             }
                             YAnimator {
                                 target: backgroundParent
                                 from: backgroundParent.y
                                 to: 0
-                                duration: units.longDuration
+                                duration: PlasmaCore.Units.longDuration
                                 easing.type: Easing.InOutQuad
                             }
                         }

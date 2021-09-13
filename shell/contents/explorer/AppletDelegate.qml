@@ -24,12 +24,12 @@ Item {
 
     ColumnLayout {
         id: mainLayout
-        spacing: units.smallSpacing
+        spacing: PlasmaCore.Units.smallSpacing
         anchors {
             left: parent.left
             right: parent.right
             //bottom: parent.bottom
-            margins: units.smallSpacing * 2
+            margins: PlasmaCore.Units.smallSpacing * 2
             top: parent.top
         }
 
@@ -61,9 +61,9 @@ Item {
                 anchors.fill: parent
 
                 Rectangle {
-                    x: Math.round(-units.smallSpacing * 1.5 / 2)
+                    x: Math.round(-PlasmaCore.Units.smallSpacing * 1.5 / 2)
                     y: x
-                    width: runningBadge.width + Math.round(units.smallSpacing * 1.5)
+                    width: runningBadge.width + Math.round(PlasmaCore.Units.smallSpacing * 1.5)
                     height: width
                     radius: height
                     visible: running

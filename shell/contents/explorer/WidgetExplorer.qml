@@ -24,7 +24,7 @@ PC3.Drawer {
     property QtObject containment
     property Item containmentInterface
     readonly property bool horizontal: containmentInterface.width <= containmentInterface.height
-    readonly property int delegateSize: units.gridUnit * 8
+    readonly property int delegateSize: PlasmaCore.Units.gridUnit * 8
 
     property int topPanelHeight
     property int bottomPanelHeight
@@ -38,22 +38,22 @@ PC3.Drawer {
     edge: horizontal ? Qt.BottomEdge : Qt.LeftEdge
 
     leftPadding: containmentInterface.availableScreenRect.x
-    topPadding: horizontal ? units.smallSpacing : containmentInterface.availableScreenRect.y
+    topPadding: horizontal ? PlasmaCore.Units.smallSpacing : containmentInterface.availableScreenRect.y
     rightPadding: horizontal ? containmentInterface.screenGeometry.width - containmentInterface.availableScreenRect.width - containmentInterface.availableScreenRect.x : 0
     bottomPadding: containmentInterface.screenGeometry.height - containmentInterface.availableScreenRect.height - containmentInterface.availableScreenRect.y
 
-    implicitWidth: categoriesView.shouldBeVisible ? layout.implicitWidth : view.implicitWidth + units.smallSpacing
-    implicitHeight: categoriesView.shouldBeVisible ? layout.implicitHeight : view.implicitHeight + units.smallSpacing
+    implicitWidth: categoriesView.shouldBeVisible ? layout.implicitWidth : view.implicitWidth + PlasmaCore.Units.smallSpacing
+    implicitHeight: categoriesView.shouldBeVisible ? layout.implicitHeight : view.implicitHeight + PlasmaCore.Units.smallSpacing
 
     Behavior on implicitWidth {
         NumberAnimation {
-            duration: units.longDuration
+            duration: PlasmaCore.Units.longDuration
             easing.type: Easing.InOutQuad
         }
     }
     Behavior on implicitHeight {
         NumberAnimation {
-            duration: units.longDuration
+            duration: PlasmaCore.Units.longDuration
             easing.type: Easing.InOutQuad
         }
     }
@@ -66,7 +66,7 @@ PC3.Drawer {
             z: 1
             anchors.bottom: parent.bottom
             x: root.horizontal ? parent.width - width : 0
-            width: units.iconSizes.large
+            width: PlasmaCore.Units.iconSizes.large
             height: width
 
             icon.name: "view-filter"
@@ -94,13 +94,13 @@ PC3.Drawer {
                 Layout.fillHeight: !root.horizontal
                 Layout.column: 0
                 Layout.row: root.horizontal ? 1 : 0
-                implicitHeight: units.gridUnit * 2
-                implicitWidth: units.gridUnit * 8
+                implicitHeight: PlasmaCore.Units.gridUnit * 2
+                implicitWidth: PlasmaCore.Units.gridUnit * 8
                 opacity: categoriesView.shouldBeVisible
 
                 Behavior on opacity {
                     NumberAnimation {
-                        duration: units.longDuration
+                        duration: PlasmaCore.Units.longDuration
                         easing.type: Easing.InOutQuad
                     }
                 }
@@ -133,8 +133,8 @@ PC3.Drawer {
                 Layout.fillHeight: !root.horizontal
                 Layout.row: 0
                 Layout.column: root.horizontal ? 0 : 1
-                implicitWidth: delegateSize + units.gridUnit
-                implicitHeight: delegateSize + units.gridUnit * 3
+                implicitWidth: delegateSize + PlasmaCore.Units.gridUnit
+                implicitHeight: delegateSize + PlasmaCore.Units.gridUnit * 3
 
                 ListView {
                     id: appletsList

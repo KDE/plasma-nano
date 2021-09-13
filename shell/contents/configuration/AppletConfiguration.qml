@@ -166,7 +166,7 @@ Rectangle {
                         return;
                     }
 
-                    var padding = units.gridUnit * 2 // some padding to the top/bottom when we scroll
+                    var padding = PlasmaCore.Units.gridUnit * 2 // some padding to the top/bottom when we scroll
 
                     var yPos = item.mapToItem(scroll.contentItem, 0, 0).y;
                     if (yPos < flickable.contentY) {
@@ -185,13 +185,13 @@ Rectangle {
                     id: pageFlickable
                     anchors {
                         fill: parent
-                        margins: units.smallSpacing
+                        margins: PlasmaCore.Units.smallSpacing
                     }
                     contentHeight: pageColumn.height
                     contentWidth: width
                     ColumnLayout {
                         id: pageColumn
-                        spacing: units.largeSpacing / 2
+                        spacing: PlasmaCore.Units.largeSpacing / 2
                         width: pageFlickable.width
                         height: Math.max(implicitHeight, pageFlickable.height)
 
@@ -209,8 +209,8 @@ Rectangle {
 
                             Layout.fillWidth: true
                             Layout.fillHeight: true
-                            implicitWidth: Math.max(currentItem ? Math.max(currentItem.Layout.minimumWidth, currentItem.Layout.preferredWidth, currentItem.implicitWidth) : 0, units.gridUnit * 15)
-                            implicitHeight: Math.max(currentItem ? Math.max(currentItem.Layout.minimumHeight, currentItem.Layout.preferredHeight, currentItem.implicitHeight) : 0, units.gridUnit * 15)
+                            implicitWidth: Math.max(currentItem ? Math.max(currentItem.Layout.minimumWidth, currentItem.Layout.preferredWidth, currentItem.implicitWidth) : 0, PlasmaCore.Units.gridUnit * 15)
+                            implicitHeight: Math.max(currentItem ? Math.max(currentItem.Layout.minimumHeight, currentItem.Layout.preferredHeight, currentItem.implicitHeight) : 0, PlasmaCore.Units.gridUnit * 15)
 
                             property string sourceFile
 
@@ -258,13 +258,13 @@ Rectangle {
                                         property: "opacity"
                                         from: 0
                                         to: 1
-                                        duration: units.longDuration
+                                        duration: PlasmaCore.Units.longDuration
                                         easing.type: Easing.InOutQuad
                                     }
                                     XAnimator {
                                         from: pageStack.invertAnimations ? -scroll.width/3: scroll.width/3
                                         to: 0
-                                        duration: units.longDuration
+                                        duration: PlasmaCore.Units.longDuration
                                         easing.type: Easing.InOutQuad
                                     }
                                 }
@@ -274,13 +274,13 @@ Rectangle {
                                     OpacityAnimator {
                                         from: 1
                                         to: 0
-                                        duration: units.longDuration
+                                        duration: PlasmaCore.Units.longDuration
                                         easing.type: Easing.InOutQuad
                                     }
                                     XAnimator {
                                         from: 0
                                         to: pageStack.invertAnimations ? scroll.width/3 : -scroll.width/3
-                                        duration: units.longDuration
+                                        duration: PlasmaCore.Units.longDuration
                                         easing.type: Easing.InOutQuad
                                     }
                                 }
@@ -298,7 +298,7 @@ Rectangle {
                 visible: categoriesScroll.visible
                 Behavior on color {
                     ColorAnimation {
-                        duration: units.longDuration
+                        duration: PlasmaCore.Units.longDuration
                         easing.type: Easing.InOutQuad
                     }
                 }
