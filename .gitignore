@@ -4,3 +4,5 @@ compile_commands.json
 .idea
 /cmake-build*
 .cache
+/build*/
+CMakeLists.txt.user
