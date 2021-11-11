@@ -11,10 +11,6 @@
 
 namespace KWayland
 {
-namespace Client
-{
-class PlasmaActivation;
-}
 }
 
 class StartupNotifier : public QObject

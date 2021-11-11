@@ -12,7 +12,6 @@ namespace KWayland
 {
 namespace Client
 {
-class PlasmaWindow;
 class PlasmaShell;
 class PlasmaShellSurface;
 class Surface;
