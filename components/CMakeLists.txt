@@ -1,9 +1,12 @@
 project(nanoshellprivate)
 
 set(nanoshellprivate_SRCS
-    nanoshellprivateplugin.cpp
     fullscreenoverlay.cpp
+    fullscreenoverlay.h
+    nanoshellprivateplugin.cpp
+    nanoshellprivateplugin.h
     startupnotifier.cpp
+    startupnotifier.h
     )
 
 add_library(plasmananoshellprivateplugin SHARED ${nanoshellprivate_SRCS})
