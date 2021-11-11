@@ -37,11 +37,11 @@ StartupNotifier::StartupNotifier(QObject *parent)
                     if (service->desktopEntryName().compare(appId, Qt::CaseInsensitive) == 0)
                         return true;
 
-                    const auto idWithoutDesktop = QString(appId).remove(".desktop");
+                    const auto idWithoutDesktop = QString(appId).remove(QStringLiteral(".desktop"));
                     if (service->desktopEntryName().compare(idWithoutDesktop, Qt::CaseInsensitive) == 0)
                         return true;
 
-                    const auto renamedFrom = service->property("X-Flatpak-RenamedFrom").toStringList();
+                    const auto renamedFrom = service->property(QStringLiteral("X-Flatpak-RenamedFrom")).toStringList();
                     if (renamedFrom.contains(appId, Qt::CaseInsensitive) || renamedFrom.contains(idWithoutDesktop, Qt::CaseInsensitive))
                         return true;
 

@@ -18,7 +18,7 @@ class StartupNotifier : public QObject
     Q_OBJECT
     Q_PROPERTY(bool isValid READ isValid CONSTANT)
 public:
-    StartupNotifier(QObject *parent = nullptr);
+    explicit StartupNotifier(QObject *parent = nullptr);
     bool isValid() const;
 
 Q_SIGNALS:
