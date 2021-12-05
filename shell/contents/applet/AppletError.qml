@@ -31,7 +31,6 @@ RowLayout {
         Layout.fillWidth: true
         Layout.fillHeight: true
         verticalAlignment: TextEdit.AlignVCenter
-        backgroundVisible: false
         readOnly: true
         width: parent.width - icon.width
         wrapMode: Text.Wrap
