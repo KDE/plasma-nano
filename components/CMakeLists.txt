@@ -10,7 +10,7 @@ target_sources(plasmananoshellprivateplugin PRIVATE
     startupnotifier.cpp
     startupnotifier.h
     )
-target_link_libraries(plasmananoshellprivateplugin Qt5::Core Qt5::Qml Qt5::Quick  KF5::WindowSystem KF5::WaylandClient KF5::Service)
+target_link_libraries(plasmananoshellprivateplugin Qt::Core Qt::Qml Qt::Quick  KF5::WindowSystem KF5::WaylandClient KF5::Service)
 
 install(TARGETS plasmananoshellprivateplugin DESTINATION ${KDE_INSTALL_QMLDIR}/org/kde/plasma/private/nanoshell)
 
