@@ -88,6 +88,7 @@ ColumnLayout {
             enabled: !plasmoid.immutable
             model: configDialog.containmentPluginsConfigModel
             textRole: "name"
+            visible: count > 1 // only show if there are multiple plugins
             onActivated: {
                 var model = configDialog.containmentPluginsConfigModel.get(currentIndex)
                 root.containmentPlugin = model.pluginName
