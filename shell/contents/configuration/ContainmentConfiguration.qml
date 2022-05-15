@@ -58,7 +58,7 @@ AppletConfiguration {
         implicitHeight: PlasmaCore.Units.gridUnit * 8
         width: root.horizontal ? implicitWidth : root.width
         height: root.horizontal ? root.height : implicitHeight
-        Wallpaper.Image {
+        Wallpaper.ImageBackend {
             id: imageWallpaper
         }
         background: null
