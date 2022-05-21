@@ -6,3 +6,7 @@ compile_commands.json
 .cache
 /build*/
 CMakeLists.txt.user
+
+.kdev4/
+*.kdev4
+/build*
