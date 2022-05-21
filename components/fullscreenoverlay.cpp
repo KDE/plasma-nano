@@ -88,6 +88,8 @@ bool FullScreenOverlay::event(QEvent *e)
         if (m_plasmaShellSurface) {
             m_plasmaShellSurface->setSkipTaskbar(true);
         }
+    } else if (e->type() == QEvent::Expose) {
+        KWindowSystem::setState(winId(), NET::SkipTaskbar | NET::SkipPager);
     }
 
     return QQuickWindow::event(e);
