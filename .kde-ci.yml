@@ -11,3 +11,5 @@ Dependencies:
     'frameworks/kwayland': '@latest'
     'frameworks/kwindowsystem': '@latest'
     'frameworks/plasma-framework': '@latest'
+Options:
+  require-passing-tests-on: [ 'Linux', 'FreeBSD']
