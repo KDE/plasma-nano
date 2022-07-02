@@ -2,6 +2,7 @@
 Name=Plasma Nano Toolbox
 Name[ast]=Caxa de ferramientes de Plasma Nano
 Name[az]=Plasma Nano alətlər qutusu
+Name[bg]=Инструменти на Plasma Nano
 Name[ca]=Quadre d'eines del Plasma Nano
 Name[ca@valencia]=Quadro d'eines de Plasma Nano
 Name[da]=Værktøjskasse til Plasma Nano
@@ -40,6 +41,7 @@ Name[zh_TW]=Plasma Nano 工具箱
 Comment=Manage Wallpaper and Widgets
 Comment[ast]=Xestiona fondos y widgets
 Comment[az]=Divar kağızlarının və Vidjetlərin idarə olunması
+Comment[bg]=Управление на тапети и приспособления
 Comment[ca]=Gestiona els fons de pantalla i els ginys
 Comment[ca@valencia]=Gestiona els fons de pantalla i els ginys
 Comment[cs]=Spravujte tapety a widgety
