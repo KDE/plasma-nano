@@ -10,7 +10,6 @@ import QtQuick.Controls 2.3 as QtControls
 import QtQuick.Window 2.2
 
 import org.kde.plasma.core 2.0 as PlasmaCore
-import org.kde.kquickcontrolsaddons 2.0
 import org.kde.kirigami 2.5 as Kirigami
 
 MouseArea {
@@ -102,13 +101,13 @@ MouseArea {
         width: parent.width
         anchors.verticalCenter: parent.verticalCenter
 
-        QIconItem {
+        Kirigami.Icon {
             id: iconItem
             Layout.alignment: Qt.AlignHCenter
             width: PlasmaCore.Units.iconSizes.medium
             height: width
-            icon: model.icon
-            state: current && categoriesScroll.activeFocus ? QIconItem.SelectedState : QIconItem.DefaultState
+            source: model.icon
+            active: current && categoriesScroll.activeFocus
         }
 
         QtControls.Label {
