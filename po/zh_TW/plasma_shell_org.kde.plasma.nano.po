@@ -5,28 +5,29 @@
 #
 # Automatically generated, 2019.
 # pan93412 <pan93412@gmail.com>, 2019.
+# Kisaragi Hiu <mail@kisaragi-hiu.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: plasma-nano\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-04-15 00:48+0000\n"
-"PO-Revision-Date: 2019-12-12 19:07+0800\n"
-"Last-Translator: pan93412 <pan93412@gmail.com>\n"
-"Language-Team: Chinese <zh-l10n@lists.linux.org.tw>\n"
+"PO-Revision-Date: 2022-10-19 06:53+0900\n"
+"Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
+"Language-Team: Traditional Chinese <zh-l10n@linux.org.tw>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Lokalize 19.11.90\n"
+"X-Generator: Lokalize 22.08.2\n"
 
 #: contents/configuration/ConfigurationContainmentAppearance.qml:53
 msgid "Layout changes have been restricted by the system administrator"
-msgstr ""
+msgstr "佈局變更已被系統管理員限制"
 
 #: contents/configuration/ConfigurationContainmentAppearance.qml:87
 msgid "Layout:"
-msgstr ""
+msgstr "佈局："
 
 #: contents/configuration/ConfigurationContainmentAppearance.qml:101
 msgid "Wallpaper Type:"
@@ -34,15 +35,15 @@ msgstr "桌布類型："
 
 #: contents/configuration/ConfigurationContainmentAppearance.qml:118
 msgid "Get New Plugins…"
-msgstr ""
+msgstr "取得新的外掛程式…"
 
 #: contents/configuration/ConfigurationContainmentAppearance.qml:130
 msgid "Layout changes must be applied before other changes can be made"
-msgstr ""
+msgstr "佈局變更必須先套用才能進行其他變更"
 
 #: contents/configuration/ConfigurationContainmentAppearance.qml:136
 msgid "Apply now"
-msgstr ""
+msgstr "立刻套用"
 
 #: contents/configuration/ContainmentConfiguration.qml:36
 msgid "Wallpaper"
@@ -50,7 +51,7 @@ msgstr "桌布"
 
 #: contents/configuration/ContainmentConfiguration.qml:87
 msgid "Customize..."
-msgstr ""
+msgstr "自訂…"
 
 #: contents/explorer/WidgetExplorer.qml:144
 msgid "Widgets"
