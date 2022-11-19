@@ -29,7 +29,7 @@ public:
     ~FullScreenOverlay() override;
 
 Q_SIGNALS:
-    void activeChanged();
+    void activeChanged(); // clazy:exclude=overridden-signal
     void acceptsFocusChanged();
 
 protected:
