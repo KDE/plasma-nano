@@ -1,5 +1,6 @@
 [Desktop Entry]
 Name=Plasma Nano Toolbox
+Name[ast]=Caxa de ferramientes de Plasma Nano
 Name[az]=Plasma Nano alətlər qutusu
 Name[bg]=Инструменти на Plasma Nano
 Name[ca]=Quadre d'eines del Plasma Nano
@@ -38,6 +39,7 @@ Name[x-test]=xxPlasma Nano Toolboxxx
 Name[zh_CN]=Plasma Nano 工具箱
 Name[zh_TW]=Plasma Nano 工具箱
 Comment=Manage Wallpaper and Widgets
+Comment[ast]=Xestiona los fondos de pantalla y los widgets
 Comment[az]=Divar kağızlarının və Vidjetlərin idarə olunması
 Comment[bg]=Управление на тапети и уиджети
 Comment[ca]=Gestiona els fons de pantalla i els ginys
