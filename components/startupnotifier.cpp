@@ -11,6 +11,8 @@
 #include <KWayland/Client/registry.h>
 #include <KWindowSystem>
 
+#include <QDebug>
+
 StartupNotifier::StartupNotifier(QObject *parent)
     : QObject(parent)
 {
