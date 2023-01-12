@@ -9,7 +9,7 @@ import QtQuick.Window 2.0
 
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.kquickcontrolsaddons 2.0
-
+import org.kde.plasma.plasmoid 2.0
 import org.kde.plasma.private.nanoshell 2.0 as NanoShell
 
 Item {
@@ -30,8 +30,8 @@ Item {
     }
     onCompactRepresentationChanged: {
         if (compactRepresentation) {
-            compactRepresentation.parent = root;
-            compactRepresentation.anchors.fill = root;
+            compactRepresentation.parent = compactRepresentationParent;
+            compactRepresentation.anchors.fill = compactRepresentationParent;
             compactRepresentation.visible = true;
         }
         root.visible = true;
@@ -48,6 +48,34 @@ Item {
         fullRepresentation.anchors.margins = appletParent.margins.top;
     }
 
+    FocusScope {
+        id: compactRepresentationParent
+        anchors.fill: parent
+        activeFocusOnTab: true
+        onActiveFocusChanged: {
+            // When the scope gets the active focus, try to focus its first descendant,
+            // if there is on which has activeFocusOnTab
+            if (!activeFocus) {
+                return;
+            }
+            let nextItem = nextItemInFocusChain();
+            let candidate = nextItem;
+            while (candidate.parent) {
+                if (candidate === compactRepresentationParent) {
+                    nextItem.forceActiveFocus();
+                    return;
+                }
+                candidate = candidate.parent;
+            }
+        }
+        // This object name is needed for GUI testing. all gui tests in plasma-workspace are done with plasma-nano
+        objectName: "expandApplet"
+        Accessible.name: root.Plasmoid.toolTipMainText
+        Accessible.description: i18nd("plasma_shell_org.kde.plasma.nano", "Open %1", root.Plasmoid.toolTipSubText)
+        Accessible.role: Accessible.Button
+        Accessible.onPressAction: Plasmoid.nativeInterface.activated()
+    }
+
     Rectangle {
         id: expandedItem
         anchors {
@@ -55,6 +83,7 @@ Item {
             right: parent.right
             bottom: parent.top
         }
+
         height: PlasmaCore.Units.smallSpacing
         color: PlasmaCore.ColorScope.highlightColor
         visible: plasmoid.formFactor != PlasmaCore.Types.Planar && plasmoid.expanded
