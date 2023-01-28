@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma-nano\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-04-15 00:48+0000\n"
+"POT-Creation-Date: 2023-01-28 02:51+0000\n"
 "PO-Revision-Date: 2019-12-14 07:10+0700\n"
 "Last-Translator: Wantoyo <wantoyek@gmail.com>\n"
 "Language-Team: Indonesian <kde-i18n-doc@kde.org>\n"
@@ -15,6 +15,10 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: contents/applet/CompactApplet.qml:74
+msgid "Open %1"
+msgstr ""
 
 #: contents/configuration/ConfigurationContainmentAppearance.qml:53
 msgid "Layout changes have been restricted by the system administrator"
