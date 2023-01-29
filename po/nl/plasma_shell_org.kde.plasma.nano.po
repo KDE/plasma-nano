@@ -1,25 +1,25 @@
 # Copyright (C) YEAR This file is copyright:
 # This file is distributed under the same license as the plasma-nano package.
 #
-# Freek de Kruijf <freekdekruijf@kde.nl>, 2019, 2020, 2021, 2022.
+# Freek de Kruijf <freekdekruijf@kde.nl>, 2019, 2020, 2021, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: plasma-nano\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-01-28 02:51+0000\n"
-"PO-Revision-Date: 2022-04-15 10:11+0200\n"
+"PO-Revision-Date: 2023-01-28 12:13+0100\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
-"Language-Team: \n"
+"Language-Team: Dutch <kde-i18n-nl@kde.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 21.12.3\n"
+"X-Generator: Lokalize 22.12.1\n"
 
 #: contents/applet/CompactApplet.qml:74
 msgid "Open %1"
-msgstr ""
+msgstr "%1 openen"
 
 #: contents/configuration/ConfigurationContainmentAppearance.qml:53
 msgid "Layout changes have been restricted by the system administrator"
