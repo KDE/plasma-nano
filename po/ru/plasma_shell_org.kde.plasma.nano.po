@@ -1,13 +1,13 @@
 # Copyright (C) YEAR This file is copyright:
 # This file is distributed under the same license as the plasma-nano package.
 #
-# Alexander Yavorsky <kekcuha@gmail.com>, 2020, 2021, 2022.
+# Alexander Yavorsky <kekcuha@gmail.com>, 2020, 2021, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: plasma-nano\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-01-28 01:00+0000\n"
-"PO-Revision-Date: 2022-05-18 12:55+0300\n"
+"PO-Revision-Date: 2023-01-28 22:19+0300\n"
 "Last-Translator: Alexander Yavorsky <kekcuha@gmail.com>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
 "Language: ru\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: contents/applet/CompactApplet.qml:74
 msgid "Open %1"
-msgstr ""
+msgstr "Открыть %1"
 
 #: contents/configuration/ConfigurationContainmentAppearance.qml:53
 msgid "Layout changes have been restricted by the system administrator"
