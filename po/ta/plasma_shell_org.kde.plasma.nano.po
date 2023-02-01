@@ -1,13 +1,13 @@
 # Copyright (C) YEAR This file is copyright:
 # This file is distributed under the same license as the plasma-nano package.
 #
-# Kishore G <kishore96@gmail.com>, 2022.
+# Kishore G <kishore96@gmail.com>, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: plasma-nano\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-01-28 01:00+0000\n"
-"PO-Revision-Date: 2022-02-24 21:41+0530\n"
+"PO-Revision-Date: 2023-01-31 21:42+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
 "Language: ta\n"
@@ -15,19 +15,19 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 21.12.2\n"
+"X-Generator: Lokalize 22.12.1\n"
 
 #: contents/applet/CompactApplet.qml:74
 msgid "Open %1"
-msgstr ""
+msgstr "%1-ஐ திற"
 
 #: contents/configuration/ConfigurationContainmentAppearance.qml:53
 msgid "Layout changes have been restricted by the system administrator"
-msgstr ""
+msgstr "தளவமைப்பு மாற்றங்களை கணினி நிர்வாகி தடைசெய்துள்ளார்"
 
 #: contents/configuration/ConfigurationContainmentAppearance.qml:87
 msgid "Layout:"
-msgstr ""
+msgstr "தளவமைப்பு:"
 
 #: contents/configuration/ConfigurationContainmentAppearance.qml:101
 msgid "Wallpaper Type:"
@@ -35,15 +35,15 @@ msgstr "பின்புல படத்தின் வகை:"
 
 #: contents/configuration/ConfigurationContainmentAppearance.qml:118
 msgid "Get New Plugins…"
-msgstr ""
+msgstr "புதிய செருகுநிரல்களை பதிவிறக்கு…"
 
 #: contents/configuration/ConfigurationContainmentAppearance.qml:130
 msgid "Layout changes must be applied before other changes can be made"
-msgstr ""
+msgstr "தளவமைப்பை மாற்றியதை செயல்படுத்திய பின்னரே மற்ற மாற்றங்களை நீங்கள் செய்யலாம்"
 
 #: contents/configuration/ConfigurationContainmentAppearance.qml:136
 msgid "Apply now"
-msgstr ""
+msgstr "இப்போது செயல்படுத்து"
 
 #: contents/configuration/ContainmentConfiguration.qml:36
 msgid "Wallpaper"
