@@ -19,7 +19,7 @@ msgstr ""
 
 #: contents/applet/CompactApplet.qml:74
 msgid "Open %1"
-msgstr ""
+msgstr "Otevřít %1"
 
 #: contents/configuration/ConfigurationContainmentAppearance.qml:53
 msgid "Layout changes have been restricted by the system administrator"
