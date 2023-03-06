@@ -38,7 +38,6 @@ Item {
     }
 
     onFullRepresentationChanged: {
-
         if (!fullRepresentation) {
             return;
         }
@@ -118,8 +117,20 @@ Item {
 
             x: Math.max(0, Math.min(parent.width - width - PlasmaCore.Units.largeSpacing, Math.max(PlasmaCore.Units.largeSpacing, root.mapToItem(root.rootItem, 0, 0).x + root.width / 2 - width / 2)))
             y: Math.max(0, Math.min(parent.height - height - PlasmaCore.Units.largeSpacing, Math.max(PlasmaCore.Units.largeSpacing, root.mapToItem(root.rootItem, 0, 0).y + root.height / 2 - height / 2)))
-            width: Math.min(expandedOverlay.width,  Math.max(Math.max(root.fullRepresentation.implicitWidth, PlasmaCore.Units.gridUnit * 15), plasmoid.switchWidth) * 1.5)
-            height: Math.min(expandedOverlay.height, Math.max(Math.max(root.fullRepresentation.implicitHeight, PlasmaCore.Units.gridUnit * 15), plasmoid.switchHeight) * 1.5)
+            width: calculateSize(true)
+            height: calculateSize(false)
+
+            function calculateSize(isWidth) {
+                if (root.fullRepresentation) {
+                    if (isWidth) {
+                        return Math.min(expandedOverlay.width,  Math.max(Math.max(root.fullRepresentation.implicitWidth, PlasmaCore.Units.gridUnit * 15), plasmoid.switchWidth) * 1.5);
+                    } else {
+                        return Math.min(expandedOverlay.height, Math.max(Math.max(root.fullRepresentation.implicitHeight, PlasmaCore.Units.gridUnit * 15), plasmoid.switchHeight) * 1.5);
+                    }
+                } else {
+                    return isWidth ? expandedOverlay.width : expandedOverlay.height;
+                }
+            }
         }
     }
 }
