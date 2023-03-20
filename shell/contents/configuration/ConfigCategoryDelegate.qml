@@ -102,13 +102,13 @@ MouseArea {
         width: parent.width
         anchors.verticalCenter: parent.verticalCenter
 
-        QIconItem {
+        PlasmaCore.IconItem {
             id: iconItem
             Layout.alignment: Qt.AlignHCenter
             width: PlasmaCore.Units.iconSizes.medium
             height: width
-            icon: model.icon
-            state: current && categoriesScroll.activeFocus ? QIconItem.SelectedState : QIconItem.DefaultState
+            source: model.icon
+            status: current && categoriesScroll.activeFocus ? PlasmaCore.Svg.Selected : PlasmaCore.Svg.Normal
         }
 
         QtControls.Label {

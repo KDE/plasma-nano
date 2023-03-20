@@ -86,7 +86,7 @@ PC3.Drawer {
             rows: root.horizontal ? 2 : 1
             columns: root.horizontal ? 1 : 2
             
-            PlasmaExtras.ScrollArea {
+            PC3.ScrollView {
                 id: categoriesView
                 property bool shouldBeVisible: false
                 clip: false
@@ -126,7 +126,7 @@ PC3.Drawer {
                 }
             }
 
-            PlasmaExtras.ScrollArea {
+            PC3.ScrollView {
                 id: view
                 clip: false
                 Layout.fillWidth: root.horizontal

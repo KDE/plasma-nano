@@ -41,9 +41,9 @@ Item {
             Item {
                 id: iconWidget
                 anchors.fill: parent
-                QIconItem {
+                PlasmaCore.IconItem {
                     anchors.fill: parent
-                    icon: model.decoration
+                    source: model.decoration
                     visible: model.screenshot == ""
                 }
                 Image {
