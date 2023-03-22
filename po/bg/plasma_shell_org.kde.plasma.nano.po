@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma-nano\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-01-28 01:00+0000\n"
+"POT-Creation-Date: 2023-03-22 02:45+0000\n"
 "PO-Revision-Date: 2023-02-02 16:02+0100\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
@@ -47,11 +47,11 @@ msgstr ""
 msgid "Apply now"
 msgstr "Прилагане сега"
 
-#: contents/configuration/ContainmentConfiguration.qml:36
+#: contents/configuration/ContainmentConfiguration.qml:35
 msgid "Wallpaper"
 msgstr "Тапет"
 
-#: contents/configuration/ContainmentConfiguration.qml:87
+#: contents/configuration/ContainmentConfiguration.qml:86
 msgid "Customize..."
 msgstr "Персонализиране..."
 

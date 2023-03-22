@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma-nano\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-01-28 01:00+0000\n"
+"POT-Creation-Date: 2023-03-22 02:45+0000\n"
 "PO-Revision-Date: 2023-03-06 22:00+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@linux.org.tw>\n"
@@ -49,11 +49,11 @@ msgstr "佈局變更必須先套用才能進行其他變更"
 msgid "Apply now"
 msgstr "立刻套用"
 
-#: contents/configuration/ContainmentConfiguration.qml:36
+#: contents/configuration/ContainmentConfiguration.qml:35
 msgid "Wallpaper"
 msgstr "桌布"
 
-#: contents/configuration/ContainmentConfiguration.qml:87
+#: contents/configuration/ContainmentConfiguration.qml:86
 msgid "Customize..."
 msgstr "自訂…"
 
