@@ -29,7 +29,7 @@ Item {
 
         height: configButtons.height + configButtons.anchors.bottomMargin
 
-        opacity: plasmoid.editMode
+        opacity: plasmoid.containment.corona.editMode
         Behavior on opacity {
             OpacityAnimator {
                 duration: PlasmaCore.Units.longDuration

@@ -16,7 +16,7 @@ import org.kde.kquickcontrolsaddons 2.0
 PlasmaCore.FrameSvgItem {
     id: root
     imagePath: "widgets/background"
-    opacity: plasmoid.editMode
+    opacity: plasmoid.corona.editMode
     enabledBorders: PlasmaCore.FrameSvgItem.TopBorder | PlasmaCore.FrameSvgItem.LeftBorder | PlasmaCore.FrameSvgItem.RightBorder
     Behavior on opacity {
         OpacityAnimator {
@@ -25,7 +25,7 @@ PlasmaCore.FrameSvgItem {
         }
     }
     transform: Translate {
-        y: plasmoid.editMode ? 0 : root.height
+        y: plasmoid.corona.editMode ? 0 : root.height
         Behavior on y {
             NumberAnimation {
                 duration: PlasmaCore.Units.longDuration
@@ -47,14 +47,14 @@ PlasmaCore.FrameSvgItem {
             text: i18n("Add Widgets...")
             onClicked: {
                 plasmoid.action("add widgets").trigger();
-                plasmoid.editMode = false;
+                plasmoid.corona.editMode = false;
             }
         }
         PlasmaComponents.Button {
             text: i18n("Configure Wallpaper...")
             onClicked: {
                 plasmoid.action("configure").trigger();
-                plasmoid.editMode = false;
+                plasmoid.corona.editMode = false;
             }
         }
     }

@@ -20,6 +20,7 @@ Item {
     property Item fullRepresentation
     property Item compactRepresentation
     property Item expandedFeedback: expandedItem
+    property PlasmoidItem plasmoidItem
 
     property Item rootItem: {
         var item = root
@@ -70,10 +71,10 @@ Item {
         }
         // This object name is needed for GUI testing. all gui tests in plasma-workspace are done with plasma-nano
         objectName: "expandApplet"
-        Accessible.name: root.Plasmoid.toolTipMainText
-        Accessible.description: i18nd("plasma_shell_org.kde.plasma.nano", "Open %1", root.Plasmoid.toolTipSubText)
+        Accessible.name: root.plasmoidItem?.toolTipMainText??""
+        Accessible.description: i18nd("plasma_shell_org.kde.plasma.nano", "Open %1", root.plasmoidItem?.toolTipSubText??"")
         Accessible.role: Accessible.Button
-        Accessible.onPressAction: Plasmoid.nativeInterface.activated()
+        Accessible.onPressAction: plasmoidItem.activated()
     }
 
     Rectangle {
@@ -86,13 +87,13 @@ Item {
 
         height: PlasmaCore.Units.smallSpacing
         color: PlasmaCore.ColorScope.highlightColor
-        visible: plasmoid.formFactor != PlasmaCore.Types.Planar && plasmoid.expanded
+        visible: plasmoid.formFactor != PlasmaCore.Types.Planar && plasmoidItem.expanded
     }
 
     Connections {
-        target: plasmoid
+        target: plasmoidItem
         function onExpandedChanged() {
-            if (plasmoid.expanded) {
+            if (plasmoidItem.expanded) {
                 expandedOverlay.showFullScreen()
             } else {
                 expandedOverlay.visible = false;
@@ -103,12 +104,12 @@ Item {
     NanoShell.FullScreenOverlay {
         id: expandedOverlay
         color: Qt.rgba(0, 0, 0, 0.6)
-        visible: plasmoid.expanded
+        visible: plasmoidItem?.expanded??false
         width: Screen.width
         height: Screen.height
         MouseArea {
             anchors.fill: parent
-            onClicked: plasmoid.expanded = false
+            onClicked: plasmoidItem.expanded = false
         }
 
         PlasmaCore.FrameSvgItem {
@@ -118,8 +119,8 @@ Item {
 
             x: Math.max(0, Math.min(parent.width - width - PlasmaCore.Units.largeSpacing, Math.max(PlasmaCore.Units.largeSpacing, root.mapToItem(root.rootItem, 0, 0).x + root.width / 2 - width / 2)))
             y: Math.max(0, Math.min(parent.height - height - PlasmaCore.Units.largeSpacing, Math.max(PlasmaCore.Units.largeSpacing, root.mapToItem(root.rootItem, 0, 0).y + root.height / 2 - height / 2)))
-            width: Math.min(expandedOverlay.width,  Math.max(Math.max(root.fullRepresentation.implicitWidth, PlasmaCore.Units.gridUnit * 15), plasmoid.switchWidth) * 1.5)
-            height: Math.min(expandedOverlay.height, Math.max(Math.max(root.fullRepresentation.implicitHeight, PlasmaCore.Units.gridUnit * 15), plasmoid.switchHeight) * 1.5)
+            width: Math.min(expandedOverlay.width,  Math.max(Math.max(root.fullRepresentation?.implicitWidth ?? 0, PlasmaCore.Units.gridUnit * 15), plasmoidItem.switchWidth) * 1.5)
+            height: Math.min(expandedOverlay.height, Math.max(Math.max(root.fullRepresentation?.implicitHeight ?? 0, PlasmaCore.Units.gridUnit * 15), plasmoidItem.switchHeight) * 1.5)
         }
     }
 }

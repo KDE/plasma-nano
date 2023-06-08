@@ -19,7 +19,7 @@ Rectangle {
     id: root
    // Layout.minimumWidth:  plasmoid.availableScreenRect.width
    // Layout.minimumHeight: plasmoid.availableScreenRect.height
-    
+
 
     LayoutMirroring.enabled: Qt.application.layoutDirection === Qt.RightToLeft
     LayoutMirroring.childrenInherit: true
@@ -223,13 +223,13 @@ Rectangle {
                                 var props = {"width": width, "height": height}
 
                                 var plasmoidConfig = plasmoid.configuration
-                                for (var key in plasmoidConfig) {
+                                for (var key of plasmoidConfig.keys()) {
                                     props["cfg_" + key] = plasmoid.configuration[key]
                                 }
 
-                                var newItem = replace(Qt.resolvedUrl(sourceFile), props)
+                                var newItem = depth == 0 ? push(Qt.resolvedUrl(sourceFile), props) : replace(Qt.resolvedUrl(sourceFile), props)
 
-                                for (var key in plasmoidConfig) {
+                                for (var key of plasmoidConfig.keys()) {
                                     var changedSignal = newItem["cfg_" + key + "Changed"]
                                     if (changedSignal) {
                                         changedSignal.connect(root.settingValueChanged)
@@ -256,7 +256,7 @@ Rectangle {
                                     //OpacityAnimator when starting from 0 is buggy (it shows one frame with opacity 1)
                                     NumberAnimation {
                                         property: "opacity"
-                                        from: 0
+                                        from: 0.5
                                         to: 1
                                         duration: PlasmaCore.Units.longDuration
                                         easing.type: Easing.InOutQuad
