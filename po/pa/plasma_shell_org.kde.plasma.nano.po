@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma-nano\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-22 02:45+0000\n"
+"POT-Creation-Date: 2023-06-09 02:14+0000\n"
 "PO-Revision-Date: 2023-04-01 21:14-0700\n"
 "Last-Translator: A S Alam <aalam@satluj.org>\n"
 "Language-Team: Punjabi <kde-i18n-doc@kde.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Lokalize 22.12.3\n"
 
-#: contents/applet/CompactApplet.qml:74
+#: contents/applet/CompactApplet.qml:75
 msgid "Open %1"
 msgstr "%1 ਨੂੰ ਖੋਲ੍ਹੋ"
 
@@ -45,11 +45,11 @@ msgstr "ਹੋਰ ਤਬਦੀਲੀਆਂ ਕਰਨ ਤੋਂ ਪਹਿਲਾ�
 msgid "Apply now"
 msgstr "ਹੁਣੇ ਲਾਗੂ ਕਰੋ"
 
-#: contents/configuration/ContainmentConfiguration.qml:35
+#: contents/configuration/ContainmentConfiguration.qml:34
 msgid "Wallpaper"
 msgstr "ਵਾਲਪੇਪਰ"
 
-#: contents/configuration/ContainmentConfiguration.qml:86
+#: contents/configuration/ContainmentConfiguration.qml:85
 msgid "Customize..."
 msgstr "...ਕਸਟਮਾਈਜ਼ ਕਰੋ"
 

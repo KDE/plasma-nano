@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma-nano\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-22 02:45+0000\n"
+"POT-Creation-Date: 2023-06-09 02:14+0000\n"
 "PO-Revision-Date: 2023-01-28 07:08+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.2.2\n"
 
-#: contents/applet/CompactApplet.qml:74
+#: contents/applet/CompactApplet.qml:75
 msgid "Open %1"
 msgstr "%1-ის გახსნა"
 
@@ -47,11 +47,11 @@ msgstr ""
 msgid "Apply now"
 msgstr "ახლა გადატარება"
 
-#: contents/configuration/ContainmentConfiguration.qml:35
+#: contents/configuration/ContainmentConfiguration.qml:34
 msgid "Wallpaper"
 msgstr "ფონური სურათი"
 
-#: contents/configuration/ContainmentConfiguration.qml:86
+#: contents/configuration/ContainmentConfiguration.qml:85
 msgid "Customize..."
 msgstr "მორგება..."
 
