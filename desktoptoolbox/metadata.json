@@ -4,16 +4,29 @@
         "Authors": [
             {
                 "Email": "mart@kde.org",
-                "Name": "Marco Martin"
+                "Name": "Marco Martin",
+                "Name[ca@valencia]": "Marco Martin",
+                "Name[ca]": "Marco Martin",
+                "Name[ia]": "Marco Martin",
+                "Name[x-test]": "xxMarco Martinxx"
             }
         ],
         "Category": "Containments",
         "Description": "Manage Wallpaper and Widgets",
+        "Description[ca@valencia]": "Gestiona els fons de pantalla i els ginys",
+        "Description[ca]": "Gestiona els fons de pantalla i els ginys",
+        "Description[ia]": "Gere Tapete de papiro e Widgets",
+        "Description[x-test]": "xxManage Wallpaper and Widgetsxx",
         "EnabledByDefault": true,
         "Icon": "plasma",
         "Id": "org.kde.plasma.nano.desktoptoolbox",
         "License": "LGPLv2",
         "Name": "Plasma Nano Toolbox",
+        "Name[ca@valencia]": "Quadro d'eines de Plasma Nano",
+        "Name[ca]": "Quadre d'eines del Plasma Nano",
+        "Name[ia]": "Instrumentario de Plasma Nano",
+        "Name[nn]": "Plasma Nano-verktøykasse",
+        "Name[x-test]": "xxPlasma Nano Toolboxxx",
         "Version": "0.1",
         "Website": "https://www.kde.org/plasma-desktop"
     },
