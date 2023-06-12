@@ -10,14 +10,15 @@ import Qt5Compat.GraphicalEffects
 
 import org.kde.plasma.plasmoid 2.0
 import org.kde.plasma.core 2.0 as PlasmaCore
+import org.kde.ksvg 1.0 as KSvg
 import org.kde.plasma.components 3.0 as PlasmaComponents
 import org.kde.kquickcontrolsaddons 2.0
 
-PlasmaCore.FrameSvgItem {
+KSvg.SvgItem {
     id: root
     imagePath: "widgets/background"
     opacity: plasmoid.editMode
-    enabledBorders: PlasmaCore.FrameSvgItem.TopBorder | PlasmaCore.FrameSvgItem.LeftBorder | PlasmaCore.FrameSvgItem.RightBorder
+    enabledBorders: KSvg.SvgItem.TopBorder | KSvg.SvgItem.LeftBorder | KSvg.SvgItem.RightBorder
     Behavior on opacity {
         OpacityAnimator {
             duration: PlasmaCore.Units.longDuration
