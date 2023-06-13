@@ -40,8 +40,8 @@ include(CheckIncludeFiles)
 
 plasma_install_package(shell org.kde.plasma.nano shells)
 plasma_install_package(desktoptoolbox org.kde.plasma.nano.desktoptoolbox packages package)
-ecm_set_disabled_deprecation_versions(QT 5.15.2
-    KF 5.101
+ecm_set_disabled_deprecation_versions(QT 6.5
+    KF 5.240
 )
 
 
