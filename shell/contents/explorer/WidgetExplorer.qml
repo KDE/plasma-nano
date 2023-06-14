@@ -9,9 +9,8 @@ import QtQuick.Layouts 1.4
 
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 3.0 as PC3
-import org.kde.plasma.extras 2.0 as PlasmaExtras
 import org.kde.kquickcontrolsaddons 2.0 as KQuickControlsAddons
-import org.kde.kirigami 2.6 as Kirigami
+import org.kde.kirigami 2.20 as Kirigami
 
 import QtQuick.Window 2.1
 
@@ -140,7 +139,7 @@ PC3.Drawer {
                     id: appletsList
                     clip: false
                     topMargin: root.horizontal ? 0 : root.topPanelHeight
-                    header: PlasmaExtras.Heading {
+                    header: Kirigami.Heading {
                         text: i18n("Widgets")
                         visible: !root.horizontal
                         width: visible ? implicitWidth : 0

@@ -8,11 +8,11 @@ import QtQuick 2.4
 import QtQuick.Layouts 1.1
 
 import org.kde.plasma.components 3.0 as PlasmaComponents
-import org.kde.plasma.extras 2.0 as PlasmaExtras
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.draganddrop 2.0
 import org.kde.kquickcontrolsaddons 2.0
 import org.kde.draganddrop 2.0 as DragDrop
+import org.kde.kirigami 2.20 as Kirigami
 
 Item {
     id: delegate
@@ -115,7 +115,7 @@ Item {
                 "
             }
         }
-        PlasmaExtras.Heading {
+        Kirigami.Heading {
             id: heading
             Layout.fillWidth: true
             level: 4
