@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma-nano\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-06-09 02:14+0000\n"
+"POT-Creation-Date: 2023-06-15 02:13+0000\n"
 "PO-Revision-Date: 2019-11-21 14:07-0800\n"
 "Last-Translator: Japanese KDE translation team <kde-jp@kde.org>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -50,6 +50,6 @@ msgstr ""
 msgid "Customize..."
 msgstr ""
 
-#: contents/explorer/WidgetExplorer.qml:144
+#: contents/explorer/WidgetExplorer.qml:143
 msgid "Widgets"
 msgstr ""
