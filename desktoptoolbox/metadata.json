@@ -5,6 +5,7 @@
             {
                 "Email": "mart@kde.org",
                 "Name": "Marco Martin",
+                "Name[ar]": "ماركو مارتن",
                 "Name[ca@valencia]": "Marco Martin",
                 "Name[ca]": "Marco Martin",
                 "Name[cs]": "Marco Martin",
@@ -24,6 +25,7 @@
         ],
         "Category": "Containments",
         "Description": "Manage Wallpaper and Widgets",
+        "Description[ar]": "أدر الخلفيات وبريمجات سطح المكتب",
         "Description[ca@valencia]": "Gestiona els fons de pantalla i els ginys",
         "Description[ca]": "Gestiona els fons de pantalla i els ginys",
         "Description[cs]": "Spravujte tapety a widgety",
