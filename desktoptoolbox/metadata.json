@@ -9,6 +9,7 @@
                 "Name[ca@valencia]": "Marco Martin",
                 "Name[ca]": "Marco Martin",
                 "Name[cs]": "Marco Martin",
+                "Name[en_GB]": "Marco Martin",
                 "Name[eo]": "Marco Martin",
                 "Name[es]": "Marco Martin",
                 "Name[gl]": "Marco Martin",
@@ -20,7 +21,8 @@
                 "Name[sl]": "Marco Martin",
                 "Name[tr]": "Marco Martin",
                 "Name[uk]": "Marco Martin",
-                "Name[x-test]": "xxMarco Martinxx"
+                "Name[x-test]": "xxMarco Martinxx",
+                "Name[zh_CN]": "Marco Martin"
             }
         ],
         "Category": "Containments",
@@ -29,6 +31,7 @@
         "Description[ca@valencia]": "Gestiona els fons de pantalla i els ginys",
         "Description[ca]": "Gestiona els fons de pantalla i els ginys",
         "Description[cs]": "Spravujte tapety a widgety",
+        "Description[en_GB]": "Manage Wallpaper and Widgets",
         "Description[eo]": "Mastrumi Tapeton kaj Fenestraĵojn",
         "Description[es]": "Gestión de fondos del escritorio y de elementos gráficos",
         "Description[gl]": "Xestione o fondo de pantalla e os trebellos",
@@ -41,6 +44,7 @@
         "Description[tr]": "Duvar Kağıtlarını ve Araç Takımlarını Yönet",
         "Description[uk]": "Керування шпалерами та віджетами",
         "Description[x-test]": "xxManage Wallpaper and Widgetsxx",
+        "Description[zh_CN]": "管理壁纸和挂件",
         "EnabledByDefault": true,
         "Icon": "plasma",
         "Id": "org.kde.plasma.nano.desktoptoolbox",
