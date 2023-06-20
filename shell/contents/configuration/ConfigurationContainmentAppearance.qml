@@ -10,13 +10,12 @@ import QtQuick.Controls 2.3 as QQC2
 import QtQuick.Layouts 1.1
 
 import org.kde.newstuff 1.62 as NewStuff
-import org.kde.kirigami 2.5 as Kirigami
-import org.kde.plasma.core 2.0 as PlasmaCore
+import org.kde.kirigami 2.20 as Kirigami
 
 ColumnLayout {
     id: root
 
-    property int formAlignment: wallpaperComboBox.Kirigami.ScenePosition.x - root.Kirigami.ScenePosition.x + (PlasmaCore.Units.largeSpacing/2)
+    property int formAlignment: wallpaperComboBox.Kirigami.ScenePosition.x - root.Kirigami.ScenePosition.x + (Kirigami.Units.gridUnit/2)
     property string currentWallpaper: ""
     property string containmentPlugin: ""
     signal configurationChanged
@@ -103,7 +102,7 @@ ColumnLayout {
                 id: wallpaperComboBox
                 Layout.preferredWidth: Math.max(implicitWidth, pluginComboBox.implicitWidth)
                 model: configDialog.wallpaperConfigModel
-                width: PlasmaCore.Theme.mSize(PlasmaCore.Theme.defaultFont).width * 24
+                width: Kirigami.Units.gridUnit * 24
                 textRole: "name"
                 onActivated: {
                     var model = configDialog.wallpaperConfigModel.get(currentIndex)

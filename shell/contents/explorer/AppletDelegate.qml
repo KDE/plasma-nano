@@ -24,12 +24,12 @@ Item {
 
     ColumnLayout {
         id: mainLayout
-        spacing: PlasmaCore.Units.smallSpacing
+        spacing: Kirigami.Units.smallSpacing
         anchors {
             left: parent.left
             right: parent.right
             //bottom: parent.bottom
-            margins: PlasmaCore.Units.smallSpacing * 2
+            margins: Kirigami.Units.smallSpacing * 2
             top: parent.top
         }
 
@@ -61,9 +61,9 @@ Item {
                 anchors.fill: parent
 
                 Rectangle {
-                    x: Math.round(-PlasmaCore.Units.smallSpacing * 1.5 / 2)
+                    x: Math.round(-Kirigami.Units.smallSpacing * 1.5 / 2)
                     y: x
-                    width: runningBadge.width + Math.round(PlasmaCore.Units.smallSpacing * 1.5)
+                    width: runningBadge.width + Math.round(Kirigami.Units.smallSpacing * 1.5)
                     height: width
                     radius: height
                     visible: running
@@ -73,9 +73,9 @@ Item {
             Rectangle {
                 id: runningBadge
                 width: height
-                height: Math.round(PlasmaCore.Theme.mSize(countLabel.font).height * 1.3)
+                height: Math.round(Kirigami.Units.gridUnit * 1.3)
                 radius: height
-                color: PlasmaCore.Theme.highlightColor
+                color: Kirigami.Theme.highlightColor
                 visible: running
                 onVisibleChanged: maskShaderSource.scheduleUpdate()
 
@@ -132,7 +132,7 @@ Item {
             visible: !root.horizontal
             height: implicitHeight
             text: model.description
-            font.pointSize: PlasmaCore.Theme.smallestFont.pointSize
+            font.pointSize: Kirigami.Theme.smallFont.pointSize
             wrapMode: Text.WordWrap
             elide: Text.ElideRight
             maximumLineCount: heading.lineCount === 1 ? 3 : 2

@@ -11,6 +11,7 @@ import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.kquickcontrolsaddons 2.0
 import org.kde.plasma.plasmoid 2.0
 import org.kde.plasma.private.nanoshell 2.0 as NanoShell
+import org.kde.kirigami 2.20 as Kirigami
 
 Item {
     id: root
@@ -85,8 +86,8 @@ Item {
             bottom: parent.top
         }
 
-        height: PlasmaCore.Units.smallSpacing
-        color: PlasmaCore.ColorScope.highlightColor
+        height: Kirigami.Units.smallSpacing
+        color: Kirigami.Theme.highlightColor
         visible: plasmoid.formFactor != PlasmaCore.Types.Planar && plasmoidItem.expanded
     }
 
@@ -117,10 +118,10 @@ Item {
             imagePath: "widgets/background"
             //used only indesktop mode, not panel
 
-            x: Math.max(0, Math.min(parent.width - width - PlasmaCore.Units.largeSpacing, Math.max(PlasmaCore.Units.largeSpacing, root.mapToItem(root.rootItem, 0, 0).x + root.width / 2 - width / 2)))
-            y: Math.max(0, Math.min(parent.height - height - PlasmaCore.Units.largeSpacing, Math.max(PlasmaCore.Units.largeSpacing, root.mapToItem(root.rootItem, 0, 0).y + root.height / 2 - height / 2)))
-            width: Math.min(expandedOverlay.width,  Math.max(Math.max(root.fullRepresentation?.implicitWidth ?? 0, PlasmaCore.Units.gridUnit * 15), plasmoidItem.switchWidth) * 1.5)
-            height: Math.min(expandedOverlay.height, Math.max(Math.max(root.fullRepresentation?.implicitHeight ?? 0, PlasmaCore.Units.gridUnit * 15), plasmoidItem.switchHeight) * 1.5)
+            x: Math.max(0, Math.min(parent.width - width - Kirigami.Units.gridUnit, Math.max(Kirigami.Units.gridUnit, root.mapToItem(root.rootItem, 0, 0).x + root.width / 2 - width / 2)))
+            y: Math.max(0, Math.min(parent.height - height - Kirigami.Units.gridUnit, Math.max(Kirigami.Units.gridUnit, root.mapToItem(root.rootItem, 0, 0).y + root.height / 2 - height / 2)))
+            width: Math.min(expandedOverlay.width,  Math.max(Math.max(root.fullRepresentation?.implicitWidth ?? 0, Kirigami.Units.gridUnit * 15), plasmoidItem.switchWidth) * 1.5)
+            height: Math.min(expandedOverlay.height, Math.max(Math.max(root.fullRepresentation?.implicitHeight ?? 0, Kirigami.Units.gridUnit * 15), plasmoidItem.switchHeight) * 1.5)
         }
     }
 }

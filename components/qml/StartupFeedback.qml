@@ -10,8 +10,7 @@ import QtQuick.Window 2.2
 import org.kde.plasma.core 2.0 as PlasmaCore
 import Qt5Compat.GraphicalEffects
 
-import org.kde.kirigami 2.13 as Kirigami
-
+import org.kde.kirigami 2.20 as Kirigami
 import org.kde.plasma.private.nanoshell 2.0 as NanoShell
 
 pragma Singleton
@@ -82,12 +81,12 @@ Window {
             id: iconParent
             z: 2
             anchors.centerIn: background
-            width: PlasmaCore.Units.iconSizes.enormous
+            width: Kirigami.Units.iconSizes.enormous
             height: width
             PlasmaCore.IconItem {
                 id: icon
                 anchors.fill:parent
-                colorGroup: PlasmaCore.Theme.ComplementaryColorGroup
+                colorGroup: Kirigami.Theme.ComplementaryColorGroup
             }
             DropShadow {
                 anchors.fill: icon
@@ -140,28 +139,28 @@ Window {
                                 target: background
                                 from: background.scale
                                 to: 1
-                                duration: PlasmaCore.Units.longDuration
+                                duration: Kirigami.Units.longDuration
                                 easing.type: Easing.InOutQuad
                             }
                             ScaleAnimator {
                                 target: iconParent
                                 from: iconParent.scale
                                 to: 1
-                                duration: PlasmaCore.Units.longDuration
+                                duration: Kirigami.Units.longDuration
                                 easing.type: Easing.InOutQuad
                             }
                             XAnimator {
                                 target: backgroundParent
                                 from: backgroundParent.x
                                 to: 0
-                                duration: PlasmaCore.Units.longDuration
+                                duration: Kirigami.Units.longDuration
                                 easing.type: Easing.InOutQuad
                             }
                             YAnimator {
                                 target: backgroundParent
                                 from: backgroundParent.y
                                 to: 0
-                                duration: PlasmaCore.Units.longDuration
+                                duration: Kirigami.Units.longDuration
                                 easing.type: Easing.InOutQuad
                             }
                         }

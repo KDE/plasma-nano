@@ -11,14 +11,14 @@ import QtQuick.Window 2.2
 
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.kquickcontrolsaddons 2.0
-import org.kde.kirigami 2.5 as Kirigami
+import org.kde.kirigami 2.20 as Kirigami
 
 MouseArea {
     id: delegate
 
 //BEGIN properties
-    implicitWidth: delegateContents.implicitWidth + 4 * PlasmaCore.Units.smallSpacing
-    implicitHeight: delegateContents.height + PlasmaCore.Units.smallSpacing * 4
+    implicitWidth: delegateContents.implicitWidth + 4 * Kirigami.Units.smallSpacing
+    implicitHeight: delegateContents.height + Kirigami.Units.smallSpacing * 4
     Layout.fillWidth: true
     hoverEnabled: true
 
@@ -90,7 +90,7 @@ MouseArea {
         }
         Behavior on opacity {
             NumberAnimation {
-                duration: PlasmaCore.Units.longDuration
+                duration: Kirigami.Units.longDuration
                 easing.type: Easing.InOutQuad
             }
         }
@@ -98,14 +98,14 @@ MouseArea {
 
     ColumnLayout {
         id: delegateContents
-        spacing: PlasmaCore.Units.smallSpacing
+        spacing: Kirigami.Units.smallSpacing
         width: parent.width
         anchors.verticalCenter: parent.verticalCenter
 
         PlasmaCore.IconItem {
             id: iconItem
             Layout.alignment: Qt.AlignHCenter
-            width: PlasmaCore.Units.iconSizes.medium
+            width: Kirigami.Units.iconSizes.medium
             height: width
             source: model.icon
             status: current && categoriesScroll.activeFocus ? PlasmaCore.Svg.Selected : PlasmaCore.Svg.Normal
@@ -120,7 +120,7 @@ MouseArea {
             color: current && categoriesScroll.activeFocus ? Kirigami.Theme.highlightedTextColor : Kirigami.Theme.textColor
             Behavior on color {
                 ColorAnimation {
-                    duration: PlasmaCore.Units.longDuration
+                    duration: Kirigami.Units.longDuration
                     easing.type: Easing.InOutQuad
                 }
             }

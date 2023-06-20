@@ -9,7 +9,7 @@ import QtQuick.Controls 2.3 as QtControls
 import QtQuick.Layouts 1.0
 import QtQuick.Window 2.2
 
-import org.kde.kirigami 2.5 as Kirigami
+import org.kde.kirigami 2.20 as Kirigami
 import org.kde.plasma.core 2.1 as PlasmaCore
 import org.kde.plasma.configuration 2.0
 
@@ -166,7 +166,7 @@ Rectangle {
                         return;
                     }
 
-                    var padding = PlasmaCore.Units.gridUnit * 2 // some padding to the top/bottom when we scroll
+                    var padding = Kirigami.Units.gridUnit * 2 // some padding to the top/bottom when we scroll
 
                     var yPos = item.mapToItem(scroll.contentItem, 0, 0).y;
                     if (yPos < flickable.contentY) {
@@ -185,13 +185,13 @@ Rectangle {
                     id: pageFlickable
                     anchors {
                         fill: parent
-                        margins: PlasmaCore.Units.smallSpacing
+                        margins: Kirigami.Units.smallSpacing
                     }
                     contentHeight: pageColumn.height
                     contentWidth: width
                     ColumnLayout {
                         id: pageColumn
-                        spacing: PlasmaCore.Units.largeSpacing / 2
+                        spacing: Kirigami.Units.gridUnit / 2
                         width: pageFlickable.width
                         height: Math.max(implicitHeight, pageFlickable.height)
 
@@ -209,8 +209,8 @@ Rectangle {
 
                             Layout.fillWidth: true
                             Layout.fillHeight: true
-                            implicitWidth: Math.max(currentItem ? Math.max(currentItem.Layout.minimumWidth, currentItem.Layout.preferredWidth, currentItem.implicitWidth) : 0, PlasmaCore.Units.gridUnit * 15)
-                            implicitHeight: Math.max(currentItem ? Math.max(currentItem.Layout.minimumHeight, currentItem.Layout.preferredHeight, currentItem.implicitHeight) : 0, PlasmaCore.Units.gridUnit * 15)
+                            implicitWidth: Math.max(currentItem ? Math.max(currentItem.Layout.minimumWidth, currentItem.Layout.preferredWidth, currentItem.implicitWidth) : 0, Kirigami.Units.gridUnit * 15)
+                            implicitHeight: Math.max(currentItem ? Math.max(currentItem.Layout.minimumHeight, currentItem.Layout.preferredHeight, currentItem.implicitHeight) : 0, Kirigami.Units.gridUnit * 15)
 
                             property string sourceFile
 
@@ -258,13 +258,13 @@ Rectangle {
                                         property: "opacity"
                                         from: 0.5
                                         to: 1
-                                        duration: PlasmaCore.Units.longDuration
+                                        duration: Kirigami.Units.longDuration
                                         easing.type: Easing.InOutQuad
                                     }
                                     XAnimator {
                                         from: pageStack.invertAnimations ? -scroll.width/3: scroll.width/3
                                         to: 0
-                                        duration: PlasmaCore.Units.longDuration
+                                        duration: Kirigami.Units.longDuration
                                         easing.type: Easing.InOutQuad
                                     }
                                 }
@@ -274,13 +274,13 @@ Rectangle {
                                     OpacityAnimator {
                                         from: 1
                                         to: 0
-                                        duration: PlasmaCore.Units.longDuration
+                                        duration: Kirigami.Units.longDuration
                                         easing.type: Easing.InOutQuad
                                     }
                                     XAnimator {
                                         from: 0
                                         to: pageStack.invertAnimations ? scroll.width/3 : -scroll.width/3
-                                        duration: PlasmaCore.Units.longDuration
+                                        duration: Kirigami.Units.longDuration
                                         easing.type: Easing.InOutQuad
                                     }
                                 }
@@ -298,7 +298,7 @@ Rectangle {
                 visible: categoriesScroll.visible
                 Behavior on color {
                     ColorAnimation {
-                        duration: PlasmaCore.Units.longDuration
+                        duration: Kirigami.Units.longDuration
                         easing.type: Easing.InOutQuad
                     }
                 }

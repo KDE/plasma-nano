@@ -7,6 +7,7 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.1
 import org.kde.plasma.core 2.0 as PlasmaCore
+import org.kde.kirigami 2.20 as Kirigami
 
 Item {
     id: main
@@ -18,7 +19,7 @@ Item {
         case PlasmaCore.Types.Horizontal:
             return height;
         default:
-            return PlasmaCore.Units.gridUnit * 3;
+            return Kirigami.Units.gridUnit * 3;
         }
     }
 
@@ -29,7 +30,7 @@ Item {
         case PlasmaCore.Types.Horizontal:
             return 0;
         default:
-            return PlasmaCore.Units.gridUnit * 3;
+            return Kirigami.Units.gridUnit * 3;
         }
     }
 
@@ -37,7 +38,7 @@ Item {
         id: icon
         source: plasmoid.icon ? plasmoid.icon : "plasma"
         active: mouseArea.containsMouse
-        colorGroup: PlasmaCore.Theme.ComplementaryColorGroup
+        colorGroup: Kirigami.Theme.ComplementaryColorGroup
         anchors.verticalCenter: parent.verticalCenter
     }
 

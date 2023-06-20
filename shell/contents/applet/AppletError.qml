@@ -8,11 +8,12 @@ import QtQuick 2.0
 import QtQuick.Layouts 1.1
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 3.0 as PlasmaComponents
+import org.kde.kirigami 2.20 as Kirigami
 
 RowLayout {
     id: root
-    Layout.minimumWidth: PlasmaCore.Units.gridUnit * 20
-    Layout.minimumHeight: PlasmaCore.Units.gridUnit * 8
+    Layout.minimumWidth: Kirigami.Units.gridUnit * 20
+    Layout.minimumHeight: Kirigami.Units.gridUnit * 8
 
     property alias reason: messageText.text
 
@@ -21,8 +22,8 @@ RowLayout {
     PlasmaCore.IconItem {
         id: icon
         Layout.alignment: Qt.AlignVCenter
-        Layout.minimumWidth: PlasmaCore.Units.iconSizes.huge
-        Layout.minimumHeight: PlasmaCore.Units.iconSizes.huge
+        Layout.minimumWidth: Kirigami.Units.iconSizes.huge
+        Layout.minimumHeight: Kirigami.Units.iconSizes.huge
         source: "dialog-error"
     }
 

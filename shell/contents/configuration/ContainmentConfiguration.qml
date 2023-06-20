@@ -10,6 +10,7 @@ import QtQuick.Window 2.2
 import QtQuick.Controls 2.3 as Controls
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.configuration 2.0
+import org.kde.kirigami 2.20 as Kirigami
 
 //for the "simple mode"
 import org.kde.plasma.wallpapers.image 2.0 as Wallpaper
@@ -20,8 +21,8 @@ AppletConfiguration {
     isContainment: true
 
     internalDialog.visible: false
-    internalDialog.width: root.width < root.height ? root.width : Math.min(root.width, Math.max(internalDialog.implicitWidth, PlasmaCore.Units.gridUnit * 45))
-    internalDialog.height: Math.min(root.height, Math.max(internalDialog.implicitHeight, PlasmaCore.Units.gridUnit * 29))
+    internalDialog.width: root.width < root.height ? root.width : Math.min(root.width, Math.max(internalDialog.implicitWidth, Kirigami.Units.gridUnit * 45))
+    internalDialog.height: Math.min(root.height, Math.max(internalDialog.implicitHeight, Kirigami.Units.gridUnit * 29))
 
     readonly property bool horizontal: root.width > root.height
 
@@ -52,8 +53,8 @@ AppletConfiguration {
         onOpened: {
             wallpapersView.forceActiveFocus()
         }
-        implicitWidth: PlasmaCore.Units.gridUnit * 10
-        implicitHeight: PlasmaCore.Units.gridUnit * 8
+        implicitWidth: Kirigami.Units.gridUnit * 10
+        implicitHeight: Kirigami.Units.gridUnit * 8
         width: root.horizontal ? implicitWidth : root.width
         height: root.horizontal ? root.height : implicitHeight
         Wallpaper.ImageBackend {
@@ -74,10 +75,10 @@ AppletConfiguration {
                 z: 999
                 width: root.horizontal ? parent.width : implicitWidth
                 height: root.horizontal ? implicitHeight : parent.height
-                leftPadding: PlasmaCore.Units.gridUnit
-                topPadding: PlasmaCore.Units.gridUnit
-                rightPadding: PlasmaCore.Units.gridUnit
-                bottomPadding: PlasmaCore.Units.gridUnit
+                leftPadding: Kirigami.Units.gridUnit
+                topPadding: Kirigami.Units.gridUnit
+                rightPadding: Kirigami.Units.gridUnit
+                bottomPadding: Kirigami.Units.gridUnit
 
                 contentItem: ColumnLayout {
                     Controls.Button {
@@ -98,14 +99,14 @@ AppletConfiguration {
             delegate: Controls.ItemDelegate {
                 width: root.horizontal ? parent.width : height * (root.Screen.width / root.Screen.height)
                 height: root.horizontal ? width / (root.Screen.width / root.Screen.height) : parent.height
-                padding: wallpapersView.currentIndex === index ? PlasmaCore.Units.gridUnit / 4 : PlasmaCore.Units.gridUnit / 2
+                padding: wallpapersView.currentIndex === index ? Kirigami.Units.gridUnit / 4 : Kirigami.Units.gridUnit / 2
                 leftPadding: padding
                 topPadding: padding
                 rightPadding: padding
                 bottomPadding: padding
                 Behavior on padding {
                     NumberAnimation {
-                        duration: PlasmaCore.Units.longDuration
+                        duration: Kirigami.Units.longDuration
                         easing.type: Easing.InOutQuad
                     }
                 }
@@ -121,7 +122,7 @@ AppletConfiguration {
                 contentItem: Item {
                     PlasmaCore.IconItem {
                         anchors.centerIn: parent
-                        width: PlasmaCore.Units.iconSizes.large
+                        width: Kirigami.Units.iconSizes.large
                         height: width
                         source: "view-preview"
                         visible: !walliePreview.visible
@@ -149,15 +150,15 @@ AppletConfiguration {
                     Rectangle {
                         anchors {
                             fill: parent
-                            margins: wallpapersView.currentIndex === index ? 0 : PlasmaCore.Units.gridUnit / 4
+                            margins: wallpapersView.currentIndex === index ? 0 : Kirigami.Units.gridUnit / 4
                             Behavior on margins {
                                 NumberAnimation {
-                                    duration: PlasmaCore.Units.longDuration
+                                    duration: Kirigami.Units.longDuration
                                     easing.type: Easing.InOutQuad
                                 }
                             }
                         }
-                        radius: PlasmaCore.Units.gridUnit / 4
+                        radius: Kirigami.Units.gridUnit / 4
                     }
                 }
             }

@@ -8,6 +8,7 @@ import QtQuick 2.0
 import QtQuick.Layouts 1.1
 
 import org.kde.plasma.core 2.0 as PlasmaCore
+import org.kde.kirigami 2.20 as Kirigami
 
 Rectangle {
     id: root
@@ -15,7 +16,7 @@ Rectangle {
     visible: false //adjust borders is run during setup. We want to avoid painting till completed
     property Item containment
 
-    color: containment && containment.plasmoid.backgroundHints == PlasmaCore.Types.NoBackground ? "transparent" : PlasmaCore.Theme.textColor
+    color: containment && containment.plasmoid.backgroundHints == PlasmaCore.Types.NoBackground ? "transparent" : Kirigami.Theme.textColor
 
     onContainmentChanged: {
         containment.parent = root;

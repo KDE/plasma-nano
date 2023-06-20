@@ -7,13 +7,11 @@
 import QtQuick 2.2
 import QtQuick.Layouts 1.4
 
-import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 3.0 as PC3
 import org.kde.kquickcontrolsaddons 2.0 as KQuickControlsAddons
 import org.kde.kirigami 2.20 as Kirigami
 
 import QtQuick.Window 2.1
-
 
 import org.kde.plasma.private.shell 2.0
 
@@ -23,7 +21,7 @@ PC3.Drawer {
     property QtObject containment
     property Item containmentInterface
     readonly property bool horizontal: containmentInterface.width <= containmentInterface.height
-    readonly property int delegateSize: PlasmaCore.Units.gridUnit * 8
+    readonly property int delegateSize: Kirigami.Units.gridUnit * 8
 
     property int topPanelHeight
     property int bottomPanelHeight
@@ -37,22 +35,22 @@ PC3.Drawer {
     edge: horizontal ? Qt.BottomEdge : Qt.LeftEdge
 
     leftPadding: containmentInterface.availableScreenRect.x
-    topPadding: horizontal ? PlasmaCore.Units.smallSpacing : containmentInterface.availableScreenRect.y
+    topPadding: horizontal ? Kirigami.Units.smallSpacing : containmentInterface.availableScreenRect.y
     rightPadding: horizontal ? containmentInterface.screenGeometry.width - containmentInterface.availableScreenRect.width - containmentInterface.availableScreenRect.x : 0
     bottomPadding: containmentInterface.screenGeometry.height - containmentInterface.availableScreenRect.height - containmentInterface.availableScreenRect.y
 
-    implicitWidth: categoriesView.shouldBeVisible ? layout.implicitWidth : view.implicitWidth + PlasmaCore.Units.smallSpacing
-    implicitHeight: categoriesView.shouldBeVisible ? layout.implicitHeight : view.implicitHeight + PlasmaCore.Units.smallSpacing
+    implicitWidth: categoriesView.shouldBeVisible ? layout.implicitWidth : view.implicitWidth + Kirigami.Units.smallSpacing
+    implicitHeight: categoriesView.shouldBeVisible ? layout.implicitHeight : view.implicitHeight + Kirigami.Units.smallSpacing
 
     Behavior on implicitWidth {
         NumberAnimation {
-            duration: PlasmaCore.Units.longDuration
+            duration: Kirigami.Units.longDuration
             easing.type: Easing.InOutQuad
         }
     }
     Behavior on implicitHeight {
         NumberAnimation {
-            duration: PlasmaCore.Units.longDuration
+            duration: Kirigami.Units.longDuration
             easing.type: Easing.InOutQuad
         }
     }
@@ -65,7 +63,7 @@ PC3.Drawer {
             z: 1
             anchors.bottom: parent.bottom
             x: root.horizontal ? parent.width - width : 0
-            width: PlasmaCore.Units.iconSizes.large
+            width: Kirigami.Units.iconSizes.large
             height: width
 
             icon.name: "view-filter"
@@ -93,13 +91,13 @@ PC3.Drawer {
                 Layout.fillHeight: !root.horizontal
                 Layout.column: 0
                 Layout.row: root.horizontal ? 1 : 0
-                implicitHeight: PlasmaCore.Units.gridUnit * 2
-                implicitWidth: PlasmaCore.Units.gridUnit * 8
+                implicitHeight: Kirigami.Units.gridUnit * 2
+                implicitWidth: Kirigami.Units.gridUnit * 8
                 opacity: categoriesView.shouldBeVisible
 
                 Behavior on opacity {
                     NumberAnimation {
-                        duration: PlasmaCore.Units.longDuration
+                        duration: Kirigami.Units.longDuration
                         easing.type: Easing.InOutQuad
                     }
                 }
@@ -132,8 +130,8 @@ PC3.Drawer {
                 Layout.fillHeight: !root.horizontal
                 Layout.row: 0
                 Layout.column: root.horizontal ? 0 : 1
-                implicitWidth: delegateSize + PlasmaCore.Units.gridUnit
-                implicitHeight: delegateSize + PlasmaCore.Units.gridUnit * 3
+                implicitWidth: delegateSize + Kirigami.Units.gridUnit
+                implicitHeight: delegateSize + Kirigami.Units.gridUnit * 3
 
                 ListView {
                     id: appletsList

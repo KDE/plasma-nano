@@ -12,6 +12,7 @@ import org.kde.plasma.plasmoid 2.0
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 3.0 as PlasmaComponents
 import org.kde.kquickcontrolsaddons 2.0
+import org.kde.kirigami 2.20 as Kirigami
 
 PlasmaCore.FrameSvgItem {
     id: root
@@ -20,7 +21,7 @@ PlasmaCore.FrameSvgItem {
     enabledBorders: PlasmaCore.FrameSvgItem.TopBorder | PlasmaCore.FrameSvgItem.LeftBorder | PlasmaCore.FrameSvgItem.RightBorder
     Behavior on opacity {
         OpacityAnimator {
-            duration: PlasmaCore.Units.longDuration
+            duration: Kirigami.Units.longDuration
             easing.type: Easing.InOutQuad
         }
     }
@@ -28,7 +29,7 @@ PlasmaCore.FrameSvgItem {
         y: plasmoid.corona.editMode ? 0 : root.height
         Behavior on y {
             NumberAnimation {
-                duration: PlasmaCore.Units.longDuration
+                duration: Kirigami.Units.longDuration
                 easing.type: Easing.InOutQuad
             }
         }
@@ -38,7 +39,7 @@ PlasmaCore.FrameSvgItem {
         bottom: parent.bottom
     }
     width: childrenRect.width + fixedMargins.left + fixedMargins.right
-    height: childrenRect.height + fixedMargins.top + fixedMargins.bottom - PlasmaCore.Units.smallSpacing
+    height: childrenRect.height + fixedMargins.top + fixedMargins.bottom - Kirigami.Units.smallSpacing
 
     RowLayout {
         x: parent.fixedMargins.left
