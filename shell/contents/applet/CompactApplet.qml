@@ -8,6 +8,7 @@ import QtQuick.Layouts 1.1
 import QtQuick.Window 2.0
 
 import org.kde.plasma.core 2.0 as PlasmaCore
+import org.kde.ksvg 1.0 as KSvg
 import org.kde.kquickcontrolsaddons 2.0
 import org.kde.plasma.plasmoid 2.0
 import org.kde.plasma.private.nanoshell 2.0 as NanoShell
@@ -113,7 +114,7 @@ Item {
             onClicked: plasmoidItem.expanded = false
         }
 
-        PlasmaCore.FrameSvgItem {
+        KSvg.FrameSvgItem {
             id: appletParent
             imagePath: "widgets/background"
             //used only indesktop mode, not panel

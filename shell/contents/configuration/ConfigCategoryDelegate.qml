@@ -10,6 +10,7 @@ import QtQuick.Controls 2.3 as QtControls
 import QtQuick.Window 2.2
 
 import org.kde.plasma.core 2.0 as PlasmaCore
+import org.kde.ksvg 1.0 as KSvg
 import org.kde.kquickcontrolsaddons 2.0
 import org.kde.kirigami 2.20 as Kirigami
 
@@ -108,7 +109,7 @@ MouseArea {
             width: Kirigami.Units.iconSizes.medium
             height: width
             source: model.icon
-            status: current && categoriesScroll.activeFocus ? PlasmaCore.Svg.Selected : PlasmaCore.Svg.Normal
+            status: current && categoriesScroll.activeFocus ? KSvg.Svg.Selected : KSvg.Svg.Normal
         }
 
         QtControls.Label {

@@ -29,7 +29,7 @@ include(GenerateExportHeader)
 include(FeatureSummary)
 include(ECMDeprecationSettings)
 
-find_package(Qt6 ${QT_MIN_VERSION} CONFIG REQUIRED Core Gui Qml Quick)
+find_package(Qt6 ${QT_MIN_VERSION} CONFIG REQUIRED Core Gui Qml Quick Svg)
 find_package(KF6 ${KF6_MIN_VERSION} REQUIRED COMPONENTS Plasma WindowSystem Wayland I18n)
 
 
