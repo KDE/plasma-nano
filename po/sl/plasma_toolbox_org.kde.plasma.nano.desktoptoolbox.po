@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma-nano\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2021-03-03 03:24+0100\n"
+"POT-Creation-Date: 2023-06-21 02:02+0000\n"
 "PO-Revision-Date: 2020-06-04 15:21+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -18,12 +18,12 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
 "%100==4 ? 3 : 0);\n"
 
-#: contents/ui/DesktopConfigButtons.qml:47
+#: contents/ui/DesktopConfigButtons.qml:49
 #, kde-format
 msgid "Add Widgets..."
 msgstr "Dodaj gradnike..."
 
-#: contents/ui/DesktopConfigButtons.qml:54
+#: contents/ui/DesktopConfigButtons.qml:56
 #, kde-format
 msgid "Configure Wallpaper..."
 msgstr "Nastavi ozadje..."

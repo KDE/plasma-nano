@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma-nano\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-06-15 02:13+0000\n"
+"POT-Creation-Date: 2023-06-21 02:02+0000\n"
 "PO-Revision-Date: 2023-02-09 21:42+0100\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <l10n-no@lister.huftis.org>\n"
@@ -19,42 +19,42 @@ msgstr ""
 "X-Accelerator-Marker: &\n"
 "X-Text-Markup: kde4\n"
 
-#: contents/applet/CompactApplet.qml:75
+#: contents/applet/CompactApplet.qml:77
 msgid "Open %1"
 msgstr "Opna %1"
 
-#: contents/configuration/ConfigurationContainmentAppearance.qml:53
+#: contents/configuration/ConfigurationContainmentAppearance.qml:52
 msgid "Layout changes have been restricted by the system administrator"
 msgstr "Utformingsendringar er låste av systemadministratoren"
 
-#: contents/configuration/ConfigurationContainmentAppearance.qml:87
+#: contents/configuration/ConfigurationContainmentAppearance.qml:86
 msgid "Layout:"
 msgstr "Utforming:"
 
-#: contents/configuration/ConfigurationContainmentAppearance.qml:101
+#: contents/configuration/ConfigurationContainmentAppearance.qml:100
 msgid "Wallpaper Type:"
 msgstr "Type bakgrunn:"
 
-#: contents/configuration/ConfigurationContainmentAppearance.qml:118
+#: contents/configuration/ConfigurationContainmentAppearance.qml:117
 msgid "Get New Plugins…"
 msgstr "Hent nye programtillegg …"
 
-#: contents/configuration/ConfigurationContainmentAppearance.qml:130
+#: contents/configuration/ConfigurationContainmentAppearance.qml:129
 msgid "Layout changes must be applied before other changes can be made"
 msgstr "Du må ta i bruk utformings­endringane før du kan gjera andre endringar."
 
-#: contents/configuration/ConfigurationContainmentAppearance.qml:136
+#: contents/configuration/ConfigurationContainmentAppearance.qml:135
 msgid "Apply now"
 msgstr "Bruk no"
 
-#: contents/configuration/ContainmentConfiguration.qml:34
+#: contents/configuration/ContainmentConfiguration.qml:35
 msgid "Wallpaper"
 msgstr "Bakgrunnsbilete"
 
-#: contents/configuration/ContainmentConfiguration.qml:85
+#: contents/configuration/ContainmentConfiguration.qml:86
 msgid "Customize..."
 msgstr "Tilpass …"
 
-#: contents/explorer/WidgetExplorer.qml:143
+#: contents/explorer/WidgetExplorer.qml:141
 msgid "Widgets"
 msgstr "Skjermelement"

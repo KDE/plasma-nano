@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma-nano\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-06-15 02:13+0000\n"
+"POT-Creation-Date: 2023-06-21 02:02+0000\n"
 "PO-Revision-Date: 2023-02-07 10:44-0300\n"
 "Last-Translator: Luiz Fernando Ranghetti <elchevive@opensuse.org>\n"
 "Language-Team: Portuguese <kde-i18n-pt_BR@kde.org>\n"
@@ -19,46 +19,46 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Lokalize 21.12.3\n"
 
-#: contents/applet/CompactApplet.qml:75
+#: contents/applet/CompactApplet.qml:77
 msgid "Open %1"
 msgstr "Abrir %1"
 
-#: contents/configuration/ConfigurationContainmentAppearance.qml:53
+#: contents/configuration/ConfigurationContainmentAppearance.qml:52
 msgid "Layout changes have been restricted by the system administrator"
 msgstr ""
 "As alterações de layout foram restringidas pelo administrador do sistema"
 
-#: contents/configuration/ConfigurationContainmentAppearance.qml:87
+#: contents/configuration/ConfigurationContainmentAppearance.qml:86
 msgid "Layout:"
 msgstr "Layout:"
 
-#: contents/configuration/ConfigurationContainmentAppearance.qml:101
+#: contents/configuration/ConfigurationContainmentAppearance.qml:100
 msgid "Wallpaper Type:"
 msgstr "Tipo de papel de parede:"
 
-#: contents/configuration/ConfigurationContainmentAppearance.qml:118
+#: contents/configuration/ConfigurationContainmentAppearance.qml:117
 msgid "Get New Plugins…"
 msgstr "Baixar novos plugins..."
 
-#: contents/configuration/ConfigurationContainmentAppearance.qml:130
+#: contents/configuration/ConfigurationContainmentAppearance.qml:129
 msgid "Layout changes must be applied before other changes can be made"
 msgstr ""
 "Mudanças do layout devem ser aplicadas antes que outras mudanças possam ser "
 "feitas"
 
-#: contents/configuration/ConfigurationContainmentAppearance.qml:136
+#: contents/configuration/ConfigurationContainmentAppearance.qml:135
 msgid "Apply now"
 msgstr "Aplicar agora"
 
-#: contents/configuration/ContainmentConfiguration.qml:34
+#: contents/configuration/ContainmentConfiguration.qml:35
 msgid "Wallpaper"
 msgstr "Papel de parede"
 
-#: contents/configuration/ContainmentConfiguration.qml:85
+#: contents/configuration/ContainmentConfiguration.qml:86
 msgid "Customize..."
 msgstr "Personalizar..."
 
-#: contents/explorer/WidgetExplorer.qml:143
+#: contents/explorer/WidgetExplorer.qml:141
 msgid "Widgets"
 msgstr "Widgets"
 

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma-nano\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-06-15 02:13+0000\n"
+"POT-Creation-Date: 2023-06-21 02:02+0000\n"
 "PO-Revision-Date: 2023-01-29 10:56+0100\n"
 "Last-Translator: Xavier BESNARD <xavier.besnard]neuf.fr>\n"
 "Language-Team: fr\n"
@@ -16,47 +16,47 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Lokalize 22.12.1\n"
 
-#: contents/applet/CompactApplet.qml:75
+#: contents/applet/CompactApplet.qml:77
 msgid "Open %1"
 msgstr "Ouvrir %1"
 
-#: contents/configuration/ConfigurationContainmentAppearance.qml:53
+#: contents/configuration/ConfigurationContainmentAppearance.qml:52
 msgid "Layout changes have been restricted by the system administrator"
 msgstr ""
 "Les changements de dispositions ont été restreintes par l'administrateur du "
 "système"
 
-#: contents/configuration/ConfigurationContainmentAppearance.qml:87
+#: contents/configuration/ConfigurationContainmentAppearance.qml:86
 msgid "Layout:"
 msgstr "Disposition :"
 
-#: contents/configuration/ConfigurationContainmentAppearance.qml:101
+#: contents/configuration/ConfigurationContainmentAppearance.qml:100
 msgid "Wallpaper Type:"
 msgstr "Type de fond d'écran :"
 
-#: contents/configuration/ConfigurationContainmentAppearance.qml:118
+#: contents/configuration/ConfigurationContainmentAppearance.qml:117
 msgid "Get New Plugins…"
 msgstr "Obtenir de nouveaux modules externes..."
 
-#: contents/configuration/ConfigurationContainmentAppearance.qml:130
+#: contents/configuration/ConfigurationContainmentAppearance.qml:129
 msgid "Layout changes must be applied before other changes can be made"
 msgstr ""
 "Les modifications de dispositions doivent être appliquées avant que d'autres "
 "modifications peuvent être faites."
 
-#: contents/configuration/ConfigurationContainmentAppearance.qml:136
+#: contents/configuration/ConfigurationContainmentAppearance.qml:135
 msgid "Apply now"
 msgstr "Appliquer maintenant"
 
-#: contents/configuration/ContainmentConfiguration.qml:34
+#: contents/configuration/ContainmentConfiguration.qml:35
 msgid "Wallpaper"
 msgstr "Fond d'écran"
 
-#: contents/configuration/ContainmentConfiguration.qml:85
+#: contents/configuration/ContainmentConfiguration.qml:86
 msgid "Customize..."
 msgstr "Personnaliser..."
 
-#: contents/explorer/WidgetExplorer.qml:143
+#: contents/explorer/WidgetExplorer.qml:141
 msgid "Widgets"
 msgstr "Composants graphiques"
 

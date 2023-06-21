@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma-nano\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2021-03-03 03:24+0100\n"
+"POT-Creation-Date: 2023-06-21 02:02+0000\n"
 "PO-Revision-Date: 2019-11-03 14:22+0800\n"
 "Last-Translator: pan93412 <pan93412@gmail.com>\n"
 "Language-Team: Chinese <zh-l10n@lists.linux.org.tw>\n"
@@ -20,12 +20,12 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Lokalize 19.08.2\n"
 
-#: contents/ui/DesktopConfigButtons.qml:47
+#: contents/ui/DesktopConfigButtons.qml:49
 #, kde-format
 msgid "Add Widgets..."
 msgstr "新增小工具..."
 
-#: contents/ui/DesktopConfigButtons.qml:54
+#: contents/ui/DesktopConfigButtons.qml:56
 #, kde-format
 msgid "Configure Wallpaper..."
 msgstr "設定桌布..."

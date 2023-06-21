@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma-nano\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-06-15 02:13+0000\n"
+"POT-Creation-Date: 2023-06-21 02:02+0000\n"
 "PO-Revision-Date: 2023-03-06 22:00+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@linux.org.tw>\n"
@@ -21,43 +21,43 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Lokalize 22.12.2\n"
 
-#: contents/applet/CompactApplet.qml:75
+#: contents/applet/CompactApplet.qml:77
 msgid "Open %1"
 msgstr "開啟 %1"
 
-#: contents/configuration/ConfigurationContainmentAppearance.qml:53
+#: contents/configuration/ConfigurationContainmentAppearance.qml:52
 msgid "Layout changes have been restricted by the system administrator"
 msgstr "佈局變更已被系統管理員限制"
 
-#: contents/configuration/ConfigurationContainmentAppearance.qml:87
+#: contents/configuration/ConfigurationContainmentAppearance.qml:86
 msgid "Layout:"
 msgstr "佈局："
 
-#: contents/configuration/ConfigurationContainmentAppearance.qml:101
+#: contents/configuration/ConfigurationContainmentAppearance.qml:100
 msgid "Wallpaper Type:"
 msgstr "桌布類型："
 
-#: contents/configuration/ConfigurationContainmentAppearance.qml:118
+#: contents/configuration/ConfigurationContainmentAppearance.qml:117
 msgid "Get New Plugins…"
 msgstr "取得新的外掛程式…"
 
-#: contents/configuration/ConfigurationContainmentAppearance.qml:130
+#: contents/configuration/ConfigurationContainmentAppearance.qml:129
 msgid "Layout changes must be applied before other changes can be made"
 msgstr "佈局變更必須先套用才能進行其他變更"
 
-#: contents/configuration/ConfigurationContainmentAppearance.qml:136
+#: contents/configuration/ConfigurationContainmentAppearance.qml:135
 msgid "Apply now"
 msgstr "立刻套用"
 
-#: contents/configuration/ContainmentConfiguration.qml:34
+#: contents/configuration/ContainmentConfiguration.qml:35
 msgid "Wallpaper"
 msgstr "桌布"
 
-#: contents/configuration/ContainmentConfiguration.qml:85
+#: contents/configuration/ContainmentConfiguration.qml:86
 msgid "Customize..."
 msgstr "自訂…"
 
-#: contents/explorer/WidgetExplorer.qml:143
+#: contents/explorer/WidgetExplorer.qml:141
 msgid "Widgets"
 msgstr "元件"
 

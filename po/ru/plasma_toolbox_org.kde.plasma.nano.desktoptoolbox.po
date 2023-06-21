@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma-nano\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2021-03-03 03:24+0100\n"
+"POT-Creation-Date: 2023-06-21 02:02+0000\n"
 "PO-Revision-Date: 2020-01-11 17:55+0300\n"
 "Last-Translator: Alexander Yavorsky <kekcuha@gmail.com>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
@@ -18,12 +18,12 @@ msgstr ""
 "%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Lokalize 19.12.1\n"
 
-#: contents/ui/DesktopConfigButtons.qml:47
+#: contents/ui/DesktopConfigButtons.qml:49
 #, kde-format
 msgid "Add Widgets..."
 msgstr "Добавить виджеты..."
 
-#: contents/ui/DesktopConfigButtons.qml:54
+#: contents/ui/DesktopConfigButtons.qml:56
 #, kde-format
 msgid "Configure Wallpaper..."
 msgstr "Настроить обои рабочего стола..."

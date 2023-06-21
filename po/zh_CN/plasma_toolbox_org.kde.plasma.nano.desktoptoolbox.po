@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2021-03-03 03:24+0100\n"
+"POT-Creation-Date: 2023-06-21 02:02+0000\n"
 "PO-Revision-Date: 2023-06-17 04:09\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -18,12 +18,12 @@ msgstr ""
 "plasma.nano.desktoptoolbox.pot\n"
 "X-Crowdin-File-ID: 43361\n"
 
-#: contents/ui/DesktopConfigButtons.qml:47
+#: contents/ui/DesktopConfigButtons.qml:49
 #, kde-format
 msgid "Add Widgets..."
 msgstr "添加挂件..."
 
-#: contents/ui/DesktopConfigButtons.qml:54
+#: contents/ui/DesktopConfigButtons.qml:56
 #, kde-format
 msgid "Configure Wallpaper..."
 msgstr "配置壁纸..."
