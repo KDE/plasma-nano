@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma-nano\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-06-21 02:02+0000\n"
+"POT-Creation-Date: 2023-06-22 02:08+0000\n"
 "PO-Revision-Date: 2021-06-02 20:27+0100\n"
 "Last-Translator: Sergiu Bivol <sergiu@cip.md>\n"
 "Language-Team: Romanian\n"
@@ -54,7 +54,7 @@ msgstr "Tapet"
 msgid "Customize..."
 msgstr "Personalizează..."
 
-#: contents/explorer/WidgetExplorer.qml:141
+#: contents/explorer/WidgetExplorer.qml:140
 msgid "Widgets"
 msgstr "Controale grafice"
 

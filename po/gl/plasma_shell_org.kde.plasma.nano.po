@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma-nano\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-06-21 02:02+0000\n"
+"POT-Creation-Date: 2023-06-22 02:08+0000\n"
 "PO-Revision-Date: 2023-04-30 14:18+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
@@ -55,6 +55,6 @@ msgstr "Fondo de escritorio"
 msgid "Customize..."
 msgstr "Personalizar…"
 
-#: contents/explorer/WidgetExplorer.qml:141
+#: contents/explorer/WidgetExplorer.qml:140
 msgid "Widgets"
 msgstr "Trebellos"
