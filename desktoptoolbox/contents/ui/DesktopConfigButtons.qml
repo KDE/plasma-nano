@@ -48,14 +48,14 @@ KSvg.FrameSvgItem {
         PlasmaComponents.Button {
             text: i18n("Add Widgets...")
             onClicked: {
-                plasmoid.action("add widgets").trigger();
+                plasmoid.internalAction("add widgets").trigger();
                 plasmoid.corona.editMode = false;
             }
         }
         PlasmaComponents.Button {
             text: i18n("Configure Wallpaper...")
             onClicked: {
-                plasmoid.action("configure").trigger();
+                plasmoid.internalAction("configure").trigger();
                 plasmoid.corona.editMode = false;
             }
         }
