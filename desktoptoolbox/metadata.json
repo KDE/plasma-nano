@@ -28,7 +28,8 @@
                 "Name[tr]": "Marco Martin",
                 "Name[uk]": "Marco Martin",
                 "Name[x-test]": "xxMarco Martinxx",
-                "Name[zh_CN]": "Marco Martin"
+                "Name[zh_CN]": "Marco Martin",
+                "Name[zh_TW]": "Marco Martin"
             }
         ],
         "Category": "Containments",
@@ -57,6 +58,7 @@
         "Description[uk]": "Керування шпалерами та віджетами",
         "Description[x-test]": "xxManage Wallpaper and Widgetsxx",
         "Description[zh_CN]": "管理壁纸和挂件",
+        "Description[zh_TW]": "管理桌布及元件",
         "EnabledByDefault": true,
         "Icon": "plasma",
         "Id": "org.kde.plasma.nano.desktoptoolbox",
