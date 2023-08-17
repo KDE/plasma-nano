@@ -103,7 +103,7 @@ MouseArea {
         width: parent.width
         anchors.verticalCenter: parent.verticalCenter
 
-        PlasmaCore.IconItem {
+        Kirigami.Icon {
             id: iconItem
             Layout.alignment: Qt.AlignHCenter
             width: Kirigami.Units.iconSizes.medium

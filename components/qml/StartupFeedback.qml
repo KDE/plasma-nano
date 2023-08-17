@@ -83,10 +83,10 @@ Window {
             anchors.centerIn: background
             width: Kirigami.Units.iconSizes.enormous
             height: width
-            PlasmaCore.IconItem {
+            Kirigami.Icon {
                 id: icon
                 anchors.fill:parent
-                colorGroup: Kirigami.Theme.ComplementaryColorGroup
+                Kirigami.Theme.colorSet: Kirigami.Theme.ComplementaryColorGroup
             }
             DropShadow {
                 anchors.fill: icon

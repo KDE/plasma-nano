@@ -19,7 +19,7 @@ RowLayout {
 
     clip: true
 
-    PlasmaCore.IconItem {
+    Kirigami.Icon {
         id: icon
         Layout.alignment: Qt.AlignVCenter
         Layout.minimumWidth: Kirigami.Units.iconSizes.huge

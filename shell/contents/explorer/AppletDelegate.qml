@@ -40,7 +40,7 @@ Item {
             Item {
                 id: iconWidget
                 anchors.fill: parent
-                PlasmaCore.IconItem {
+                Kirigami.Icon {
                     anchors.fill: parent
                     source: model.decoration
                     visible: model.screenshot == ""
