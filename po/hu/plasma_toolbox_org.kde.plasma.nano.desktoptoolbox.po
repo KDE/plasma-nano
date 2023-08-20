@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma-nano\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-06-21 02:02+0000\n"
+"POT-Creation-Date: 2023-08-20 01:58+0000\n"
 "PO-Revision-Date: 2020-12-17 20:30+0100\n"
 "Last-Translator: Kristóf Kiszel <kiszel.kristof@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -17,12 +17,12 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 21.03.70\n"
 
-#: contents/ui/DesktopConfigButtons.qml:49
+#: contents/ui/DesktopConfigButtons.qml:48
 #, kde-format
 msgid "Add Widgets..."
 msgstr "Elemek hozzáadása…"
 
-#: contents/ui/DesktopConfigButtons.qml:56
+#: contents/ui/DesktopConfigButtons.qml:55
 #, kde-format
 msgid "Configure Wallpaper..."
 msgstr "Háttérkép beállítása…"

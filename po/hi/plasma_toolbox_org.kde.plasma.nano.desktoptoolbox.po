@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma-nano\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-06-21 02:02+0000\n"
+"POT-Creation-Date: 2023-08-20 01:58+0000\n"
 "PO-Revision-Date: 2021-06-29 16:57+0530\n"
 "Last-Translator: Raghavendra Kamath <raghu@raghukamath.com>\n"
 "Language-Team: kde-hindi\n"
@@ -19,12 +19,12 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 "X-Generator: Lokalize 21.04.2\n"
 
-#: contents/ui/DesktopConfigButtons.qml:49
+#: contents/ui/DesktopConfigButtons.qml:48
 #, kde-format
 msgid "Add Widgets..."
 msgstr "विजेट जोडें..."
 
-#: contents/ui/DesktopConfigButtons.qml:56
+#: contents/ui/DesktopConfigButtons.qml:55
 #, kde-format
 msgid "Configure Wallpaper..."
 msgstr "वालपेपर विन्यस्त करें..."
