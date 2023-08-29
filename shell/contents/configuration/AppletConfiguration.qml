@@ -12,7 +12,7 @@ import QtQuick.Window 2.2
 import org.kde.kirigami 2.20 as Kirigami
 import org.kde.plasma.core 2.1 as PlasmaCore
 import org.kde.plasma.configuration 2.0
-
+import org.kde.kitemmodels as KItemModels
 
 //TODO: all of this will be done with desktop components
 Rectangle {
@@ -47,11 +47,14 @@ Rectangle {
         }
     }
 
-    PlasmaCore.SortFilterModel {
+    KItemModels.KSortFilterProxyModel {
         id: configDialogFilterModel
         sourceModel: configDialog.configModel
-        filterRole: "visible"
-        filterCallback: function(source_row, value) { return value; }
+        filterRoleName: "visible"
+        filterRowCallback: (sourceRow, sourceParent) => {
+            let value = sourceModel.data(sourceModel.index(sourceRow, 0, sourceParent), filterRole);
+            return value === true;
+        }
     }
 //END model
 
