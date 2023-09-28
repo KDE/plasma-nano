@@ -89,7 +89,7 @@ Item {
 
         height: Kirigami.Units.smallSpacing
         color: Kirigami.Theme.highlightColor
-        visible: plasmoid.formFactor != PlasmaCore.Types.Planar && plasmoidItem.expanded
+        visible: plasmoid.formFactor != PlasmaCore.Types.Planar && Boolean(plasmoidItem?.expanded)
     }
 
     Connections {
@@ -121,8 +121,8 @@ Item {
 
             x: Math.max(0, Math.min(parent.width - width - Kirigami.Units.gridUnit, Math.max(Kirigami.Units.gridUnit, root.mapToItem(root.rootItem, 0, 0).x + root.width / 2 - width / 2)))
             y: Math.max(0, Math.min(parent.height - height - Kirigami.Units.gridUnit, Math.max(Kirigami.Units.gridUnit, root.mapToItem(root.rootItem, 0, 0).y + root.height / 2 - height / 2)))
-            width: Math.min(expandedOverlay.width,  Math.max(Math.max(root.fullRepresentation?.implicitWidth ?? 0, Kirigami.Units.gridUnit * 15), plasmoidItem.switchWidth) * 1.5)
-            height: Math.min(expandedOverlay.height, Math.max(Math.max(root.fullRepresentation?.implicitHeight ?? 0, Kirigami.Units.gridUnit * 15), plasmoidItem.switchHeight) * 1.5)
+            width: Math.min(expandedOverlay.width,  Math.max(Math.max(root.fullRepresentation?.implicitWidth ?? 0, Kirigami.Units.gridUnit * 15), plasmoidItem?.switchWidth ?? 0) * 1.5)
+            height: Math.min(expandedOverlay.height, Math.max(Math.max(root.fullRepresentation?.implicitHeight ?? 0, Kirigami.Units.gridUnit * 15), plasmoidItem?.switchHeight ?? 0) * 1.5)
         }
     }
 }
