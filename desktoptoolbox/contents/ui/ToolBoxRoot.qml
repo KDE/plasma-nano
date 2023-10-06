@@ -6,6 +6,7 @@
  *   SPDX-License-Identifier: LGPL-2.0-or-later
  */
 
+import org.kde.plasma.plasmoid 2.0
 import QtQuick 2.2
 import QtQuick.Window 2.2
 import org.kde.kirigami 2.20 as Kirigami
@@ -28,7 +29,7 @@ Item {
 
         height: configButtons.height + configButtons.anchors.bottomMargin
 
-        opacity: plasmoid.containment.corona.editMode
+        opacity: Plasmoid.containment.corona.editMode
         Behavior on opacity {
             OpacityAnimator {
                 duration: Kirigami.Units.longDuration
@@ -47,7 +48,7 @@ Item {
         anchors {
             bottom: parent.bottom
             horizontalCenter: parent.horizontalCenter
-            bottomMargin: main.height - (plasmoid.availableScreenRect.y + plasmoid.availableScreenRect.height)
+            bottomMargin: main.height - (Plasmoid.availableScreenRect.y + Plasmoid.availableScreenRect.height)
         }
     }
 }

@@ -3,6 +3,7 @@
  *
  *  SPDX-License-Identifier: GPL-2.0-or-later
  */
+import org.kde.plasma.plasmoid 2.0
 import QtQuick 2.4
 import QtQuick.Layouts 1.1
 import QtQuick.Window 2.0
@@ -89,7 +90,7 @@ Item {
 
         height: Kirigami.Units.smallSpacing
         color: Kirigami.Theme.highlightColor
-        visible: plasmoid.formFactor != PlasmaCore.Types.Planar && Boolean(plasmoidItem?.expanded)
+        visible: Plasmoid.formFactor != PlasmaCore.Types.Planar && Boolean(plasmoidItem?.expanded)
     }
 
     Connections {

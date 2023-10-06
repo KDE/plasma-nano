@@ -4,6 +4,7 @@
  *  SPDX-License-Identifier: GPL-2.0-or-later
  */
 
+import org.kde.plasma.plasmoid 2.0
 import QtQuick 2.15
 import org.kde.plasma.configuration 2.0
 import QtQuick.Controls 2.3 as QQC2
@@ -48,7 +49,7 @@ ColumnLayout {
     }
 
     Kirigami.InlineMessage {
-        visible: plasmoid.immutable || animating
+        visible: Plasmoid.immutable || animating
         text: i18nd("plasma_shell_org.kde.plasma.desktop", "Layout changes have been restricted by the system administrator")
         showCloseButton: true
         Layout.fillWidth: true
@@ -84,7 +85,7 @@ ColumnLayout {
             id: pluginComboBox
             Layout.preferredWidth: Math.max(implicitWidth, wallpaperComboBox.implicitWidth)
             Kirigami.FormData.label: i18nd("plasma_shell_org.kde.plasma.desktop", "Layout:")
-            enabled: !plasmoid.immutable
+            enabled: !Plasmoid.immutable
             model: configDialog.containmentPluginsConfigModel
             textRole: "name"
             visible: count > 1 // only show if there are multiple plugins
