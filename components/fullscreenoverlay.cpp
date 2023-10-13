@@ -85,7 +85,14 @@ bool FullScreenOverlay::event(QEvent *e)
             m_plasmaShellSurface->setSkipTaskbar(true);
         }
     } else if (e->type() == QEvent::Expose) {
-        KWindowSystem::setState(winId(), NET::SkipTaskbar | NET::SkipPager);
+        if (KWindowSystem::isPlatformX11()) {
+            KWindowSystem::setState(winId(), NET::SkipTaskbar | NET::SkipPager);
+        } else {
+            if (m_plasmaShellSurface) {
+                m_plasmaShellSurface->setSkipTaskbar(true);
+                m_plasmaShellSurface->setSkipSwitcher(true);
+            }
+        }
     }
 
     return QQuickWindow::event(e);
