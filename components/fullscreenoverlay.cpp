@@ -8,6 +8,7 @@
 
 #include <QStandardPaths>
 
+#include <KX11Extras>
 #include <QDebug>
 #include <QGuiApplication>
 #include <QScreen>
@@ -86,7 +87,7 @@ bool FullScreenOverlay::event(QEvent *e)
         }
     } else if (e->type() == QEvent::Expose) {
         if (KWindowSystem::isPlatformX11()) {
-            KWindowSystem::setState(winId(), NET::SkipTaskbar | NET::SkipPager);
+            KX11Extras::setState(winId(), NET::SkipTaskbar | NET::SkipPager);
         } else {
             if (m_plasmaShellSurface) {
                 m_plasmaShellSurface->setSkipTaskbar(true);
