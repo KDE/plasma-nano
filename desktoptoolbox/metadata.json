@@ -117,7 +117,5 @@
         "Name[zh_TW]": "Plasma Nano 工具箱",
         "Version": "0.1",
         "Website": "https://www.kde.org/plasma-desktop"
-    },
-    "X-Plasma-API": "declarativeappletscript",
-    "X-Plasma-MainScript": "ui/ToolBoxRoot.qml"
+    }
 }
