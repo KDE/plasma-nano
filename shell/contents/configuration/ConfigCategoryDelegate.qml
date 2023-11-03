@@ -108,8 +108,8 @@ MouseArea {
             Layout.alignment: Qt.AlignHCenter
             width: Kirigami.Units.iconSizes.medium
             height: width
+            active: (delegate.current && categoriesScroll.activeFocus) || delegate.containsMouse
             source: model.icon
-            status: current && categoriesScroll.activeFocus ? KSvg.Svg.Selected : KSvg.Svg.Normal
         }
 
         QtControls.Label {
