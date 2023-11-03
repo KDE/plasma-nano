@@ -24,6 +24,10 @@ MouseArea {
     hoverEnabled: true
 
     property bool current: (model.kcm && pageStack.currentItem.kcm && model.kcm == pageStack.currentItem.kcm) || (model.source == pageStack.sourceFile)
+
+    Accessible.name: model.name
+    Accessible.role: Accessible.Button
+    Accessible.onPressAction: delegate.openCategory()
 //END properties
 
 //BEGIN functions
@@ -52,11 +56,6 @@ MouseArea {
 //BEGIN connections
     onPressed: {
         categoriesScroll.forceActiveFocus()
-
-        if (current) {
-            return;
-        }
-
         openCategory();
     }
     onCurrentChanged: {
@@ -108,7 +107,8 @@ MouseArea {
             Layout.alignment: Qt.AlignHCenter
             width: Kirigami.Units.iconSizes.medium
             height: width
-            active: (delegate.current && categoriesScroll.activeFocus) || delegate.containsMouse
+            active: delegate.containsMouse
+            selected: delegate.current || categoriesScroll.activeFocus
             source: model.icon
         }
 
@@ -119,6 +119,7 @@ MouseArea {
             wrapMode: Text.Wrap
             horizontalAlignment: Text.AlignHCenter
             color: current && categoriesScroll.activeFocus ? Kirigami.Theme.highlightedTextColor : Kirigami.Theme.textColor
+            Accessible.ignored: true
             Behavior on color {
                 ColorAnimation {
                     duration: Kirigami.Units.longDuration
