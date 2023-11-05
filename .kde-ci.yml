@@ -10,7 +10,7 @@ Dependencies:
     'frameworks/kservice': '@latest'
     'frameworks/kwayland': '@latest'
     'frameworks/kwindowsystem': '@latest'
-    'frameworks/plasma-framework': '@latest'
     'frameworks/ki18n': '@latest'
+    'plasma/plasma-framework': 'kf5'
 Options:
   require-passing-tests-on: [ 'Linux', 'FreeBSD']
