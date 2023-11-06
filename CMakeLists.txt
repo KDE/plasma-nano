@@ -30,9 +30,8 @@ include(FeatureSummary)
 include(ECMDeprecationSettings)
 
 find_package(Qt6 ${QT_MIN_VERSION} CONFIG REQUIRED Core Gui Qml Quick Svg)
-find_package(KF6 ${KF6_MIN_VERSION} REQUIRED COMPONENTS Plasma WindowSystem Wayland I18n Service ItemModels)
-
-
+find_package(KF6 ${KF6_MIN_VERSION} REQUIRED COMPONENTS WindowSystem I18n Service ItemModels)
+find_package(KF6 ${PROJECT_VERSION} REQUIRED COMPONENTS Plasma Wayland)
 
 feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
 
