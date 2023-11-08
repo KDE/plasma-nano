@@ -106,12 +106,10 @@ PC3.Drawer {
                     model: widgetExplorer.filterModel
                     orientation: root.horizontal ? ListView.Horizontal : ListView.Vertical
                     topMargin: root.horizontal ? 0 : root.topPanelHeight
-                    delegate: Kirigami.BasicListItem {
+                    delegate: PC3.ItemDelegate {
                         height: model.separator ? 1 : implicitHeight
                         width: root.horizontal ? implicitWidth : parent.width
                         text: model.separator ? "" : model.display
-                        separatorVisible: false
-                        reserveSpaceForIcon: false
                         checked: widgetExplorer.widgetsModel.filterType == model.filterType && widgetExplorer.widgetsModel.filterQuery == model.filterData
 
                         onClicked: {
