@@ -76,7 +76,7 @@ Item {
         Accessible.name: root.plasmoidItem?.toolTipMainText??""
         Accessible.description: i18nd("plasma_shell_org.kde.plasma.nano", "Open %1", root.plasmoidItem?.toolTipSubText??"")
         Accessible.role: Accessible.Button
-        Accessible.onPressAction: plasmoidItem.activated()
+        Accessible.onPressAction: Plasmoid.activated()
     }
 
     Rectangle {
