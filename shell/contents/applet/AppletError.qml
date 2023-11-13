@@ -9,31 +9,35 @@ import QtQuick.Layouts 1.1
 import org.kde.plasma.core as PlasmaCore
 import org.kde.plasma.components 3.0 as PlasmaComponents
 import org.kde.kirigami 2.20 as Kirigami
+import org.kde.plasma.plasmoid 2.0
 
-RowLayout {
+PlasmoidItem {
     id: root
-    Layout.minimumWidth: Kirigami.Units.gridUnit * 20
-    Layout.minimumHeight: Kirigami.Units.gridUnit * 8
+    property string reason
 
-    property alias reason: messageText.text
+    fullRepresentation: RowLayout {
+        Layout.minimumWidth: Kirigami.Units.gridUnit * 20
+        Layout.minimumHeight: Kirigami.Units.gridUnit * 8
 
-    clip: true
+        clip: true
 
-    Kirigami.Icon {
-        id: icon
-        Layout.alignment: Qt.AlignVCenter
-        Layout.minimumWidth: Kirigami.Units.iconSizes.huge
-        Layout.minimumHeight: Kirigami.Units.iconSizes.huge
-        source: "dialog-error"
-    }
+        Kirigami.Icon {
+            id: icon
+            Layout.alignment: Qt.AlignVCenter
+            Layout.minimumWidth: Kirigami.Units.iconSizes.huge
+            Layout.minimumHeight: Kirigami.Units.iconSizes.huge
+            source: "dialog-error"
+        }
 
-    PlasmaComponents.TextArea {
-        id: messageText
-        Layout.fillWidth: true
-        Layout.fillHeight: true
-        verticalAlignment: TextEdit.AlignVCenter
-        readOnly: true
-        width: parent.width - icon.width
-        wrapMode: Text.Wrap
+        PlasmaComponents.TextArea {
+            id: messageText
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            verticalAlignment: TextEdit.AlignVCenter
+            readOnly: true
+            width: parent.width - icon.width
+            wrapMode: Text.Wrap
+            text: root.text
+        }
     }
 }
