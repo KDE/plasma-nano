@@ -37,7 +37,7 @@ PlasmoidItem {
             readOnly: true
             width: parent.width - icon.width
             wrapMode: Text.Wrap
-            text: root.text
+            text: root.reason
         }
     }
 }
