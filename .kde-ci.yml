@@ -13,6 +13,6 @@ Dependencies:
     'frameworks/kitemmodels': '@latest-kf6'
     'frameworks/ksvg': '@latest-kf6'
     'plasma/kwayland': '@same'
-    'plasma/plasma-framework': '@same'
+    'plasma/libplasma': '@same'
 Options:
   require-passing-tests-on: [ 'Linux', 'FreeBSD']
