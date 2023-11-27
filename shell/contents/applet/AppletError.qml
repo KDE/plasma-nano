@@ -36,7 +36,7 @@ PlasmoidItem {
             verticalAlignment: TextEdit.AlignVCenter
             readOnly: true
             width: parent.width - icon.width
-            wrapMode: Text.Wrap
+            wrapMode: TextEdit.Wrap
             text: root.reason
         }
     }
