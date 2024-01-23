@@ -1,8 +1,12 @@
 project(plasma-nano)
 
+set(PROJECT_VERSION "6.0.80")
+set(PROJECT_VERSION_MAJOR 6)
+
 # minimal requirements
 cmake_minimum_required(VERSION 3.16)
-set (QT_MIN_VERSION "6.6.0")
+set(PROJECT_DEP_VERSION "6.0.80")
+set(QT_MIN_VERSION "6.6.0")
 set(KF6_MIN_VERSION "5.240.0")
 set(KDE_COMPILERSETTINGS_LEVEL "5.82")
 
@@ -31,8 +35,8 @@ include(ECMDeprecationSettings)
 
 find_package(Qt6 ${QT_MIN_VERSION} CONFIG REQUIRED Core Gui Qml Quick Svg)
 find_package(KF6 ${KF6_MIN_VERSION} REQUIRED COMPONENTS WindowSystem I18n Service ItemModels)
-find_package(Plasma ${PROJECT_VERSION} REQUIRED)
-find_package(KWayland ${PROJECT_VERSION} REQUIRED)
+find_package(Plasma ${PROJECT_DEP_VERSION} REQUIRED)
+find_package(KWayland ${PROJECT_DEP_VERSION} REQUIRED)
 
 feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
 
