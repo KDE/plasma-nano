@@ -1,6 +1,6 @@
 project(plasma-nano)
 
-set(PROJECT_VERSION "6.0.0")
+set(PROJECT_VERSION "6.0.1")
 set(PROJECT_VERSION_MAJOR 6)
 
 # minimal requirements
