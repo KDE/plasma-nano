@@ -55,7 +55,7 @@ msgstr "Fons de pantalla"
 
 #: contents/configuration/ContainmentConfiguration.qml:86
 msgid "Customize..."
-msgstr "Personalitza..."
+msgstr "Personalitza…"
 
 #: contents/explorer/WidgetExplorer.qml:138
 msgid "Widgets"

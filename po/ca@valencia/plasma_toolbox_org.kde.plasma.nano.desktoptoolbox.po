@@ -23,9 +23,9 @@ msgstr ""
 #: contents/ui/DesktopConfigButtons.qml:48
 #, kde-format
 msgid "Add Widgets..."
-msgstr "Afig ginys..."
+msgstr "Afig ginys…"
 
 #: contents/ui/DesktopConfigButtons.qml:55
 #, kde-format
 msgid "Configure Wallpaper..."
-msgstr "Configura el fons de pantalla..."
+msgstr "Configura el fons de pantalla…"
