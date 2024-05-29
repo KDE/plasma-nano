@@ -1,9 +1,3 @@
-[Desktop]
-ToolBox=org.kde.plasma.nano.desktoptoolbox
-
-[Panel]
-ToolBox=null
-
 [Desktop][ContainmentActions]
 
 
