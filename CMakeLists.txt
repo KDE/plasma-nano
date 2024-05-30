@@ -44,7 +44,6 @@ feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAG
 include(CheckIncludeFiles)
 
 plasma_install_package(shell org.kde.plasma.nano shells)
-plasma_install_package(desktoptoolbox org.kde.plasma.nano.desktoptoolbox packages package)
 ecm_set_disabled_deprecation_versions(QT 6.5
     KF 5.240
 )
