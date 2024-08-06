@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.16)
 
 project(plasma-nano)
 
-set(PROJECT_VERSION "6.1.4")
+set(PROJECT_VERSION "6.1.5")
 set(PROJECT_VERSION_MAJOR 6)
 
 # minimal requirements
