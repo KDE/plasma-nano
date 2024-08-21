@@ -1,13 +1,13 @@
-# Copyright (C) YEAR This file is copyright:
+# Copyright (C) 2024 This file is copyright:
 # This file is distributed under the same license as the plasma-nano package.
-# Vit Pelcak <vit@pelcak.org>, 2020.
+# SPDX-FileCopyrightText: 2020, 2024 Vit Pelcak <vit@pelcak.org>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: plasma-nano\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-01-28 02:51+0000\n"
-"PO-Revision-Date: 2020-07-21 13:31+0200\n"
+"PO-Revision-Date: 2024-08-20 15:04+0200\n"
 "Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
 "Language: cs\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Lokalize 20.04.3\n"
+"X-Generator: Lokalize 24.05.2\n"
 
 #: contents/applet/CompactApplet.qml:74
 msgid "Open %1"
@@ -39,7 +39,7 @@ msgstr "Získat nové moduly…"
 
 #: contents/configuration/ConfigurationContainmentAppearance.qml:130
 msgid "Layout changes must be applied before other changes can be made"
-msgstr "Změny rozložení musí být aplikovány před ostatními změnami"
+msgstr "Změny rozvržení musí být aplikovány před ostatními změnami"
 
 #: contents/configuration/ConfigurationContainmentAppearance.qml:136
 msgid "Apply now"
