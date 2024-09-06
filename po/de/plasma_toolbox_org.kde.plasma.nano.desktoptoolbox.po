@@ -4,7 +4,7 @@
 # Burkhard Lück <lueck@hube-lueck.de>, 2019.
 msgid ""
 msgstr ""
-"Project-Id-Version: plasma-nano\n"
+"Project-Id-Version: plasma_toolbox_org.kde.plasma.nano.desktoptoolbox\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2021-03-03 03:24+0100\n"
 "PO-Revision-Date: 2019-11-02 07:37+0100\n"
