@@ -68,3 +68,5 @@ bool StartupNotifier::isValid() const
 {
     return KWindowSystem::isPlatformWayland();
 }
+
+#include "moc_startupnotifier.cpp"

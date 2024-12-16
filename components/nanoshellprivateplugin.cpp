@@ -17,3 +17,5 @@ void PlasmaMiniShellPrivatePlugin::registerTypes(const char *uri)
         return new StartupNotifier;
     });
 }
+
+#include "moc_nanoshellprivateplugin.cpp"

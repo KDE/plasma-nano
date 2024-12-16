@@ -100,3 +100,5 @@ bool FullScreenOverlay::event(QEvent *e)
 }
 
 #include "fullscreenoverlay.moc"
+
+#include "moc_fullscreenoverlay.cpp"
