@@ -38,7 +38,7 @@ Item {
         id: icon
         source: plasmoid.icon ? plasmoid.icon : "plasma"
         active: mouseArea.containsMouse
-        Kirigami.Theme.colorSet: Kirigami.Theme.ComplementaryColorGroup
+        Kirigami.Theme.colorSet: Kirigami.Theme.Complementary
         anchors.verticalCenter: parent.verticalCenter
     }
 
