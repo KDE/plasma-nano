@@ -244,6 +244,15 @@ Rectangle {
                                     configurationChangedSignal.connect(root.settingValueChanged)
                                 }
 
+                                var unsavedChangesChangedSignal = newItem.unsavedChangesChanged
+                                if (unsavedChangesChangedSignal) {
+                                    unsavedChangesChangedSignal.connect( () => {
+                                        if (newItem.unsavedChanges) {
+                                            root.settingValueChanged()
+                                        }
+                                    })
+                                }
+
                                 scroll.flickableItem.contentY = 0
 
                                 /*
