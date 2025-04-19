@@ -99,6 +99,4 @@ bool FullScreenOverlay::event(QEvent *e)
     return QQuickWindow::event(e);
 }
 
-#include "fullscreenoverlay.moc"
-
 #include "moc_fullscreenoverlay.cpp"

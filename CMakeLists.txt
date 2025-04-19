@@ -32,6 +32,7 @@ include(KDEGitCommitHooks)
 include(GenerateExportHeader)
 include(FeatureSummary)
 include(ECMDeprecationSettings)
+include(ECMQmlModule)
 
 find_package(Qt6 ${QT_MIN_VERSION} CONFIG REQUIRED Core Gui Qml Quick Svg)
 find_package(KF6 ${KF6_MIN_VERSION} REQUIRED COMPONENTS WindowSystem I18n Service ItemModels)

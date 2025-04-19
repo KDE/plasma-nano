@@ -8,6 +8,7 @@
 #define STARTUPNOTIFIER_H
 
 #include <QObject>
+#include <qqmlregistration.h>
 
 namespace KWayland
 {
@@ -16,6 +17,8 @@ namespace KWayland
 class StartupNotifier : public QObject
 {
     Q_OBJECT
+    QML_ELEMENT
+    QML_SINGLETON
     Q_PROPERTY(bool isValid READ isValid CONSTANT)
 public:
     explicit StartupNotifier(QObject *parent = nullptr);
