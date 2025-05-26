@@ -1,15 +1,15 @@
 # Spanish translations for plasma_shell_org.kde.plasma.nano.po package.
-# Copyright (C) 2019 This file is copyright:
+# Copyright (C) 2019-2025 This file is copyright:
 # This file is distributed under the same license as the plasma-nano package.
-#
 # Automatically generated, 2019.
-# Eloy Cuadra <ecuadra@eloihr.net>, 2019, 2020, 2021, 2022, 2023.
+#
+# SPDX-FileCopyrightText: 2019, 2020, 2021, 2022, 2023, 2025 Eloy Cuadra <ecuadra@eloihr.net>
 msgid ""
 msgstr ""
-"Project-Id-Version: plasma_shell_org\n"
+"Project-Id-Version: plasma_shell_org.kde.plasma.nano\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-09 01:39+0000\n"
-"PO-Revision-Date: 2023-01-29 00:48+0100\n"
+"PO-Revision-Date: 2025-05-26 01:11+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -37,7 +37,7 @@ msgstr "Tipo de fondo de pantalla:"
 
 #: contents/configuration/ConfigurationContainmentAppearance.qml:117
 msgid "Get New Plugins…"
-msgstr "Obtener nuevos complementos..."
+msgstr "Obtener nuevos complementos…"
 
 #: contents/configuration/ConfigurationContainmentAppearance.qml:129
 msgid "Layout changes must be applied before other changes can be made"
@@ -55,19 +55,8 @@ msgstr "Fondo de pantalla"
 
 #: contents/configuration/ContainmentConfiguration.qml:86
 msgid "Customize..."
-msgstr "Personalizar..."
+msgstr "Personalizar…"
 
 #: contents/explorer/WidgetExplorer.qml:138
 msgid "Widgets"
 msgstr "Elementos gráficos"
-
-#~ msgid "Layout cannot be changed while widgets are locked"
-#~ msgstr ""
-#~ "No se puede modificar la distribución mientras estén bloqueados los "
-#~ "elementos gráficos"
-
-#~ msgid "Download..."
-#~ msgstr "Descargar..."
-
-#~ msgid "More Wallpapers..."
-#~ msgstr "Más fondos de pantalla..."
