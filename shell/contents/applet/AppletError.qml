@@ -13,7 +13,7 @@ import org.kde.plasma.plasmoid 2.0
 
 PlasmoidItem {
     id: root
-    property string reason
+    property var errorInformation
 
     fullRepresentation: RowLayout {
         Layout.minimumWidth: Kirigami.Units.gridUnit * 20
@@ -37,7 +37,10 @@ PlasmoidItem {
             readOnly: true
             width: parent.width - icon.width
             wrapMode: TextEdit.Wrap
-            text: root.reason
+            text: root.errorInformation && root.errorInformation.errors ?
+                    root.errorInformation.errors.join("\n\n")
+                    // This is just to suppress warnings. Users should never see this.
+                    : i18n("No error information.")
         }
     }
 }
