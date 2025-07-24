@@ -20,7 +20,7 @@ msgstr ""
 
 #: contents/applet/AppletError.qml:43
 msgid "No error information."
-msgstr ""
+msgstr "没有错误信息。"
 
 #: contents/applet/CompactApplet.qml:77
 msgid "Open %1"
