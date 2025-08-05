@@ -32,7 +32,7 @@ msgstr "قُيد تغييرات التخطيط من قبل مسؤول النظا
 
 #: contents/configuration/ConfigurationContainmentAppearance.qml:86
 msgid "Layout:"
-msgstr "التّخطيط:"
+msgstr "التخطيط:"
 
 #: contents/configuration/ConfigurationContainmentAppearance.qml:100
 msgid "Wallpaper Type:"
