@@ -5,9 +5,7 @@
  */
 
 import QtQuick 2.12
-import QtQuick.Layouts 1.1
 import QtQuick.Window 2.2
-import org.kde.plasma.core as PlasmaCore
 import Qt5Compat.GraphicalEffects
 
 import org.kde.kirigami 2.20 as Kirigami
