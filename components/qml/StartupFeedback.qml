@@ -109,16 +109,14 @@ Window {
                 State {
                     name: "closed"
                     PropertyChanges {
-                        target: window
-                        visible: false
+                        window.visible: false
                     }
                 },
                 State {
                     name: "open"
 
                     PropertyChanges {
-                        target: window
-                        visible: true
+                        window.visible: true
                     }
                 }
             ]
