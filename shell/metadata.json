@@ -41,7 +41,6 @@
                 "Name[ta]": "மார்க்கோ மார்ட்டின்",
                 "Name[tr]": "Marco Martin",
                 "Name[uk]": "Marco Martin",
-                "Name[x-test]": "xxMarco Martinxx",
                 "Name[zh_CN]": "Marco Martin",
                 "Name[zh_TW]": "Marco Martin"
             }
@@ -93,7 +92,6 @@
         "Name[ta]": "பிளாஸ்மா நானோ",
         "Name[tr]": "Plasma Nano",
         "Name[uk]": "Плазма Nano",
-        "Name[x-test]": "xxPlasma Nanoxx",
         "Name[zh_CN]": "Plasma Nano",
         "Name[zh_TW]": "Plasma Nano",
         "Version": "0.1",
