@@ -60,4 +60,4 @@ msgstr "自定义..."
 
 #: contents/explorer/WidgetExplorer.qml:138
 msgid "Widgets"
-msgstr "挂件"
+msgstr "小部件"
