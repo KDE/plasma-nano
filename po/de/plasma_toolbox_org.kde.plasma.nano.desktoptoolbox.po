@@ -18,9 +18,9 @@ msgstr ""
 #: contents/ui/DesktopConfigButtons.qml:47
 #, kde-format
 msgid "Add Widgets..."
-msgstr "Miniprogramme hinzufügen ..."
+msgstr "Miniprogramme hinzufügen …"
 
 #: contents/ui/DesktopConfigButtons.qml:54
 #, kde-format
 msgid "Configure Wallpaper..."
-msgstr "Hintergrundbild einrichten ..."
+msgstr "Hintergrundbild einrichten …"
