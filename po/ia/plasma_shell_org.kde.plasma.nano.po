@@ -37,7 +37,7 @@ msgstr "Disposition:"
 
 #: contents/configuration/ConfigurationContainmentAppearance.qml:100
 msgid "Wallpaper Type:"
-msgstr "Typo de Tapete de papiro:"
+msgstr "Typo de Fundo de schermo:"
 
 #: contents/configuration/ConfigurationContainmentAppearance.qml:117
 msgid "Get New Plugins…"
@@ -55,7 +55,7 @@ msgstr "Applica hora"
 
 #: contents/configuration/ContainmentConfiguration.qml:35
 msgid "Wallpaper"
-msgstr "Tapete de papiro"
+msgstr "Fundo de schermo"
 
 #: contents/configuration/ContainmentConfiguration.qml:86
 msgid "Customize..."
@@ -69,4 +69,4 @@ msgstr "Widgets"
 #~ msgstr "Disposition non pote esser modificate quando le widgets es blocate"
 
 #~ msgid "More Wallpapers..."
-#~ msgstr "Altere Tapetes de papiro..."
+#~ msgstr "Altere Fundos de schermo..."
