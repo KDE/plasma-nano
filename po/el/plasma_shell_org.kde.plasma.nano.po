@@ -20,7 +20,7 @@ msgstr ""
 
 #: contents/applet/AppletError.qml:43
 msgid "No error information."
-msgstr ""
+msgstr "Δεν υπάρχουν πληροφορίες για το σφάλμα."
 
 #: contents/applet/CompactApplet.qml:77
 msgid "Open %1"
